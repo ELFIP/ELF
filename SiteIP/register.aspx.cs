@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class register : System.Web.UI.Page
 {
+    Auxiliare a = new Auxiliare();
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -16,7 +17,7 @@ public partial class register : System.Web.UI.Page
     {
         SqlCommand dbcommand = new SqlCommand();
         SqlConnection dbconnection;
-        dbconnection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='C:\Users\Mihai Alexandru\Dropbox\Facultate\Anul 3\Semestrul II\Ingineria programarii\Site - repository\ELF1\ELF\SiteIP\App_Data\Database.mdf';Integrated Security=True");
+        dbconnection = new SqlConnection(a.string_bazadedate);
         dbcommand = new SqlCommand();
         dbcommand.Connection = dbconnection;
         dbcommand.Connection.Open();
@@ -28,7 +29,7 @@ public partial class register : System.Web.UI.Page
     {
         SqlCommand comanda = new SqlCommand();
         SqlConnection conexiune;
-        conexiune = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='C:\Users\Mihai Alexandru\Dropbox\Facultate\Anul 3\Semestrul II\Ingineria programarii\Site - repository\ELF1\ELF\SiteIP\App_Data\Database.mdf';Integrated Security=True");
+        conexiune = new SqlConnection(a.string_bazadedate);
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;

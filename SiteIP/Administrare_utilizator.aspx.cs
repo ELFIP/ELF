@@ -12,6 +12,7 @@ public partial class Administrare_utilizator : System.Web.UI.Page
     public String[] nume = new String[20];
     public String[] prenume = new String[20];
     public String[] parola = new String[20];
+    Auxiliare a = new Auxiliare();
 
     int numar_utilizatori = 0;
 
@@ -20,7 +21,7 @@ public partial class Administrare_utilizator : System.Web.UI.Page
         numar_utilizatori = 0;
         SqlCommand comanda = new SqlCommand();
         SqlConnection conexiune;
-        conexiune = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='C:\Users\Mihai Alexandru\Dropbox\Facultate\Anul 3\Semestrul II\Ingineria programarii\Site - repository\ELF\SiteIP\App_Data\Database.mdf';Integrated Security=True");
+        conexiune = new SqlConnection(a.string_bazadedate);
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;
@@ -43,7 +44,7 @@ public partial class Administrare_utilizator : System.Web.UI.Page
         numar_utilizatori = 0;
         SqlCommand comanda = new SqlCommand();
         SqlConnection conexiune;
-        conexiune = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='C:\Users\Mihai Alexandru\Dropbox\Facultate\Anul 3\Semestrul II\Ingineria programarii\Site - repository\ELF\SiteIP\App_Data\Database.mdf';Integrated Security=True");
+        conexiune = new SqlConnection(a.string_bazadedate);
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;
