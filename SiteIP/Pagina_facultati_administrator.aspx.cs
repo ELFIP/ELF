@@ -47,16 +47,19 @@ public partial class Pagina_facultati_administrator : System.Web.UI.Page
             Panel facultate = new Panel();
             facultate.CssClass = "facultate";
 
-            Label nume_facultate = new Label();
+            Panel nume_facultate = new Panel();
             nume_facultate.Width = new Unit("50%");
             nume_facultate.Height = new Unit("100%");
-            nume_facultate.CssClass = "label_numefacultate";
-            nume_facultate.Text = nume_facultati[i];
+
+            HyperLink hnf = new HyperLink();
+            hnf.NavigateUrl = nume_facultati[i] + ".aspx";
+            hnf.Text = nume_facultati[i];
+
+            nume_facultate.Controls.Add(hnf);
 
             Label localitate_facultate = new Label();
             localitate_facultate.Width = new Unit("50%");
             localitate_facultate.Height = new Unit("100%");
-            localitate_facultate.CssClass = "label_localitatefacultate";
             localitate_facultate.Text = localitate_facultati[i];
 
             facultate.Controls.Add(nume_facultate);
@@ -67,4 +70,8 @@ public partial class Pagina_facultati_administrator : System.Web.UI.Page
         }
     }
 
+    protected void adauga_facultate_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Formular Facultate.aspx");
+    }
 }

@@ -46,15 +46,21 @@ public partial class Pagina_facultati : System.Web.UI.Page
 
     protected void afiseazaFacultati()
     {
+
         for (int i = 0; i < numar_facultati; i ++ )
         {
             Panel facultate = new Panel();
             facultate.CssClass = "facultate";
 
-            Label nume_facultate = new Label();
+            Panel nume_facultate = new Panel();
             nume_facultate.Width = new Unit("50%");
             nume_facultate.Height = new Unit("100%");
-            nume_facultate.Text = nume_facultati[i];
+
+            HyperLink hnf = new HyperLink();
+            hnf.NavigateUrl = nume_facultati[i] + ".aspx";
+            hnf.Text = nume_facultati[i];
+
+            nume_facultate.Controls.Add(hnf);
 
             Label localitate_facultate = new Label();
             localitate_facultate.Width = new Unit("50%");
