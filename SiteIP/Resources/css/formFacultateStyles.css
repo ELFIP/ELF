@@ -1,0 +1,77 @@
+﻿.main_container {
+    text-align: center; 
+    white-space: nowrap;
+    margin-top:10px;
+    margin-bottom: 10px;
+    height: 600px;
+}
+
+.formular_facultate {
+    background-color: #F0F0F0;
+}
+
+h4 {
+    font-size: 25px;
+    margin: 0;
+    padding-bottom: 5px;
+    color: #444;
+    font-family: 'Roboto', sans-serif;
+    border-bottom: 2px solid #72B372;
+}
+
+.main_container:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.15em; 
+}
+
+.formular_facultate {
+  display: inline-block;
+  vertical-align: middle;
+  height: 601px;
+  width: 600px;
+  padding: 10px;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.inputBoxContainers {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.inputBoxContainers input {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    border: none;
+    width: 300px;
+    padding: 5px;
+    box-shadow: 0 5px 5px -3px black;
+}
+
+.inputBoxContainers input:last-child {
+    margin-top: 50px;
+    outline: 0;
+    margin-left: 0;
+}
+
+.inputBoxContainers input:last-child:active {
+   background-color: white;
+   
+}
+
+.form_labels {
+    display: inline-block;
+    width: 90px;
+    text-align: left;
+    font-weight: bold;
+    font-family: 'Droid Sans', sans-serif;
+}
+
+.space_holder {
+    margin-top: 25px;
+    width: 100%;
+    border-bottom: 2px solid #72B372;
+}
+
