@@ -25,6 +25,7 @@ public partial class register : System.Web.UI.Page
         dbcommand.ExecuteNonQuery();
         dbconnection.Close();
     }
+
     private int dbSize()
     {
         SqlCommand comanda = new SqlCommand();

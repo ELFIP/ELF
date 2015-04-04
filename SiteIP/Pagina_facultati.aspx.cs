@@ -11,8 +11,8 @@ public partial class Pagina_facultati : System.Web.UI.Page
     Auxiliare a = new Auxiliare();
    // DateUtilizator dU = new DateUtilizator();
     int numar_facultati = 0;
-    String[] nume_facultati = new String[20];
-    String[] localitate_facultati = new String[20];
+    String[] nume_facultati = new String[200];
+    String[] localitate_facultati = new String[200];
 
     protected void Page_Load(object sender, EventArgs e)
     {
