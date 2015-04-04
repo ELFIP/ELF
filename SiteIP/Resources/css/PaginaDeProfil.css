@@ -1,0 +1,68 @@
+﻿.header_profil {
+    background-color:gray;
+    width: 80%;
+    height: 70px;
+    margin-left: 10%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.iconita_profil {
+    float: left;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.utilizator_profil {
+    float: left;
+    padding: 5px;
+    margin-left: 10px;
+    height: 20px;
+}
+
+.buton_edit_profil {
+    float: right;
+    padding: 15px;
+    margin-right: 10px;
+}
+
+.item_profil {
+    width: 70%;
+    background-color:gray;
+    margin-left: 15%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.buton_adaugare {
+    width: 100px;
+    height: 30px;
+    margin-left: 50%;
+    text-align:center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.facultate {
+    width: 70%;
+    background-color:gray;
+    margin-left: 15%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.label_numefacultate {
+    width: 50%;
+    text-align:center;
+}
+
+.label_localitatefacultate {
+    width: 50%;
+    text-align:center;
+}
+
+.camp_profil {
+    padding: 5px;
+    margin-left: 10px;
+    height: 20px;
+}

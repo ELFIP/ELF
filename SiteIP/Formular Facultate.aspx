@@ -9,7 +9,6 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic' rel='stylesheet' type='text/css'>
 </asp:Content>
 
-
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
     <div class="main_container">
         <asp:Panel ID="formular" runat="server" CssClass="formular_facultate">

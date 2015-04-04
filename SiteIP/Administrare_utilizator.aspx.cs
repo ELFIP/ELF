@@ -8,7 +8,6 @@ using System.Data.SqlClient;
 
 public partial class Administrare_utilizator : System.Web.UI.Page
 {
-
     private String[] email = new String[200];
     private String[] nume = new String[200];
     private String[] prenume = new String[200];
@@ -22,6 +21,7 @@ public partial class Administrare_utilizator : System.Web.UI.Page
     {
         adaugaUtilizatori();
         afiseazaUtilizatori();
+        Response.Redirect("Pagina_facultati.aspx?" + Session["email"]);
     }
 
     private void adaugaUtilizatori()
