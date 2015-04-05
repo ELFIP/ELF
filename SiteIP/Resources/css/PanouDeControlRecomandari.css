@@ -1,8 +1,27 @@
-﻿
+﻿.tree {
+    margin-top: 100px;
+    text-align: center;
+    white-space: nowrap;
+}
 
-* {
-    margin: 0; 
+.tree:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em;
+}
+
+.tree > ul {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1000px;
+}
+
+ul {
+    list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .tree ul {

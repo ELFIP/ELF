@@ -3,7 +3,7 @@
     white-space: nowrap;
     margin-top:10px;
     margin-bottom: 10px;
-    height: 600px;
+    height: 800px;
 }
 
 .formular_facultate {
@@ -24,31 +24,35 @@ h4 {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
-  margin-right: -0.15em; 
+  margin-right: -0.25em; 
 }
 
 .formular_facultate {
   display: inline-block;
   vertical-align: middle;
-  height: 601px;
+  height: 730px;
   width: 600px;
   padding: 10px;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .inputBoxContainers {
-    margin-top: 20px;
     width: 100%;
 }
 
-.inputBoxContainers input {
+.inputBoxContainers input, .inputBoxContainers textarea {
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     border: none;
-    width: 300px;
+    width: 450px;
     padding: 5px;
     box-shadow: 0 5px 5px -3px black;
 }
+
+.inputBoxContainers textarea {
+    margin-top: 60px;
+}
+
 
 .inputBoxContainers input:last-child {
     margin-top: 50px;
@@ -67,6 +71,20 @@ h4 {
     text-align: left;
     font-weight: bold;
     font-family: 'Droid Sans', sans-serif;
+}
+
+.inputBoxContainers:nth-child(3) .form_labels {
+    height: 76px;
+    vertical-align: middle;
+}
+
+.inputBoxContainers:nth-child(4) .form_labels {
+    height: 120px;
+    vertical-align: middle;
+}
+
+.inputBoxContainers:nth-child(4) textarea {
+    margin-top:40px;
 }
 
 .space_holder {
