@@ -81,8 +81,10 @@ public partial class Profil : System.Web.UI.Page
 
     protected void actualizare_profil_Click(object sender, EventArgs e)
     {
-        actualizeazaBazaDeDate();
+        Response.Redirect("login.aspx?" + textbox_nume.Text);
         modificaDateleDeSesiune();
+        actualizeazaBazaDeDate();
+
     }
 
     private void modificaDateleDeSesiune()
@@ -94,7 +96,7 @@ public partial class Profil : System.Web.UI.Page
 
     private void actualizeazaBazaDeDate()
     {
-        Response.Redirect("login.aspx?" + textbox_nume.Text + " " + textbox_prenume.Text + " " + textbox_domiciliu.Text);
+        Response.Redirect("login.aspx?" + textbox_nume.Text);
         SqlCommand comanda = new SqlCommand();
         SqlConnection conexiune;
         conexiune = new SqlConnection(a.string_bazadedate);
