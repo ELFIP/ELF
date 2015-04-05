@@ -96,7 +96,7 @@
 
             <br />
             
-            <asp:Button ID="actualizare_profil" runat="server" Text="Actualizeaza Profil" CssClass="item_profil"/>
+            <asp:Button ID="actualizare_profil" runat="server" Text="Actualizeaza Profil" CssClass="item_profil" OnClick="actualizare_profil_Click"/>
         </asp:Panel>
 
 

@@ -25,6 +25,7 @@ public partial class Profil : System.Web.UI.Page
     private ArrayList TesteDate = new ArrayList();
     private ArrayList FacultatiRecomandate = new ArrayList();
     private ArrayList NumeFacultatiRecomandate = new ArrayList();
+    Auxiliare a = new Auxiliare();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -78,4 +79,30 @@ public partial class Profil : System.Web.UI.Page
         }
     }
 
+    protected void actualizare_profil_Click(object sender, EventArgs e)
+    {
+        actualizeazaBazaDeDate();
+        modificaDateleDeSesiune();
+    }
+
+    private void modificaDateleDeSesiune()
+    {
+        Session["nume"] = textbox_nume.Text;
+        Session["prenume"] = textbox_prenume.Text;
+        Session["domiciliu"] = textbox_domiciliu.Text;
+    }
+
+    private void actualizeazaBazaDeDate()
+    {
+        Response.Redirect("login.aspx?" + textbox_nume.Text + " " + textbox_prenume.Text + " " + textbox_domiciliu.Text);
+        SqlCommand comanda = new SqlCommand();
+        SqlConnection conexiune;
+        conexiune = new SqlConnection(a.string_bazadedate);
+        comanda = new SqlCommand();
+        comanda.Connection = conexiune;
+        comanda.Connection.Open();
+        comanda.CommandText = "UPDATE Utilizator SET nume = '" + textbox_nume.Text + "', prenume = '" + textbox_prenume.Text + "', domiciliu = '" + textbox_domiciliu.Text + "' WHERE id_utilizator = " + id_utilizator + ";";
+        comanda.ExecuteNonQuery();
+        conexiune.Close();
+    }
 }
