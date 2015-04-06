@@ -8,6 +8,6 @@ using System.Web;
 /// </summary>
 public class Auxiliare
 {
-    public String string_bazadedate = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='C:\Users\Mihai Alexandru\Dropbox\Facultate\Anul 3\Semestrul II\Ingineria programarii\Site - repository\ELF1\ELF\SiteIP\App_Data\Database.mdf';Integrated Security=True";
+    public String string_bazadedate = @"Data Source=(LocalDB)\v11.0;AttachDbFilename='C:\Users\Alex\Desktop\ELF\SiteIP\App_Data\Database.mdf';Integrated Security=True";
 
 }

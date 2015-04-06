@@ -65,40 +65,35 @@
     text-align:center;
 }
 
-
-
-.imagine_facultate {
-    width: 100px;
-    height: 100px;
-    float: left;
-    margin-top: 20px;
-    margin-left: 10px;
-}
-
-
-
-.nume_facultate {
-    width: 50%;
-    margin-right: 25%;
-    height: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    float: right;
-    border: 1px solid;
-}
-
-.localitate_facultate {
-    width: 50%;
-    margin-right: 25%;
-    height: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    float: right;
-    border: 1px solid;
-}
-
-.adresa_facultate {
+.formular_facultate {
     width: 80%;
+    height: auto;
+    margin-left: 10%;
+    margin-top: 40px;
+    padding: 10px;
+    border: 1px solid;
+}
+
+.nume_facultate_formular {
+    width: 50%;
+    margin-right: 25%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    float: right;
+}
+
+.localitate_facultate_formular {
+    width: 50%;
+    margin-right: 25%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    float: right;
+}
+
+.adresa_facultate_formular {
+    width: 60%;
     margin-left: 20%;
     height: 50px;
     padding: 5px;
@@ -106,10 +101,9 @@
     margin-bottom: 20px;
     resize:none;
     clear:both;
-    border: 1px solid;
 }
 
-.alte_informatii {
+.alte_informatii_formular {
     width: 80%;
     margin-left: 10%;
     height: 100px;
@@ -117,5 +111,12 @@
     margin-top: 20px;
     margin-bottom: 20px;
     resize:none;
-    border: 1px solid;
+}
+
+.imagine_facultate {
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-top: 20px;
+    margin-left: 10px;
 }

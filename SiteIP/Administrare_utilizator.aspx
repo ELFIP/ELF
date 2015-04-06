@@ -4,11 +4,18 @@
 </asp:Content>
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
     <div style="margin-left: auto; margin-right: auto; text-align: center;">
-        <asp:Table ID="tabel_utilizatori" runat="server" Width="90%" HorizontalAlign="Center">
+        <asp:Label ID="label_cauta_utilizator" runat="server" Text="Cauta utilizator"></asp:Label>
+        <br />
+        <asp:TextBox ID="cauta_utilizator" runat="server" Style="margin:5px; padding: 5px;" Width="30%" OnTextChanged="Page_Load"></asp:TextBox>
+    </div>
+    <br />
+    <hr />
+    <br />
+    <div style="margin-left: auto; margin-right: auto; text-align: center;">
+        <asp:Table ID="tabel_utilizatori" runat="server" Width="75%" HorizontalAlign="Center">
             <asp:TableHeaderRow runat="server">
 
             </asp:TableHeaderRow>
         </asp:Table>
     </div>
-    <asp:Panel ID="form2" runat="server"></asp:Panel>
 </asp:Content>

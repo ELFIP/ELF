@@ -7,5 +7,5 @@
 
     </asp:Panel>
     <br />
-    <asp:Button ID="adauga_facultate" runat="server" Text="+" CssClass ="buton_adaugare" OnClick="adauga_facultate_Click" />
+    <asp:Button ID="adauga_facultate" runat="server" Text="+" CssClass ="buton_adaugare" />
 </asp:Content>
