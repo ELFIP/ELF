@@ -3,14 +3,17 @@
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
     <link href="Resources/css/PanouDeControlRecomandari.css" rel="stylesheet" />
     <script src="Resources/js/SliderPanouDeControlRecomandari.js"></script>
+    <script src="Resources/js/jQuery/jQueryLib.js"></script>
+    <script src="Resources/js/validariPanouDeControlRecomandari.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </asp:Content>
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
     
     <div class="tree">
 	    <ul>
             <li>
-                <a href="#">Recomandare</a>
+                <a href="#" class="rad">Recomandare</a>
                 <ul>
                     <li>
                         <asp:TextBox ID="date_colectate" runat="server" placeholder="Date colectate" CssClass="procentaje"></asp:TextBox>
@@ -59,6 +62,6 @@
     </div>
     <br style="clear:both" />
     <br />
-    <asp:Button ID="actualizeaza_recomandarile" runat="server" Text="Actualizeaza Recomandarile" OnClick="actualizeaza_recomandarile_Click" />
+    <asp:Button ID="actualizeaza_recomandarile" runat="server" Text="Actualizeaza Recomandarile" OnClick="actualizeaza_recomandarile_Click" CssClass="buaton" />
 
 </asp:Content>
