@@ -1,0 +1,42 @@
+﻿.header {
+    width: 90%;
+    margin-left: 5%;
+    height: 40px;
+    padding: 5px;
+}
+
+.celula_header {
+    width: 25%;
+    height: 30px;
+    padding: 5px;
+    text-align: center;
+}
+
+.celula_rand {
+    width: 25%;
+    height: 20px;
+    padding: 5px;
+    text-align: center;
+}
+
+.butoane_administrare {
+    width: 25%;
+    padding: 5px;
+    margin: 5px;
+}
+
+.admin {
+    width: 25%;
+    padding: 5px;
+    color: black;
+    background-color: white;
+    margin: 5px;
+}
+
+.noadmin {
+    width: 25%;
+    padding: 5px;
+    color: white;
+    background-color: black;
+    margin: 5px;
+}
