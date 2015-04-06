@@ -65,6 +65,8 @@ public partial class Profil : System.Web.UI.Page
     {
         modificaDateleDeSesiune();
         actualizeazaBazaDeDate();
+        Distanta d = new Distanta((int)Session["id_utilizator"], textbox_domiciliu.Text, "");
+        d.actualizeazaDistante();
     }
 
     private void modificaDateleDeSesiune()

@@ -67,7 +67,7 @@ public partial class Schimba_Parola : System.Web.UI.Page
         comanda = new SqlCommand();
         comanda.Connection = conexiune;
         comanda.Connection.Open();
-        comanda.CommandText = "UPDATE [Utilizator] SET parola = '" + PasswordTextbox.Text + "' WHERE email = " + label_email.Text + ";";
+        comanda.CommandText = "UPDATE [Utilizator] SET parola = '" + PasswordTextbox.Text + "' WHERE email = '" + label_email.Text + "';";
         comanda.ExecuteNonQuery();
         conexiune.Close();
     }
