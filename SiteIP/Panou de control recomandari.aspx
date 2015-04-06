@@ -16,43 +16,43 @@
                 <a href="#" class="rad">Recomandare</a>
                 <ul>
                     <li>
-                        <asp:TextBox ID="date_colectate" runat="server" placeholder="Date colectate" CssClass="procentaje"></asp:TextBox>
+                        <asp:TextBox ID="date_colectate" runat="server" placeholder="Date colectate" CssClass="procentaje rec_grp"></asp:TextBox>
 					    <ul>
 						    <li>
-							    <asp:TextBox ID="judet" runat="server" placeholder="Judet" CssClass="procentaje"></asp:TextBox>
+							    <asp:TextBox ID="judet" runat="server" placeholder="Judet" CssClass="procentaje date_colectate_grp"></asp:TextBox>
 						    </li>
                             <li>
-							    <asp:TextBox ID="note" runat="server" placeholder="Note" CssClass="procentaje"></asp:TextBox>
+							    <asp:TextBox ID="note" runat="server" placeholder="Note" CssClass="procentaje date_colectate_grp"></asp:TextBox>
 						    </li>
 					    </ul>
 				    </li>
 				    <li>
-					    <asp:TextBox ID="curs" runat="server" placeholder="Curs" CssClass="procentaje"></asp:TextBox>
+					    <asp:TextBox ID="curs" runat="server" placeholder="Curs" CssClass="procentaje rec_grp"></asp:TextBox>
                         <ul>
                             <li>
-                                <asp:TextBox ID="videoclipuri" runat="server" placeholder="Videoclipuri" CssClass="procentaje"></asp:TextBox>
+                                <asp:TextBox ID="videoclipuri" runat="server" placeholder="Videoclipuri" CssClass="procentaje curs_grp"></asp:TextBox>
                                 <ul>
                                     <li>
-                                        <asp:TextBox ID="nota_data_videoclipuri" runat="server" placeholder="Nota Videoclip" CssClass="procentaje"></asp:TextBox>
+                                        <asp:TextBox ID="nota_data_videoclipuri" runat="server" placeholder="Nota Videoclip" CssClass="procentaje video_grp"></asp:TextBox>
                                     </li>
                                     <li>
-                                        <asp:TextBox ID="numar_videoclipuri_vazute" runat="server" placeholder="Videoclip vazut" CssClass="procentaje"></asp:TextBox>
+                                        <asp:TextBox ID="numar_videoclipuri_vazute" runat="server" placeholder="Videoclip vazut" CssClass="procentaje video_grp"></asp:TextBox>
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <asp:TextBox ID="teste" runat="server" placeholder="Teste" CssClass="procentaje"></asp:TextBox>
+                                <asp:TextBox ID="teste" runat="server" placeholder="Teste" CssClass="procentaje curs_grp"></asp:TextBox>
                                 <ul>
                                     <li>
-                                        <asp:TextBox ID="nota_data_teste" runat="server" placeholder="Nota Data" CssClass="procentaje"></asp:TextBox>
+                                        <asp:TextBox ID="nota_data_teste" runat="server" placeholder="Nota Data" CssClass="procentaje note_grp"></asp:TextBox>
                                     </li>
                                     <li>
-                                        <asp:TextBox ID="nota_test" runat="server" placeholder="Nota Teste" CssClass="procentaje"></asp:TextBox>
+                                        <asp:TextBox ID="nota_test" runat="server" placeholder="Nota Teste" CssClass="procentaje note_grp"></asp:TextBox>
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <asp:TextBox ID="nota_obtinuta_curs" runat="server" placeholder="Nota Curs" CssClass="procentaje"></asp:TextBox>
+                                <asp:TextBox ID="nota_obtinuta_curs" runat="server" placeholder="Nota Curs" CssClass="procentaje curs_grp"></asp:TextBox>
                             </li>
                         </ul>
 				    </li>
@@ -62,6 +62,7 @@
     </div>
     <br style="clear:both" />
     <br />
-    <asp:Button ID="actualizeaza_recomandarile" runat="server" Text="Actualizeaza Recomandarile" OnClick="actualizeaza_recomandarile_Click" CssClass="buaton" />
+    <asp:Button ID="actualizeaza_recomandarile" runat="server" Text="Actualizeaza Recomandarile" UseSubmitBehavior="false"  
+                OnClientClick="if(!validate()) return false" OnClick="actualizeaza_recomandarile_Click" CssClass="buaton" />
 
 </asp:Content>

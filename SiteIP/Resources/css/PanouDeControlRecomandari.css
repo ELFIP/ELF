@@ -142,6 +142,7 @@ ul {
     font-family: 'Open Sans', sans-serif;
     box-shadow: 0 5px 5px -3px black;
     outline: none;
+    font-weight: bold;
 }
 
 .buaton:active {
