@@ -51,6 +51,7 @@
         <br /><br />
 
         <asp:Button ID="btn_trimite" runat="server" Text="Trimite" OnClick="btn_trimite_Click" />
+        <asp:Label ID="lbl_debug" runat="server" Text=""></asp:Label>
     </form>
     <script>
         $(function () {
