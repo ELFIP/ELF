@@ -21,7 +21,6 @@ public partial class Administrare_utilizator : System.Web.UI.Page
     {
         adaugaUtilizatori();
         afiseazaUtilizatori();
-        Response.Redirect("Pagina_facultati.aspx?" + Session["email"]);
     }
 
     private void adaugaUtilizatori()

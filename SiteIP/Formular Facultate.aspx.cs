@@ -13,6 +13,7 @@ public partial class Formular_Facultate : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
     }
 
     protected void adauga_facultate_Click(object sender, EventArgs e)
@@ -28,9 +29,11 @@ public partial class Formular_Facultate : System.Web.UI.Page
 
     protected void creazaPaginaNoua()
     {
+        String nume = nume_facultate.Text;
+        String localitate = localitatea_facultatii.Text;
         creazaASPX();
         creazaC();
-        Response.Redirect(nume_facultate.Text + ".aspx");
+        Response.Redirect(nume + " " + localitate + ".aspx");
     }
 
     private void creazaASPX() {
@@ -39,9 +42,9 @@ public partial class Formular_Facultate : System.Web.UI.Page
         String adresa = adresa_facultatii.Text;
         String informatii = alte_informatii.Text;
 
-        String[] aspxLines = { 
+        String[] aspxLines = {
 
-        "<%@ Page Language='C#' AutoEventWireup='true' CodeFile='" + nume + ".aspx.cs' Inherits='" + nume.Replace(" ", "_") + "' MasterPageFile='~/MasterPage.master'%>",
+        "<%@ Page Language='C#' AutoEventWireup='true' CodeFile='" + nume + " " + localitate + ".aspx.cs' Inherits='" + nume.Replace(" ", "_") + "_" + localitate.Replace(" ", "_") + "' MasterPageFile='~/MasterPage.master'%>",
         " ",
         "<asp:Content runat='server' ID='Content1' ContentPlaceHolderID='head'>",
         "</asp:Content>",
@@ -63,11 +66,12 @@ public partial class Formular_Facultate : System.Web.UI.Page
         "    </asp:Panel>",
         "</asp:Content>"
                              };
-        System.IO.File.WriteAllLines(Server.MapPath(nume + ".aspx"), aspxLines);
+        System.IO.File.WriteAllLines(Server.MapPath(nume + " " + localitate + ".aspx"), aspxLines);
     }
 
     private void creazaC() {
         String nume = nume_facultate.Text;
+        String localitate = localitatea_facultatii.Text;
         String[] codeLines = {
 
             "using System;",
@@ -77,7 +81,7 @@ public partial class Formular_Facultate : System.Web.UI.Page
             "using System.Web.UI;",
             "using System.Web.UI.WebControls;",
             " ",
-            "public partial class " + nume.Replace(" ","_") + " : System.Web.UI.Page",
+            "public partial class " + nume.Replace(" ", "_") + "_" + localitate.Replace(" ", "_") + " : System.Web.UI.Page",
             "{",
             " ",
             "    protected void Page_Load(object sender, EventArgs e)",
@@ -86,7 +90,7 @@ public partial class Formular_Facultate : System.Web.UI.Page
             "}"
                              };
 
-        System.IO.File.WriteAllLines(Server.MapPath(nume + ".aspx.cs"), codeLines);
+        System.IO.File.WriteAllLines(Server.MapPath(nume + " " + localitate + ".aspx.cs"), codeLines);
     }
 
     private void insereazaFacultatea()
