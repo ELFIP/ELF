@@ -9,17 +9,12 @@ using System.Data.SqlClient;
 public partial class Pagina_facultati : System.Web.UI.Page
 {
     Auxiliare a = new Auxiliare();
-   // DateUtilizator dU = new DateUtilizator();
     int numar_facultati = 0;
     String[] nume_facultati = new String[200];
     String[] localitate_facultati = new String[200];
 
     protected void Page_Load(object sender, EventArgs e)
     {
-       // if(dU.administrator) {
-       //     Response.Redirect("Pagina_facultati_administrator.aspx");
-       // }
-
         selecteazaFacultati();
         afiseazaFacultati();
     }
@@ -57,8 +52,8 @@ public partial class Pagina_facultati : System.Web.UI.Page
             nume_facultate.Height = new Unit("100%");
 
             HyperLink hnf = new HyperLink();
-            hnf.NavigateUrl = nume_facultati[i] + ".aspx";
-            hnf.Text = nume_facultati[i];
+            hnf.NavigateUrl = nume_facultati[i] + " " + localitate_facultati[i] + ".aspx";
+            hnf.Text = nume_facultati[i] + " " + localitate_facultati[i];
 
             nume_facultate.Controls.Add(hnf);
 
