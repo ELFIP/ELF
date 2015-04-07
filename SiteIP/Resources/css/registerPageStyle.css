@@ -1,0 +1,48 @@
+﻿form {
+    margin-top: 20px;
+    display:inline-block;
+    vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
+    width: 250px;
+    background-color: #218C8D;
+    padding: 40px;
+    margin-left: -20px;
+    
+
+    -webkit-box-shadow: -9px -8px 0px -2px rgba(108,206,203,1);
+    -moz-box-shadow: -9px -8px 0px -2px rgba(108,206,203,1);
+    box-shadow: -9px -8px 0px -2px rgba(108,206,203,1);
+
+}
+
+.inputs {
+    margin-bottom: 15px;
+}
+
+
+.space_holder {
+    width: 100px;
+    display: inline-block;
+}
+
+.err_msg {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 5px;
+    color: #EF7126;
+    padding: 7px;
+    background-color: #202020;
+    -webkit-box-shadow: 0 0 14px 3px rgb(239, 113, 38);
+    -moz-box-shadow: 0 0 14px 3px rgb(239, 113, 38);
+    box-shadow: 0 0 14px 3px rgb(239, 113, 38);
+    
+    border-radius: 5px 5px 5px 5px;
+
+}
+
+.space_holder {
+    position: absolute;
+}
+
+
