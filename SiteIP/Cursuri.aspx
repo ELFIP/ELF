@@ -8,8 +8,6 @@
         <asp:Label ID="label_cauta_utilizator" runat="server" Text="Cauta cursuri"></asp:Label>
       <br />
         <asp:TextBox ID="cauta_curs" runat="server" OnTextChanged="TextBox1_TextChanged" style="margin-bottom: 0px"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Text="Cauta Curs" />
-    
   </div>
         <asp:Panel ID="panou_cursuri" runat="server">
 

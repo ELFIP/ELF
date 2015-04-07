@@ -22,9 +22,15 @@ public partial class Cursuri : System.Web.UI.Page
         selecteazaTaguri();
         afiseazaTaguri();
     }
-    
+
 
     protected void TextBox1_TextChanged(object sender, EventArgs e)
+    {
+        
+        schimbaText();
+    }
+
+    protected void schimbaText()
     {
         numar_cursuri = 0;
         SqlCommand comanda = new SqlCommand();
@@ -41,7 +47,26 @@ public partial class Cursuri : System.Web.UI.Page
             numar_cursuri++;
         }
         conexiune.Close();
+        panou_cursuri.Controls.Clear();
+        for (int i = 0; i < numar_cursuri; i++)
+        {
+            Panel curs = new Panel();
+            curs.CssClass = "curs";
 
+            Panel nume_curs = new Panel();
+            nume_curs.Width = new Unit("50%");
+            nume_curs.Height = new Unit("100%");
+
+            HyperLink hnf = new HyperLink();
+            hnf.NavigateUrl = nume_cursuri[i];
+            hnf.Text = nume_cursuri[i];
+
+            nume_curs.Controls.Add(hnf);
+
+            curs.Controls.Add(nume_curs);
+            panou_cursuri.Controls.Add(curs);
+            panou_cursuri.Controls.Add(new LiteralControl("<br />"));
+        }
     }
 
     protected void selecteazaCursuri()
