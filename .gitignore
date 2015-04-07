@@ -12,7 +12,12 @@ SiteIP.v12.suo
 *.suo
 SiteIP.v12.suo
 *.suo
-SiteIP.v12.suo
+SiteIP/register.aspx.cs
+SiteIP/register.aspx.cs
+SiteIP/Resources/StyleSheet.css
+SiteIP/register.aspx.cs
+SiteIP/App_Data/Database.mdf
+SiteIP/App_Data/Database.mdf
 SiteIP.v12.suo
 SiteIP/App_Data/Database.mdf
 SiteIP/App_Data/Database_log.ldf

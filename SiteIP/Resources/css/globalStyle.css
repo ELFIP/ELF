@@ -1,0 +1,15 @@
+﻿header {
+    position: fixed;
+    background-color:#473E3F;
+    top: 0px;
+    height:35px;
+    width:100%;
+}
+
+footer {
+    position: fixed;
+    background-color:#473E3F;
+    bottom: 0px;
+    height:35px;
+    width:100%;
+}
