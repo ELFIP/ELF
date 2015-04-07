@@ -1,15 +1,16 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Formular Facultate.aspx.cs" Inherits="Formular_Facultate" MasterPageFile="~/MasterPage.master" %>
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
-    <link rel="stylesheet" runat="server" media="screen" href="/Resources/css/formFacultateStyles.css" />
-    <link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css' />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" rel='stylesheet' type='text/css' />
+    <link href="Resources/css/globalStyle.css" rel="stylesheet" type="text/css"/>
+    <link href="Resources/css/formFacultateStyles.css" rel="stylesheet"  />
+    <link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css' />
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css' />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic' rel='stylesheet' type='text/css' />
 </asp:Content>
 
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
-    <div class="main_container">
+    <div class="centering_container">
         <asp:Panel ID="formular" runat="server" CssClass="formular_facultate">
             <h4>Formular Facultate</h4>
             <div class="input_form_container">
@@ -30,9 +31,9 @@
                     <asp:TextBox ID="alte_informatii"  TextMode="MultiLine" Rows="5" placeholder="Alte informatii" runat="server" CssClass="alte_informatii_formular">
                     </asp:TextBox>
                      </div>
-                <div class="inputBoxContainers">
-                    <asp:Button ID="adauga_facultate" runat="server" Text="Creaza" CssClass="buton_adaugare" OnClick="adauga_facultate_Click" />
-                </div>
+               
+                    <asp:Button ID="adauga_facultate" runat="server" Text="Creaza" CssClass="buaton" OnClick="adauga_facultate_Click" />
+                
                 <div class="space_holder"></div>
                 </div>
         </asp:Panel>
