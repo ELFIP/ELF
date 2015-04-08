@@ -44,4 +44,5 @@ public partial class Cursuri_profil : System.Web.UI.Page
             lista_cursuri.Items.Add(new ListItem(Curs));
         }
     }
+
 }

@@ -29,15 +29,6 @@ header {
 
 }
 
-form .inputs {
-    border-radius: 2px 2px 2px 2px;
-    -moz-border-radius: 2px 2px 2px 2px;
-    -webkit-border-radius: 2px 2px 2px 2px;
-    border: 1px solid lightgrey;
-    padding: 5px;
-    font-family: 'Open Sans', sans-serif;
-}
-
 header a {
     font-size: 16px;
     display: inline-block;
@@ -77,25 +68,4 @@ footer a, p{
 footer p {
     float: right;
     margin-right: 10px;
-}
-
-.buaton {
-    
-    margin-top: 10px;
-
-    background-color: #EF7126;
-
-
-    border: 1px solid lightgrey;
-    padding: 5px 8px 5px 8px;
-    color: #473E3F;
-    font-family: 'Open Sans', sans-serif;
-
-    -webkit-box-shadow: 0 0 14px 3px rgba(249,229,89,1);
-    -moz-box-shadow: 0 0 14px 3px rgba(249,229,89,1);
-    box-shadow: 0 0 14px 3px rgba(249,229,89,1);
-
-    border-radius: 3px 3px 3px 3px;
-    -moz-border-radius: 3px 3px 3px 3px;
-    -webkit-border-radius: 3px 3px 3px 3px;
 }

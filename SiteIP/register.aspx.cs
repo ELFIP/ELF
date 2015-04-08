@@ -30,6 +30,8 @@ public partial class register : System.Web.UI.Page
 
         Distanta d = new Distanta(id_max, tb_adresa.Text, "");
         d.insereazaDistante();
+
+        Response.Redirect("login.aspx");
     }
 
     private int maxId()

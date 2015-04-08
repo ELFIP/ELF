@@ -1,58 +1,61 @@
 ﻿
-
 form {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    width: 250px;
-    background-color: #218C8D;
-    padding: 40px;
-    border-radius: 70px 0px 70px 10px;
-    -moz-border-radius: 70px 0px 70px 10px;
-    -webkit-border-radius: 70px 0px 70px 10px;
-
-    -webkit-box-shadow: -10px -9px 0px -2px rgba(108,206,203,1);
-    -moz-box-shadow: -10px -9px 0px -2px rgba(108,206,203,1);
-    box-shadow: -10px -9px 0px -4px rgba(108,206,203,1);
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 250px;
+   background-color: rgba(102, 135, 221, 0.32);
+  padding-top: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: none;
+  /* border-radius: 70px 0px 70px 10px; */
+  -moz-border-radius: 70px 0px 70px 10px;
+  /* -webkit-border-radius: 70px 0px 70px 10px; */
+  /* -webkit-box-shadow: -10px -9px 0px -2px rgba(108,206,203,1); */
+  -moz-box-shadow: -10px -9px 0px -2px rgba(108,206,203,1);
+  /* box-shadow: -10px -9px 0px -4px rgba(108,206,203,1); */
 }
 
-form:before {
-    content:'';
-    -webkit-box-shadow: -20px -14px 66px 3px rgba(239,113,38,1);
-    -moz-box-shadow: -20px -14px 66px 3px rgba(239,113,38,1);
-    box-shadow: -20px -10px 66px 3px rgba(239,113,38,1);
-    padding: 40px;
-    width: 250px;
-    height: 117px;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
-     border-radius: 70px 0px 70px 10px;
-    -moz-border-radius: 70px 0px 70px 10px;
-    -webkit-border-radius: 70px 0px 70px 10px;
-     
+form .inputs {
+    border-radius: 2px 2px 2px 2px;
+        -moz-border-radius: 2px 2px 2px 2px;
+        -webkit-border-radius: 2px 2px 2px 2px;
+        border: 1px solid lightgrey;
+        padding: 5px;
+        font-family: 'Open Sans', sans-serif;
+        border-radius: 5px;
+    }
+
+.buton {
+  /* margin-top: 10px; */
+  width: 100px;
+  background-color: #4AA6FF;
+  border: 1px solid lightgrey;
+  padding: 5px 8px 5px 8px;
+  color: #473E3F;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 5px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  /* -webkit-border-radius: 3px 3px 3px 3px; */
+  color:white;
 }
-
-form:after {
-    content:'';
-   -webkit-box-shadow: 29px 32px 66px 3px rgba(249,229,89,1);
-    -moz-box-shadow: 29px 32px 66px 3px rgba(249,229,89,1);
-    box-shadow: 29px 32px 66px 3px rgba(249,229,89,1);
-
-    padding: 40px;
-    width: 250px;
-    height: 117px;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
-
-     border-radius: 70px 0px 70px 10px;
-    -moz-border-radius: 70px 0px 70px 10px;
-    -webkit-border-radius: 70px 0px 70px 10px;
-     
+.buton:hover{
+    background-color:lightblue;
+    color:black;
 }
-
-
-
+.eroareLogin{
+    display: block;
+  margin-top: 10px;
+}
+body{
+      margin: 0;
+  background-image: url(https://myebony.files.wordpress.com/2011/06/inspiration1.jpg);
+  background-size: 100%;
+  background-attachment: fixed;
+}
+footer{
+    background-color:white;
+}

@@ -12,17 +12,18 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" rel='stylesheet' type='text/css' />
     <link href="Resources/css/globalStyle.css" rel="stylesheet" />
     <link href="Resources/css/registerPageStyle.css" rel="stylesheet" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="Resources/css/loginPageStyle.css" rel="stylesheet" />
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <header>
+    <!--<header>
         <nav>
             <a href="#"> Home </a>
             <a href="#"> Bananas </a>
             <a href="#"> Papoi </a>
         </nav>
-    </header>
+    </header>-->
     <div class="centering_container">
         <form id="form1" runat="server">
 
@@ -68,7 +69,7 @@
                 <span class="space_holder"> </span>
             </div>
 
-            <asp:Button ID="btn_trimite" CssClass="buaton" runat="server" Text="Trimite" OnClick="btn_trimite_Click" />
+            <asp:Button ID="btn_trimite" CssClass="buton" runat="server" Text="Trimite" OnClick="btn_trimite_Click" />
             <asp:Label ID="lbl_debug" runat="server" Text=""></asp:Label>
         </form>
     </div>
@@ -76,7 +77,6 @@
         <nav>
             <a href="#"> About </a>
             <a href="#"> Termeni si Factori </a>
-            <a href="#"> Papoi </a>
             <p> &copy; 2015 </p>
         </nav>
 
