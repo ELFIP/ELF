@@ -42,7 +42,7 @@ public partial class Forma_curs : System.Web.UI.Page
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;
-        comanda.CommandText = "SELECT id_curs FROM Curs WHERE nume = " + nume_curs +";";
+        comanda.CommandText = "SELECT id_curs FROM Curs WHERE nume = '" + nume_curs + "';";
         sdr = comanda.ExecuteReader();
         sdr.Read();
         int nr = int.Parse(sdr.GetValue(0).ToString());

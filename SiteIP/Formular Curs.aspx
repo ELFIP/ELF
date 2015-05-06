@@ -9,10 +9,13 @@
             <asp:TableHeaderRow Width="100%" >
                 <asp:TableHeaderCell HorizontalAlign="Center" style="padding:10px">
                     <asp:TextBox ID="numeCurs" runat="server" placeholder="Nume curs" Width="50%">
-
                     </asp:TextBox>
                 </asp:TableHeaderCell>
             </asp:TableHeaderRow>
+           <asp:TableRow>
+               <asp:TableCell ID="alerta_nume" runat="server" Text="" ForeColor="Red" >
+               </asp:TableCell>
+           </asp:TableRow>
             <asp:TableRow Width="100%">
                 <asp:TableCell HorizontalAlign="Center" style="padding:10px">
                     <asp:TextBox ID="despreCurs" TextMode="MultiLine" Rows="10" placeholder="Despre" runat="server" Width="80%">
