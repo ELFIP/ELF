@@ -5,12 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class MasterPage : System.Web.UI.MasterPage
+public partial class Formular_Curs : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(Session["id_utilizator"] != null) {
-            hyperlink_login.Enabled = false;
-        }
+
     }
 }

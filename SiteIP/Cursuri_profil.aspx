@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Cursuri_profil.aspx.cs" Inherits="Cursuri_profil" MasterPageFile="~/MasterPage.master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Cursuri_profil.aspx.cs" Inherits="Cursuri_profil" MasterPageFile="MasterPage.master"%>
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
     <link rel='stylesheet' type='text/css' href="/Resources/css/PaginaDeProfil.css" />

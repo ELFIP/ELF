@@ -1,4 +1,4 @@
-<%@ Page Language='C#' AutoEventWireup='true' CodeFile='Facultatea de matematica si informatica Universitatea Bucuresti Bucuresti.aspx.cs' Inherits='Facultatea_de_matematica_si_informatica_Universitatea_Bucuresti_Bucuresti' MasterPageFile='~/MasterPage.master'%>
+<%@ Page Language='C#' AutoEventWireup='true' CodeFile='Facultatea de matematica si informatica Universitatea Bucuresti Bucuresti.aspx.cs' Inherits='Facultatea_de_matematica_si_informatica_Universitatea_Bucuresti_Bucuresti' MasterPageFile='MasterPage.master'%>
  
 <asp:Content runat='server' ID='Content1' ContentPlaceHolderID='head'>
 </asp:Content>

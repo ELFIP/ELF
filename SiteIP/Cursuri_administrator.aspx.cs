@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 
-public partial class Cursuri : System.Web.UI.Page
+public partial class Cursuri_administrator : System.Web.UI.Page
 {
     String[] nume_cursuri = new String[200];
     String[] nume_taguri = new String[100];
@@ -140,5 +140,4 @@ public partial class Cursuri : System.Web.UI.Page
             tabel_checkbox.Controls.Add(rand);
         }
     }
-
 }

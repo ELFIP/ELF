@@ -142,8 +142,7 @@ public partial class Administrare_utilizator : System.Web.UI.Page
 
     protected void stergeUtilizator(object sender, EventArgs e)
     {
-        if (sender.GetType() == typeof(Button))
-        {
+        if (sender.GetType() == typeof(Button)) {
             Button buton = (Button)sender;
             String s = buton.ID;
             int i = getInt(s);

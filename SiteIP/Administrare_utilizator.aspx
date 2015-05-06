@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Administrare_utilizator.aspx.cs" Inherits="Administrare_utilizator" MasterPageFile="~/MasterPage.master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Administrare_utilizator.aspx.cs" Inherits="Administrare_utilizator" MasterPageFile="MasterPage.master"%>
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
 </asp:Content>

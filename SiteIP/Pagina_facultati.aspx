@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Pagina_facultati.aspx.cs" Inherits="Pagina_facultati" MasterPageFile="~/MasterPage.master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Pagina_facultati.aspx.cs" Inherits="Pagina_facultati" MasterPageFile="MasterPage.master"%>
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
 </asp:Content>

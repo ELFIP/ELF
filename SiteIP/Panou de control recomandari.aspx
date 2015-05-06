@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Panou de control recomandari.aspx.cs" Inherits="Panou_de_control_recomandari" MasterPageFile="~/MasterPage.master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Panou de control recomandari.aspx.cs" Inherits="Panou_de_control_recomandari" MasterPageFile="MasterPage.master"%>
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
     <link href="Resources/css/PanouDeControlRecomandari.css" rel="stylesheet" />

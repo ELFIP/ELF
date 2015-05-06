@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Schimba Parola.aspx.cs" Inherits="Schimba_Parola" MasterPageFile="~/MasterPage.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Schimba Parola.aspx.cs" Inherits="Schimba_Parola" MasterPageFile="MasterPage.master" %>
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
     <link rel='stylesheet' type='text/css' href="/Resources/css/PaginaDeProfil.css" />
