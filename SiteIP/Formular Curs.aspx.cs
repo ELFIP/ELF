@@ -11,4 +11,11 @@ public partial class Formular_Curs : System.Web.UI.Page
     {
 
     }
+
+    protected void adauga_curs_Click(object sender, EventArgs e)
+    {
+      //  adaugaInBazaDeDate();
+      //  creazaPaginaNoua();
+    }
+
 }
