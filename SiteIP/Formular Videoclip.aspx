@@ -12,10 +12,20 @@
                 </asp:TableHeaderCell>
             </asp:TableHeaderRow>
            <asp:TableRow>
-               <asp:TableCell>
+               <asp:TableCell HorizontalAlign="Center">
                    <asp:FileUpload ID="FileUpload1" runat="server" />
                    <asp:Button ID="buton_upload" runat="server" Text="Upload" OnClick="buton_upload_Click" />
                    <asp:Label ID="lbl_debug" runat="server" Text=""></asp:Label>
+               </asp:TableCell>
+           </asp:TableRow>
+           <asp:TableRow>
+               <asp:TableCell HorizontalAlign="Center">
+                   <iframe width="560" ID="afiseaza" height="315" src="" frameborder="0" allowfullscreen runat="server"></iframe>
+               </asp:TableCell>
+           </asp:TableRow>
+           <asp:TableRow>
+               <asp:TableCell HorizontalAlign="Center">
+                   <asp:Button ID="creaza_pagina_video" runat="server" Text="Creeaza Pagina" OnClick="buton_creeaza_Click"/>
                </asp:TableCell>
            </asp:TableRow>
         </asp:Table>
