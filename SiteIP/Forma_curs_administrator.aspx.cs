@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 
-public partial class Forma_curs : System.Web.UI.Page
+public partial class Forma_curs_administrator : System.Web.UI.Page
 {
     Auxiliare a = new Auxiliare();
     private string nume_curs;
@@ -22,7 +22,8 @@ public partial class Forma_curs : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack) {
+        if (!IsPostBack)
+        {
             culegeDate();
             selecteazaIdCurs();
             selecteazaIdUtilizator();
@@ -111,7 +112,7 @@ public partial class Forma_curs : System.Web.UI.Page
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;
-        comanda.CommandText = "SELECT v.nume, v.media_notelor, uv.nota_data FROM Videoclip v, Utilizator_Videoclip uv WHERE uv.id_videoclip = v.id_videoclip AND v.id_curs = " + id_curs + " AND uv.id_utilizator = " + id_utilizator +";";
+        comanda.CommandText = "SELECT v.nume, v.media_notelor, uv.nota_data FROM Videoclip v, Utilizator_Videoclip uv WHERE uv.id_videoclip = v.id_videoclip AND v.id_curs = " + id_curs + " AND uv.id_utilizator = " + id_utilizator + ";";
         sdr = comanda.ExecuteReader();
         while (sdr.Read())
         {

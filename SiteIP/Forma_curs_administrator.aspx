@@ -1,9 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Forma_curs.aspx.cs" Inherits="Forma_curs" MasterPageFile="~/MasterPage.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Forma_curs_administrator.aspx.cs" Inherits="Forma_curs_administrator" MasterPageFile="~/MasterPage.master"%>
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
 </asp:Content>
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
-
     <asp:Table ID="forma" runat="server" Width="80%" Style="margin-left: 10%">
         <asp:TableHeaderRow Width="100%" >
             <asp:TableHeaderCell HorizontalAlign="Center" Style="padding: 10px">
@@ -31,7 +30,12 @@
                         </asp:TableHeaderCell>
                     </asp:TableHeaderRow>
                     <asp:TableRow>
-                        <asp:TableCell ID="videoclipuri">
+                        <asp:TableCell ID="videoclipuri" ColumnSpan="3">
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell ColumnSpan="3">
+                            <asp:Button runat="server" Text="Adauga Videoclip" OnClientClick="window.location='Formular Videoclip.aspx'; return false;"/>
                         </asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>
@@ -49,7 +53,12 @@
                         </asp:TableHeaderCell>
                     </asp:TableHeaderRow>
                     <asp:TableRow>
-                        <asp:TableCell ID="Teste">
+                        <asp:TableCell ID="Teste" ColumnSpan="3">
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell ColumnSpan="3">
+                            <asp:Button runat="server" Text="Adauga Test" OnClientClick="window.location='Formular Test.aspx'; return false;"/>
                         </asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>

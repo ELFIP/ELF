@@ -4,7 +4,6 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
-
        <asp:Table ID="formular" runat="server" Width="80%" style="margin-left: 10%">
             <asp:TableHeaderRow Width="100%" >
                 <asp:TableHeaderCell HorizontalAlign="Center" style="padding:10px">
@@ -13,10 +12,10 @@
                 </asp:TableHeaderCell>
             </asp:TableHeaderRow>
            <asp:TableRow>
-               <asp:TableCell ID="alerta_nume" runat="server" Text="" ForeColor="Red" >
+               <asp:TableCell ID="alerta_nume" runat="server" Text="" ForeColor="Red" HorizontalAlign="Center" style="padding:10px">
                </asp:TableCell>
            </asp:TableRow>
-            <asp:TableRow Width="100%">
+           <asp:TableRow Width="100%">
                 <asp:TableCell HorizontalAlign="Center" style="padding:10px">
                     <asp:TextBox ID="despreCurs" TextMode="MultiLine" Rows="10" placeholder="Despre" runat="server" Width="80%">
                     </asp:TextBox>
@@ -28,5 +27,4 @@
                </asp:TableCell>
            </asp:TableRow>
         </asp:Table>
-
 </asp:Content>
