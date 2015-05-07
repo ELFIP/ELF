@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.IO;
 
 public partial class Formular_Curs : System.Web.UI.Page
 {
@@ -116,11 +117,21 @@ public partial class Formular_Curs : System.Web.UI.Page
 
     protected void creazaPaginaNoua()
     {
+        creazaFolder();
         creazaASPX();
         creazaC();
         creazaASPX_administrator();
         creazaC_administrator();
         //Response.Redirect(numeCurs.Text + ".aspx");
+    }
+
+    private void creazaFolder()
+    {
+        var folder = Server.MapPath("~/Cursuri/" + numeCurs.Text);
+        if (!Directory.Exists(folder))
+        {
+            Directory.CreateDirectory(folder);
+        }
     }
 
     private void creazaASPX()
@@ -422,7 +433,7 @@ public partial class Formular_Curs : System.Web.UI.Page
     {
 
         String[] aspxLines = {
-"<%@ Page Language=\"C#\" AutoEventWireup=\"true\" CodeFile=\"" + numeCurs.Text + ".aspx.cs\" Inherits=\"" + numeCurs.Text + "\" MasterPageFile=\"~/MasterPage.master\" %>",
+"<%@ Page Language=\"C#\" AutoEventWireup=\"true\" CodeFile=\"" + numeCurs.Text + "_administrator.aspx.cs\" Inherits=\"" + numeCurs.Text + "_administrator\" MasterPageFile=\"~/MasterPage.master\" %>",
 
 "<asp:Content runat=\"server\" ID=\"Content1\" ContentPlaceHolderID=\"head\">",
 "</asp:Content>",
@@ -459,8 +470,8 @@ public partial class Formular_Curs : System.Web.UI.Page
 "                       </asp:TableCell>",
 "                   </asp:TableRow>",
 "                    <asp:TableRow>",
-"                        <asp:TableCell ColumnSpan=\"3\">",
-"                            <asp:Button runat=\"server\" Text=\"Adauga Videoclip\" OnClientClick=\"window.location='Formular Videoclip.aspx?\" + numeCurs.Text +\"'; return false;\"/>",
+"                        <asp:TableCell ColumnSpan=\"3\" HorizontalAlign=\"Center\">",
+"                            <asp:Button runat=\"server\" Text=\"Adauga Videoclip\" OnClick=\"adauga_videoclip_click\"/>",
 "                        </asp:TableCell>",
 "                    </asp:TableRow>",
 "               </asp:Table>",
@@ -482,8 +493,8 @@ public partial class Formular_Curs : System.Web.UI.Page
 "                           </asp:TableCell>",
 "                       </asp:TableRow>",
 "                    <asp:TableRow>",
-"                        <asp:TableCell ColumnSpan=\"3\">",
-"                            <asp:Button runat=\"server\" Text=\"Adauga Test\" OnClientClick=\"window.location='Formular Test.aspx?\" + numeCurs.Text +\"'; return false;\"/>",
+"                        <asp:TableCell ColumnSpan=\"3\" HorizontalAlign=\"Center\">",
+"                            <asp:Button runat=\"server\" Text=\"Adauga Test\" OnClick=\"adauga_test_click\"/>",
 "                        </asp:TableCell>",
 "                    </asp:TableRow>",
 "                   </asp:Table>",
@@ -508,7 +519,7 @@ public partial class Formular_Curs : System.Web.UI.Page
 "using System.Web.UI.WebControls;",
 "using System.Data.SqlClient;",
 " ",
-"public partial class " + numeCurs.Text + " : System.Web.UI.Page",
+"public partial class " + numeCurs.Text + "_administrator : System.Web.UI.Page",
 "{",
 "    Auxiliare a = new Auxiliare();",
 "    private string nume_curs;",
@@ -717,6 +728,16 @@ public partial class Formular_Curs : System.Web.UI.Page
 "        dbconnection.Close();",
 "    }",
 " ",
+"    protected void adauga_test_click(object sender, EventArgs e)",
+"    {",
+"           Response.Redirect(\"..\\\\..\\\\Formular Test.aspx?nume_curs=\" + numeCurs.Text );",
+
+"    }",
+" ",
+"    protected void adauga_videoclip_click(object sender, EventArgs e)",
+"    {",
+"           Response.Redirect(\"..\\\\..\\\\Formular Videoclip.aspx?nume_curs=\" + numeCurs.Text );",
+"    }",
 "}",
                              };
 
