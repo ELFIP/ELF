@@ -35,7 +35,6 @@
             <a href="#"> Termeni si Factori </a>
             <p> &copy; 2015 </p>
         </nav>
-
     </footer>
 </body>
 </html>

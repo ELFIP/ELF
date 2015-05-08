@@ -24,8 +24,10 @@ public partial class Formular_Curs : System.Web.UI.Page
         }
         else
         {
+            alerta_nume.Text = "";
             adaugaInBazaDeDate();
             creazaPaginaNoua();
+            Response.Redirect("\\Cursuri\\" + numeCurs.Text + "\\" + numeCurs.Text + ".aspx");
         }
     }
 

@@ -13,8 +13,8 @@
             </asp:TableHeaderRow>
            <asp:TableRow>
                <asp:TableCell HorizontalAlign="Center">
-                   <asp:FileUpload ID="FileUpload1" runat="server" />
-                   <asp:Button ID="buton_upload" runat="server" Text="Upload" OnClick="buton_upload_Click" />
+                   <asp:FileUpload ID="FileUpload1" runat="server"/>
+                   <asp:Button ID="buton_upload" runat="server" Text="Upload" OnClick="buton_upload_Click" AutoPostBack ="false" />
                    <asp:Label ID="lbl_debug" runat="server" Text=""></asp:Label>
                </asp:TableCell>
            </asp:TableRow>

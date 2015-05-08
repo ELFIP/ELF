@@ -11,13 +11,12 @@ public partial class Formular_Videoclip : System.Web.UI.Page
     Auxiliare a = new Auxiliare();
     string nume_curs = null;
     int id_curs;
+    string format_videoclip = null;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack) {
             selecteazaNumeCurs();
             selecteazaIdCurs();
-        }
     }
 
     private void selecteazaIdCurs()
@@ -47,8 +46,10 @@ public partial class Formular_Videoclip : System.Web.UI.Page
     {
         if (FileUpload1.HasFile)
         {
-            FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Cursuri/") + nume_curs + "/" + numeVideoclip.Text + "." + format(FileUpload1.FileName));
-            afiseaza.Src = "/Cursuri/" + nume_curs + "/" + numeVideoclip.Text + "." + format(FileUpload1.FileName);
+            format_videoclip = format(FileUpload1.FileName);
+            Session["format_videoclip"] = format_videoclip;
+            FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Cursuri/") + nume_curs + "/" + numeVideoclip.Text + "." + format_videoclip);
+            afiseaza.Src = "/Cursuri/" + nume_curs + "/" + numeVideoclip.Text + "." + format_videoclip;
         }
         else
         {
@@ -64,7 +65,7 @@ public partial class Formular_Videoclip : System.Web.UI.Page
         comanda = new SqlCommand();
         comanda.Connection = conexiune;
         comanda.Connection.Open();
-        comanda.CommandText = "Insert into [Videoclip] values (" + (maxIdVideoclip() + 1) + ", " + id_curs + ", '" + numeVideoclip.Text + "',  CONVERT(VARCHAR(10), GETDATE(), 10), null );";
+        comanda.CommandText = "Insert into [Videoclip] values (" + (maxIdVideoclip() + 1) + ", " + id_curs + ", '" + numeVideoclip.Text + "',  CONVERT(VARCHAR(10), GETDATE(), 10), 0 );";
         comanda.ExecuteNonQuery();
         conexiune.Close();
     }
@@ -116,6 +117,7 @@ public partial class Formular_Videoclip : System.Web.UI.Page
         adaugaInBazaDeDate();
         creazaASPX();
         creazaC();
+        Response.Redirect("\\Cursuri\\" + nume_curs + "\\" + numeVideoclip.Text + ".aspx");
     }
 
     private void creazaASPX()
@@ -140,7 +142,7 @@ public partial class Formular_Videoclip : System.Web.UI.Page
 "            </asp:TableHeaderRow>",
 "           <asp:TableRow>",
 "               <asp:TableCell HorizontalAlign=\"Center\" ColumnSpan=\"2\">",
-"                   <iframe ID=\"afiseaza\" width=\"560\" height=\"315\" Src=\"" + "/Cursuri/" + nume_curs + "/" + numeVideoclip.Text + "." + format(FileUpload1.FileName) + "\" frameborder=\"0\" allowfullscreen runat=\"server\"></iframe>",
+"                   <iframe ID=\"afiseaza\" width=\"560\" height=\"315\" src=\"" + numeVideoclip.Text + "." + (string)Session["format_videoclip"] + "\" frameborder=\"0\" allowfullscreen runat=\"server\"></iframe>",
 "               </asp:TableCell>",
 "           </asp:TableRow>",
 "           <asp:TableRow>",
@@ -190,16 +192,18 @@ public partial class Formular_Videoclip : System.Web.UI.Page
 "    int id_utilizator;",
 "    int id_curs;",
 "    int nota_data;",
+"    int numar_note = 0;",
 "    double media_notelor_videoclip;",
 "    private string email;",
 " ",
 "    protected void Page_Load(object sender, EventArgs e)",
 "    {",
+"        culegeDate();",
+"        selecteazaIdUtilizator();",
+"        selecteazaIdVideoclip();",
+"        selecteazaIdCurs();",
 "        if (!IsPostBack) {",
-"            culegeDate();",
-"            selecteazaIdUtilizator();",
-"            selecteazaIdVideoclip();",
-"            selecteazaIdCurs();",
+"            numarNote();",
 "            selecteazaNotaDataVideoclip();",
 "            afiseazaNotaData();",
 "        }",
@@ -231,7 +235,7 @@ public partial class Formular_Videoclip : System.Web.UI.Page
 "        }",
 "    }",
 " ",
-"    private void selecteazaNotaDataVideoclip()",
+"    private void numarNote()",
 "    {",
 "        SqlCommand comanda = new SqlCommand();",
 "        SqlConnection conexiune;",
@@ -239,11 +243,33 @@ public partial class Formular_Videoclip : System.Web.UI.Page
 "        comanda.Connection = conexiune;",
 "        comanda.Connection.Open();",
 "        SqlDataReader sdr;",
-"        comanda.CommandText = \"SELECT nota_data FROM Utilizator_Videoclip WHERE id_utilizator = \" + id_utilizator + \" AND id_videoclip = \" + id_videoclip + \";\";",
+"        comanda.CommandText = \"SELECT 1 FROM Utilizator_Videoclip WHERE id_utilizator = \" + id_utilizator + \" AND id_videoclip = \" + id_videoclip + \";\";",
 "        sdr = comanda.ExecuteReader();",
-"        sdr.Read();",
-"        nota_data = int.Parse(sdr.GetValue(0).ToString());",
+"        while(sdr.Read()) {",
+"            numar_note++;",
+"        }",
 "        conexiune.Close();",
+"    }",
+" ",
+"    private void selecteazaNotaDataVideoclip()",
+"    {",
+"        if (numar_note == 0) {",
+"            nota_data = 0;",
+"        }",
+"        else",
+"        {",
+"           SqlCommand comanda = new SqlCommand();",
+"           SqlConnection conexiune;",
+"           conexiune = new SqlConnection(a.string_bazadedate);",
+"           comanda.Connection = conexiune;",
+"           comanda.Connection.Open();",
+"           SqlDataReader sdr;",
+"           comanda.CommandText = \"SELECT nota_data FROM Utilizator_Videoclip WHERE id_utilizator = \" + id_utilizator + \" AND id_videoclip = \" + id_videoclip + \";\";",
+"           sdr = comanda.ExecuteReader();",
+"           sdr.Read();",
+"           nota_data = int.Parse(sdr.GetValue(0).ToString());",
+"           conexiune.Close();",
+"        }",
 "    }",
 " ",
 "    private void selecteazaIdCurs()",
@@ -291,17 +317,56 @@ public partial class Formular_Videoclip : System.Web.UI.Page
 "        conexiune.Close();",
 "    }",
 " ",
-"    private void actualizeazaNotaDataVideoclip(int nota)",
+"    private bool exista()",
 "    {",
 "        SqlCommand comanda = new SqlCommand();",
 "        SqlConnection conexiune;",
 "        conexiune = new SqlConnection(a.string_bazadedate);",
-"        comanda = new SqlCommand();",
 "        comanda.Connection = conexiune;",
 "        comanda.Connection.Open();",
-"        comanda.CommandText = \"UPDATE [Utilizator_Videoclip] SET nota_data = \" + nota + \" WHERE id_utilizator = \" + id_utilizator + \" AND id_videoclip = \" + id_videoclip + \";\";",
-"        comanda.ExecuteNonQuery();",
+"        SqlDataReader sdr;",
+"        comanda.CommandText = \"Select 1 from Utilizator_Videoclip WHERE id_utilizator = \" + id_utilizator + \" AND id_videoclip = \" + id_videoclip + \";\";",
+"        sdr = comanda.ExecuteReader();",
+"        int i = 0;",
+"        while (sdr.Read())",
+"        {",
+"            i++;",
+"        }",
 "        conexiune.Close();",
+"        if (i == 0) {",
+"            return false;",
+"        }",
+"        else",
+"        {",
+"            return true;",
+"        }",
+"    }",
+" ",
+"    private void actualizeazaNotaDataVideoclip(int nota)",
+"    {",
+"        if(exista()) {",
+"           SqlCommand comanda = new SqlCommand();",
+"           SqlConnection conexiune;",
+"           conexiune = new SqlConnection(a.string_bazadedate);",
+"           comanda = new SqlCommand();",
+"           comanda.Connection = conexiune;",
+"           comanda.Connection.Open();",
+"           comanda.CommandText = \"UPDATE [Utilizator_Videoclip] SET nota_data = \" + nota + \" WHERE id_utilizator = \" + id_utilizator + \" AND id_videoclip = \" + id_videoclip + \";\";",
+"           comanda.ExecuteNonQuery();",
+"           conexiune.Close();",
+"        }",
+"        else",
+"        {",
+"            SqlCommand comanda = new SqlCommand();",
+"            SqlConnection conexiune;",
+"            conexiune = new SqlConnection(a.string_bazadedate);",
+"            comanda = new SqlCommand();",
+"            comanda.Connection = conexiune;",
+"            comanda.Connection.Open();",
+"            comanda.CommandText = \"Insert into [Utilizator_Videoclip] values (\" + id_utilizator + \", \" + id_videoclip + \",  CONVERT(VARCHAR(10), GETDATE(), 10), \" + nota + \");\";",
+"            comanda.ExecuteNonQuery();",
+"            conexiune.Close();",
+"        }",
 "    }",
 " ",
 "    private void selecteazaMediaNotelorVideoclip()",
