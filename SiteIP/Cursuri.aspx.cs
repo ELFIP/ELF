@@ -90,7 +90,7 @@ public partial class Cursuri : System.Web.UI.Page
         for (int i = 0; i < numar_cursuri; i++)
         {
             HyperLink hnf = new HyperLink();
-            hnf.NavigateUrl = nume_cursuri[i];
+            hnf.NavigateUrl = "Cursuri/" + nume_cursuri[i] + "/" + nume_cursuri[i] + ".aspx";
             hnf.Text = nume_cursuri[i];
 
             TableCell celula = new TableCell();

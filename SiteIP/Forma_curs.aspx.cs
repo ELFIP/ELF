@@ -23,6 +23,10 @@ public partial class Forma_curs : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if(!IsPostBack) {
+            if ((bool)Session["este_administrator"])
+            {
+                Response.Redirect("");
+            }
             culegeDate();
             selecteazaIdCurs();
             selecteazaIdUtilizator();

@@ -27,6 +27,11 @@
                     </asp:Table>
                 </asp:TableCell>
             </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell HorizontalAlign="Center" ColumnSpan="2">
+                    <asp:HyperLink ID="hyperlink_adaugaCurs" NavigateUrl="Formular Curs.aspx" runat="server">Adauga Curs</asp:HyperLink>
+                </asp:TableCell>
+            </asp:TableRow>
         </asp:Table>
 
 </asp:Content>
