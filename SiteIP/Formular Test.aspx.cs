@@ -429,6 +429,14 @@ public partial class Forma_Test : System.Web.UI.Page
     protected void creazaTest(object sender, EventArgs e)
     {
         adaugaInBazaDeDate();
+
+        // Stergem variabilele de sesiune;
+        Session.Remove("intrebari");
+        Session.Remove("teste");
+        Session.Remove("lista_intrebari");
+        Session.Remove("lista_numarRaspunsuri");
+        Session.Remove("lista_bifat");
+        Session.Remove("lista_raspunsuri");
     }
 
 }
