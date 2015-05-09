@@ -21,10 +21,23 @@ public partial class Forma_Test : System.Web.UI.Page
     {
         selecteazaNumeCurs();
         selecteazaIdCurs();
-
         if (IsPostBack)
         {
-            adaugaTabel();
+            if((bool)Session["intrebari"] == true) {
+                intrebari = (List<TextBox>)Session["lista_intrebari"];
+                numarRaspunsuri = (List<TextBox>)Session["lista_numarRaspunsuri"];
+                readaugaIntrebari();
+            }
+            if((bool)Session["teste"] == true) {
+                bifat = (List<List<CheckBox>>)Session["lista_bifat"];
+                raspunsuri = (List<List<TextBox>>)Session["lista_raspunsuri"];
+                readaugaRaspunsuri();
+            }
+        }
+        else
+        {
+            Session["intrebari"] = false;
+            Session["teste"] = false;
         }
     }
 
@@ -53,14 +66,70 @@ public partial class Forma_Test : System.Web.UI.Page
 
     protected void genereazaIntrebari(object sender, EventArgs e)
     {
-
+        adaugaIntrebari();
     }
 
-    private void adaugaTabel()
+    private void readaugaIntrebari()
     {
         Table tabel_intrebari = new Table();
         tabel_intrebari.ID = "tabel_intrebari";
 
+        for (int i = 0; i < int.Parse(numarIntrebari.Text); i++)
+        {
+            TableRow rand_intrebare = new TableRow();
+            TableCell celula_intrebare = new TableCell();
+            celula_intrebare.HorizontalAlign = HorizontalAlign.Center;
+            celula_intrebare.Attributes.Add("style", "padding: 10px");
+
+            TableRow rand_numar_raspuns = new TableRow();
+            TableCell celula_numar_raspuns = new TableCell();
+            celula_numar_raspuns.HorizontalAlign = HorizontalAlign.Center;
+            celula_numar_raspuns.Attributes.Add("style", "padding: 10px");
+
+            celula_intrebare.Controls.Add(intrebari[i]);
+            celula_numar_raspuns.Controls.Add(numarRaspunsuri[i]);
+
+            rand_intrebare.Controls.Add(celula_intrebare);
+            rand_numar_raspuns.Controls.Add(celula_numar_raspuns);
+
+            tabel_intrebari.Controls.Add(rand_intrebare);
+            tabel_intrebari.Controls.Add(rand_numar_raspuns);
+        }
+
+        TableRow rand_tabel = new TableRow();
+        TableCell celula_tabel = new TableCell();
+        celula_tabel.HorizontalAlign = HorizontalAlign.Center;
+        celula_tabel.ColumnSpan = 2;
+        celula_tabel.Attributes.Add("style", "padding: 10px");
+
+        celula_tabel.Controls.Add(tabel_intrebari);
+        rand_tabel.Controls.Add(celula_tabel);
+
+        TableRow rand_buton_adaugare = new TableRow();
+        TableCell celula_buton_creaza = new TableCell();
+        celula_buton_creaza.HorizontalAlign = HorizontalAlign.Center;
+        celula_buton_creaza.ColumnSpan = 2;
+        celula_buton_creaza.Attributes.Add("style", "padding: 10px");
+
+        Button buton_creazaSchelet = new Button();
+        buton_creazaSchelet.Text = "Genereaza Raspunsuri";
+        buton_creazaSchelet.ID = "buton_raspunsuri";
+        buton_creazaSchelet.Click += genereazaRaspunsuri;
+
+        celula_buton_creaza.Controls.Add(buton_creazaSchelet);
+        rand_buton_adaugare.Controls.Add(celula_buton_creaza);
+
+        tabel_generare.Controls.Add(rand_tabel);
+        tabel_generare.Controls.Add(rand_buton_adaugare);
+    }
+
+    private void adaugaIntrebari()
+    {
+        Session["intrebari"] = true;
+        Table tabel_intrebari = new Table();
+        tabel_intrebari.ID = "tabel_intrebari";
+
+        // Adaugam fiecare intrebare si numarul raspunsurilor;
         for (int i = 0; i < int.Parse(numarIntrebari.Text); i++)
         {
             TableRow rand_intrebare = new TableRow();
@@ -120,10 +189,91 @@ public partial class Forma_Test : System.Web.UI.Page
 
         tabel_generare.Controls.Add(rand_tabel);
         tabel_generare.Controls.Add(rand_buton_adaugare);
+
+        // Cream variabilele de sesiune pentru listele de TextBox-uri
+        Session["lista_intrebari"] = intrebari;
+        Session["lista_numarRaspunsuri"] = numarRaspunsuri;
+    }
+
+    private void readaugaRaspunsuri()
+    {
+        Table tabel_intrebari = new Table();
+        tabel_intrebari.ID = "tabel_intrebari_raspunsuri";
+
+        for (int i = 0; i < int.Parse(numarIntrebari.Text); i++)
+        {
+            TableRow rand_intrebare = new TableRow();
+            TableCell celula_intrebare = new TableCell();
+            celula_intrebare.HorizontalAlign = HorizontalAlign.Center;
+            celula_intrebare.Attributes.Add("style", "padding: 10px");
+
+            TableRow rand_numar_raspuns = new TableRow();
+            TableCell celula_numar_raspuns = new TableCell();
+            celula_numar_raspuns.HorizontalAlign = HorizontalAlign.Center;
+            celula_numar_raspuns.Attributes.Add("style", "padding: 10px");
+
+            Label intrebare = new Label();
+            intrebare.ID = "intrebare" + i + "'";
+            intrebare.Attributes.Add("placeholder", "Intrebare");
+            intrebare.Width = new Unit("500");
+            intrebare.Text = intrebari[i].Text;
+
+            Table tabel_raspunsuri = new Table();
+            tabel_raspunsuri.ID = "tabel_raspunsuri" + i;
+
+            for (int j = 0; j < int.Parse(numarRaspunsuri[i].Text); j++)
+            {
+                TableRow rand_raspuns = new TableRow();
+                TableCell celula_raspuns = new TableCell();
+                celula_raspuns.HorizontalAlign = HorizontalAlign.Center;
+                celula_raspuns.Attributes.Add("style", "padding: 10px");
+
+                celula_raspuns.Controls.Add(bifat[i][j]);
+                celula_raspuns.Controls.Add(raspunsuri[i][j]);
+                rand_raspuns.Controls.Add(celula_raspuns);
+                tabel_raspunsuri.Controls.Add(rand_raspuns);
+            }
+
+            celula_intrebare.Controls.Add(intrebare);
+            celula_numar_raspuns.Controls.Add(tabel_raspunsuri);
+
+            rand_intrebare.Controls.Add(celula_intrebare);
+            rand_numar_raspuns.Controls.Add(celula_numar_raspuns);
+
+            tabel_intrebari.Controls.Add(rand_intrebare);
+            tabel_intrebari.Controls.Add(rand_numar_raspuns);
+        }
+
+        TableRow rand_tabel = new TableRow();
+        TableCell celula_tabel = new TableCell();
+        celula_tabel.HorizontalAlign = HorizontalAlign.Center;
+        celula_tabel.ColumnSpan = 2;
+        celula_tabel.Attributes.Add("style", "padding: 10px");
+
+        celula_tabel.Controls.Add(tabel_intrebari);
+        rand_tabel.Controls.Add(celula_tabel);
+
+        TableRow rand_buton_adaugare = new TableRow();
+        TableCell celula_buton_creaza = new TableCell();
+        celula_buton_creaza.HorizontalAlign = HorizontalAlign.Center;
+        celula_buton_creaza.ColumnSpan = 2;
+        celula_buton_creaza.Attributes.Add("style", "padding: 10px");
+
+        Button buton_creazaSchelet = new Button();
+        buton_creazaSchelet.Text = "Creaza Test";
+        buton_creazaSchelet.ID = "buton_creaza";
+        buton_creazaSchelet.Click += creazaTest;
+
+        celula_buton_creaza.Controls.Add(buton_creazaSchelet);
+        rand_buton_adaugare.Controls.Add(celula_buton_creaza);
+
+        tabel_generare.Controls.Add(rand_tabel);
+        tabel_generare.Controls.Add(rand_buton_adaugare);
     }
 
     private void adaugaRaspunsuri()
     {
+        Session["teste"] = true;
         Table tabel_intrebari = new Table();
         tabel_intrebari.ID = "tabel_intrebari_raspunsuri";
 
@@ -209,6 +359,10 @@ public partial class Forma_Test : System.Web.UI.Page
 
         tabel_generare.Controls.Add(rand_tabel);
         tabel_generare.Controls.Add(rand_buton_adaugare);
+
+        // Cream variabilele de sesiune pentru listele de TextBox-uri si CheckBox-uri
+        Session["lista_bifat"] = bifat;
+        Session["lista_raspunsuri"] = raspunsuri;
     }
 
     protected void genereazaRaspunsuri(object sender, EventArgs e)
