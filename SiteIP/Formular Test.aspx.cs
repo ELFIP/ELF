@@ -68,6 +68,7 @@ public partial class Forma_Test : System.Web.UI.Page
     protected void genereazaIntrebari(object sender, EventArgs e)
     {
         adaugaIntrebari();
+        buton_genereazaIntrebari.Enabled = false;
     }
 
     private void readaugaIntrebari()
@@ -368,7 +369,6 @@ public partial class Forma_Test : System.Web.UI.Page
 
     protected void genereazaRaspunsuri(object sender, EventArgs e)
     {
-        Button buton_adauga = (Button)sender;
         adaugaRaspunsuri();
     }
 
@@ -443,6 +443,9 @@ public partial class Forma_Test : System.Web.UI.Page
         Session.Remove("lista_numarRaspunsuri");
         Session.Remove("lista_bifat");
         Session.Remove("lista_raspunsuri");
+
+        // Redirect catre pagina testului;
+        Response.Redirect("\\Cursuri\\" + nume_curs + "\\" + numeTest.Text + ".aspx");
     }
 
     private void creazaASPX()
@@ -610,8 +613,8 @@ public partial class Forma_Test : System.Web.UI.Page
 "        afiseazaIntrebarileSiRaspunsurile();",
 "        culegeDate();",
 "        selecteazaIdUtilizator();",
-"        selecteazaIdTest();",
 "        selecteazaIdCurs();",
+"        selecteazaIdTest();",
 "        if (!IsPostBack) {",
 "           numarNote();",
 "           selecteazaNotaDataTest();",
@@ -661,7 +664,7 @@ public partial class Forma_Test : System.Web.UI.Page
 " ",
 "            bifat.Add(new List<CheckBox>());",
 " ",
-"            for (int j = 0; j < raspunsuri.Count; j++)",
+"            for (int j = 0; j < raspunsuri[i].Count; j++)",
 "            {",
 "                TableRow rand_raspuns_i = new TableRow();",
 "                TableCell celula_raspuns_i = new TableCell();",
@@ -825,7 +828,7 @@ public partial class Forma_Test : System.Web.UI.Page
 "        comanda.Connection = conexiune;",
 "        comanda.Connection.Open();",
 "        SqlDataReader sdr;",
-"        comanda.CommandText = \"SELECT id_test FROM Test WHERE nume = \'\" + numeTest.Text + \"\';\";",
+"        comanda.CommandText = \"SELECT id_test FROM Test WHERE nume = \'\" + numeTest.Text + \"\' AND id_curs = \" + id_curs + \";\";",
 "        sdr = comanda.ExecuteReader();",
 "        sdr.Read();",
 "        id_test = int.Parse(sdr.GetValue(0).ToString());",

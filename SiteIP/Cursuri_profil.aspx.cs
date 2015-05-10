@@ -21,7 +21,6 @@ public partial class Cursuri_profil : System.Web.UI.Page
             culegeDate();
             actualizeazaCampuri();
         }
-        
     }
 
     private void culegeDate()
