@@ -16,7 +16,7 @@
                 </asp:TableHeaderCell>
             </asp:TableHeaderRow>
            <asp:TableRow>
-               <asp:TableCell HorizontalAlign="Center" ColumnSpan="2">
+               <asp:TableCell ID="celula_test" HorizontalAlign="Center" ColumnSpan="2">
                    
                </asp:TableCell>
            </asp:TableRow>
