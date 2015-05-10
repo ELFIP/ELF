@@ -25,7 +25,11 @@
                     <asp:Table ID="tabel_cursuri" runat="server" HorizontalAlign="Center" style="padding:5px">
 
                     </asp:Table>
-                    <asp:Button ID="AdaugaCurs" runat="server" Text="Adauga Curs" HorizontalAlign="Center" OnClientClick="window.location='Formular Curs.aspx'; return false;"/>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell HorizontalAlign="Center" ColumnSpan="2">
+                    <asp:HyperLink ID="hyperlink_adaugaCurs" NavigateUrl="Formular Curs.aspx" runat="server">Adauga Curs</asp:HyperLink>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>

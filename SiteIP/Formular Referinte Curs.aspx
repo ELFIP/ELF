@@ -6,12 +6,12 @@
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
        <asp:Table ID="formular" runat="server" Width="80%" style="margin-left: 10%">
             <asp:TableHeaderRow Width="100%" >
-                <asp:TableHeaderCell HorizontalAlign="Center" style="padding:10px">
-                    <asp:Label ID="numeFacultate" runat="server" Text="Facultate" Width="50%">
+                <asp:TableHeaderCell HorizontalAlign="Center" style="padding:10px" Width="50%">
+                    <asp:Label ID="numeFacultate" runat="server" Text="Facultate">
                     </asp:Label>
                 </asp:TableHeaderCell>
-                <asp:TableHeaderCell HorizontalAlign="Center" style="padding:10px">
-                    <asp:Label ID="numeTaguri" runat="server" Text="Tag" Width="50%">
+                <asp:TableHeaderCell HorizontalAlign="Center" style="padding:10px" Width="50%">
+                    <asp:Label ID="numeTaguri" runat="server" Text="Tag">
                     </asp:Label>
                 </asp:TableHeaderCell>
             </asp:TableHeaderRow>

@@ -506,6 +506,11 @@ public partial class Formular_Curs : System.Web.UI.Page
 "                   </asp:Table>",
 "           </asp:TableCell>",
 "       </asp:TableRow>",
+"       <asp:TableRow Width=\"100%\">",
+"           <asp:TableCell HorizontalAlign=\"Center\" Style=\"padding: 10px\">",
+"                <asp:HyperLink ID=\"hyperlink_adaugaReferinta\" NavigateUrl=\"~/Formular Referinte Curs.aspx?nume_curs=" + numeCurs.Text + "\" runat=\"server\">Adauga Referinta</asp:HyperLink>",
+"           </asp:TableCell>",
+"       </asp:TableRow>",
 "   </asp:Table>",
 "</asp:Content>"
                              };
