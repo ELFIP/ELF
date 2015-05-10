@@ -31,6 +31,14 @@
     </asp:Panel>
     
     <br />
+    
+    <asp:Table ID="tabel_facultati_recomandate" runat="server" Width="80%" style="margin-left: 10%">
+        <asp:TableHeaderRow>
+            <asp:TableHeaderCell Text="Facultati Recomandate" HorizontalAlign="Center">
+
+            </asp:TableHeaderCell>
+        </asp:TableHeaderRow>
+    </asp:Table>
 
     <asp:Panel ID="continut" runat="server">
         <br />
