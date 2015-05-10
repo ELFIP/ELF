@@ -16,6 +16,10 @@ public partial class Cursuri : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if ((bool)Session["este_administrator"])
+        {
+            Response.Redirect("Cursuri_administrator.aspx" );
+        }
         selecteazaCursuri();
         afiseazaCursuri();
         selecteazaTaguri();

@@ -21,6 +21,11 @@
                </asp:TableCell>
            </asp:TableRow>
            <asp:TableRow>
+               <asp:TableCell ID="celula_rezultat" HorizontalAlign="Center" ColumnSpan="2">
+                   
+               </asp:TableCell>
+           </asp:TableRow>
+           <asp:TableRow>
                <asp:TableCell HorizontalAlign="Center" ColumnSpan="2">
                    <asp:RadioButtonList ID="RadioButtonList1" runat="server" HorizontalAlign="Center" AutoPostBack ="true" OnSelectedIndexChanged="selectare">
                        <asp:ListItem ID="id_nota1" runat="server" Text="1">

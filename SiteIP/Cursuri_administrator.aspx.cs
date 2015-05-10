@@ -16,6 +16,10 @@ public partial class Cursuri_administrator : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!(bool)Session["este_administrator"])
+        {
+            Response.Redirect("Cursuri.aspx");
+        }
         selecteazaCursuri();
         afiseazaCursuri();
         selecteazaTaguri();
@@ -90,7 +94,7 @@ public partial class Cursuri_administrator : System.Web.UI.Page
         for (int i = 0; i < numar_cursuri; i++)
         {
             HyperLink hnf = new HyperLink();
-            hnf.NavigateUrl = nume_cursuri[i];
+            hnf.NavigateUrl = "Cursuri/" + nume_cursuri[i] + "/" + nume_cursuri[i] + ".aspx";
             hnf.Text = nume_cursuri[i];
 
             TableCell celula = new TableCell();
