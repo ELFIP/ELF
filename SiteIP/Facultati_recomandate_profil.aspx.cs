@@ -17,15 +17,15 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
     private string data_nasterii;
     private string data_inregistrarii;
 
-    // In cazul in care nu este inscris la niciun curs ne vom folosi doar de partea de date declarate de acesta;
-    private List<int> id_facultati = new List<int>();
     private List<string> nume_facultati = new List<string>();
-    private List<string> localitate_facultati = new List<string>();
 
-    // Pentru fiecare curs la care utilizatorul este inscris vom crea o lista de referinte;
-    private List<List<int>> id_referinta_facultate = new List<List<int>>();
-    private List<List<string>> nume_referinta_facultate = new List<List<string>>();
-    private List<List<string>> localitate_referinta_facultate = new List<List<string>>();
+    private List<int> referinta_id_facultate = new List<int>();
+    private List<string> referinta_nume_facultate = new List<string>();
+    private List<string> referinta_localitate_facultate = new List<string>();
+    private List<int> referinta_id_curs = new List<int>();
+
+    private List<int> id_facultati_scor = new List<int>();
+    private List<double> scor_facultate = new List<double>();
 
     // Id-urile cursurilor la care este inscris;
     private List<int> id_cursuri = new List<int>();
@@ -67,18 +67,22 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
         {
             culegeDate();
             selecteazaIdUtilizator();
-            selecteazaCursurile();
-            selecteazaNumarulVideoclipurilor();
-            selecteazaNumarulTestelor();
-            selecteazaNumarulVideoclipurilorVazute();
-            selecteazaNumarulTestelorDate();
-            selecteazaMediaNotelorDateVideoclip();
-            selecteazaMediaNotelorDateTest();
+            creazaReferinteFacultati();
+            // selecteazaCursurile();
+            // selecteazaNumarulVideoclipurilor();
+            // selecteazaNumarulTestelor();
+            // selecteazaNumarulVideoclipurilorVazute();
+            // selecteazaNumarulTestelorDate();
+            // selecteazaMediaNotelorDateVideoclip();
+            // selecteazaMediaNotelorDateTest();
             calculeazaDistantaMinima();
             calculeazaDistantaMaxima();
-            selecteazaReferinteCurs();
             selecteazaValoriRecomandari();
-            Response.Redirect("login.aspx?n=" + numar_videoclipuri_vazute[2]);
+            calculeazaScorFacultati();
+            adaugaInBazaDeDate();
+            selecteazaFacultatileRecomandate();
+            actualizeazaCampuri();
+            // Response.Redirect("login.aspx?n=" + numar_videoclipuri[0]);
         }
     }
 
@@ -97,6 +101,7 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
         conexiune.Close();
     }
 
+    /*
     private void selecteazaNumarulVideoclipurilor()
     {
         for (int i = 0; i < id_cursuri.Count; i++)
@@ -256,6 +261,7 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
         }
         conexiune.Close();
     }
+    */
 
     private void calculeazaDistantaMinima()
     {
@@ -328,34 +334,166 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
         conexiune.Close();
     }
 
-    private void selecteazaReferinteCurs()
+    private void creazaReferinteFacultati()
     {
-        for (int i = 0; i < id_cursuri.Count; i++)
+        SqlCommand comanda = new SqlCommand();
+        SqlConnection conexiune;
+        conexiune = new SqlConnection(a.string_bazadedate);
+        comanda.Connection = conexiune;
+        comanda.Connection.Open();
+        SqlDataReader sdr;
+        comanda.CommandText = "SELECT f.id_facultate, f.nume, f.localitate, c.id_curs,(SELECT COUNT(*) FROM Videoclip v WHERE v.id_curs = c.id_curs), (SELECT COUNT(*) FROM Test test WHERE test.id_curs = c.id_curs), (SELECT COUNT(*) FROM Utilizator_Videoclip uv, Videoclip v WHERE v.id_curs = c.id_curs AND v.id_videoclip = uv.id_videoclip AND uv.id_utilizator = " + id_utilizator + "), (SELECT COUNT(*) FROM Utilizator_Test ut, Test test WHERE test.id_curs = c.id_curs AND test.id_test = ut.id_test AND ut.id_utilizator = " + id_utilizator + "), (SELECT AVG(nota_data) FROM Utilizator_Videoclip uv, Videoclip v WHERE v.id_curs = c.id_curs AND v.id_videoclip = uv.id_videoclip AND uv.id_utilizator = " + id_utilizator + "), (SELECT AVG(nota_data) FROM Utilizator_Test ut, Test test WHERE test.id_curs = c.id_curs AND test.id_test = ut.id_test AND ut.id_utilizator = " + id_utilizator + ")  FROM Facultate f, Tag t, Curs c, Utilizator_Curs uc WHERE t.id_facultate = f.id_facultate AND t.id_curs = c.id_curs AND c.id_curs = uc.id_curs AND uc.id_utilizator = " + id_utilizator + " ORDER BY f.id_facultate;";
+        sdr = comanda.ExecuteReader();
+        while (sdr.Read())
         {
-            SqlCommand comanda = new SqlCommand();
-            SqlConnection conexiune;
-            conexiune = new SqlConnection(a.string_bazadedate);
-            comanda.Connection = conexiune;
-            comanda.Connection.Open();
-            SqlDataReader sdr;
-            id_referinta_facultate.Add(new List<int>());
-            nume_referinta_facultate.Add(new List<string>());
-            localitate_referinta_facultate.Add(new List<string>());
-            comanda.CommandText = "SELECT t.id_facultate, f.nume, f.localitate FROM Tag t, Facultate f WHERE t.id_curs = " + id_cursuri[i] + " AND t.id_facultate = f.id_facultate;";
-            sdr = comanda.ExecuteReader();
-            while (sdr.Read())
+            referinta_id_facultate.Add(int.Parse(sdr.GetValue(0).ToString()));
+            referinta_nume_facultate.Add(sdr.GetValue(1).ToString());
+            referinta_localitate_facultate.Add(sdr.GetValue(2).ToString());
+            referinta_id_curs.Add(int.Parse(sdr.GetValue(3).ToString()));
+            numar_videoclipuri.Add(int.Parse(sdr.GetValue(4).ToString()));
+            numar_teste.Add(int.Parse(sdr.GetValue(5).ToString()));
+            numar_videoclipuri_vazute.Add(int.Parse(sdr.GetValue(6).ToString()));
+            numar_teste_date.Add(int.Parse(sdr.GetValue(7).ToString()));
+            string aux1 = sdr.GetValue(8).ToString();
+            if (aux1 == "" || aux1 == null)
             {
-                id_referinta_facultate[i].Add(int.Parse(sdr.GetValue(0).ToString()));
-                nume_referinta_facultate[i].Add(sdr.GetValue(1).ToString());
-                localitate_referinta_facultate[i].Add(sdr.GetValue(2).ToString());
+                media_notelor_date_videoclip.Add(0);
             }
-            conexiune.Close();
+            else
+            {
+                media_notelor_date_videoclip.Add(double.Parse(aux1));
+            }
+            string aux2 = sdr.GetValue(9).ToString();
+            if (aux2 == "" || aux2 == null)
+            {
+                media_notelor_date_test.Add(0);
+            }
+            else
+            {
+                media_notelor_date_test.Add(double.Parse(aux2));
+            }
         }
+        conexiune.Close();
     }
 
     private void calculeazaScorFacultati()
     {
+        for (int i = 0; i < referinta_id_facultate.Count; i++)
+        {
+            int scor_date_colectate;
+            int scor_curs;
+            int scor_judet;
+            int scor_nota_curs;
 
+
+            double scor_nota_data_videoclip = media_notelor_date_videoclip[i] / 5.0;
+            double scor_videoclipuri_vazute;
+            if (numar_videoclipuri[i] == 0)
+            {
+                scor_videoclipuri_vazute = 0.0;
+            }
+            else
+            {
+                scor_videoclipuri_vazute = (double)numar_videoclipuri_vazute[i] / (double)numar_videoclipuri[i];
+            }
+
+            double scor_nota_data_test = media_notelor_date_test[i] / 5.0;
+            double scor_teste_date;
+            if (numar_teste[i] == 0)
+            {
+                scor_teste_date = 0.0;
+            }
+            else
+            {
+                scor_teste_date = (double)numar_teste_date[i] / (double)numar_teste[i];
+            }
+            id_facultati_scor.Add(referinta_id_facultate[i]);
+
+            while (i + 1 < referinta_id_facultate.Count && referinta_id_facultate[i] == referinta_id_facultate[i + 1])
+            {
+                scor_nota_data_videoclip = (scor_nota_data_videoclip + media_notelor_date_videoclip[i + 1] / 5.0) / 2.0;
+                if (numar_videoclipuri[i + 1] == 0)
+                {
+                    scor_videoclipuri_vazute = scor_videoclipuri_vazute / 2.0;
+                }
+                else
+                {
+                    scor_videoclipuri_vazute = (scor_videoclipuri_vazute + (double)numar_videoclipuri_vazute[i + 1] / (double)numar_videoclipuri[i + 1]) / 2.0;
+                }
+
+                scor_nota_data_test = (scor_nota_data_test + media_notelor_date_test[i + 1] / 5.0) / 2.0;
+                if (numar_teste[i + 1] == 0)
+                {
+                    scor_teste_date = scor_teste_date / 2.0;
+                }
+                else
+                {
+                    scor_teste_date = (scor_teste_date + (double)numar_teste_date[i + 1] / (double)numar_teste[i + 1]) / 2.0;
+                }
+                
+                i++;
+            }
+
+            double scor_videoclipuri = scor_nota_data_videoclip * nota_data_videoclip + scor_videoclipuri_vazute * videoclipuri_vazute;
+            double scor_teste = scor_nota_data_test * nota_data_test + scor_teste_date * nota_test;
+            double scor_note = (scor_videoclipuri * videoclipuri) / 100.0 + (scor_teste * teste) / 100.0;
+            scor_facultate.Add(scor_note);
+        }
+    }
+
+    private bool existaRecomandarea(int id_facultate)
+    {
+        SqlCommand comanda = new SqlCommand();
+        SqlConnection conexiune;
+        conexiune = new SqlConnection(a.string_bazadedate);
+        comanda.Connection = conexiune;
+        comanda.Connection.Open();
+        SqlDataReader sdr;
+        comanda.CommandText = "SELECT 1 FROM [Utilizator_Facultate] WHERE id_utilizator = " + id_utilizator + " AND id_facultate = " + id_facultate + ";";
+        sdr = comanda.ExecuteReader();
+        int i = 0;
+        while (sdr.Read())
+        {
+            i++;
+        }
+        conexiune.Close();
+        if(i == 0) {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    private void adaugaInBazaDeDate()
+    {
+        for (int i = 0; i < id_facultati_scor.Count; i++)
+        {
+            if(existaRecomandarea(id_facultati_scor[i])) {
+                SqlCommand comanda = new SqlCommand();
+                SqlConnection conexiune;
+                conexiune = new SqlConnection(a.string_bazadedate);
+                comanda = new SqlCommand();
+                comanda.Connection = conexiune;
+                comanda.Connection.Open();
+                comanda.CommandText = "UPDATE [Utilizator_Facultate] SET scor = " + (int)scor_facultate[i] + " WHERE id_utilizator = " + id_utilizator + " AND id_facultate = " + id_facultati_scor[i] + ";";
+                comanda.ExecuteNonQuery();
+                conexiune.Close();
+            }
+            else
+            {
+                SqlCommand comanda = new SqlCommand();
+                SqlConnection conexiune;
+                conexiune = new SqlConnection(a.string_bazadedate);
+                comanda = new SqlCommand();
+                comanda.Connection = conexiune;
+                comanda.Connection.Open();
+                comanda.CommandText = "Insert into [Utilizator_Facultate] values (" + id_utilizator + ", " + id_facultati_scor[i] + ",  CONVERT(VARCHAR(10), GETDATE(), 10)," + (int)scor_facultate[i] + ");";
+                comanda.ExecuteNonQuery();
+                conexiune.Close();
+            }
+        }
     }
 
     private void culegeDate()
@@ -365,16 +503,33 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
         data_inregistrarii = (string)Session["data_inregistrarii"];
     }
 
+    private void selecteazaFacultatileRecomandate()
+    {
+        SqlCommand comanda = new SqlCommand();
+        SqlConnection conexiune;
+        conexiune = new SqlConnection(a.string_bazadedate);
+        comanda.Connection = conexiune;
+        comanda.Connection.Open();
+        SqlDataReader sdr;
+        comanda.CommandText = "SELECT f.nume FROM Facultate f, Utilizator_facultate uf WHERE uf.id_utilizator = " + id_utilizator + " AND f.id_facultate = uf.id_facultate;";
+        sdr = comanda.ExecuteReader();
+        while (sdr.Read())
+        {
+            nume_facultati.Add(sdr.GetValue(0).ToString());
+        }
+        conexiune.Close();
+    }
+
     private void actualizeazaCampuri()
     {
         lista_facultati.Items.Add(new ListItem("Facultati recomandate"));
         label_email.Text = email;
         label_data_nasterii.Text = "Data nasterii: " + data_nasterii;
         label_data_inregistrarii.Text = "Data inregistrarii: " + data_inregistrarii;
-        // foreach (String NumeFacultate in NumeFacultatiRecomandate)
-        //   {
-        //     lista_facultati.Items.Add(new ListItem(NumeFacultate));
-        // }
+         foreach (string NumeFacultate in nume_facultati)
+           {
+             lista_facultati.Items.Add(new ListItem(NumeFacultate));
+         }
     }
 
 }
