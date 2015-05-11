@@ -43,7 +43,7 @@ public class Distanta
         conexiune.Close();
     }
 
-    private string DistanceMatrixRequest(string source, string destination)
+    public string DistanceMatrixRequest(string source, string destination)
     {
         string xmlResult = null;
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://maps.googleapis.com/maps/api/distancematrix/xml?origins=" + source + "&destinations=" + destination + "&mode=Car&language=us-en&sensor=false");
@@ -70,7 +70,7 @@ public class Distanta
         return output;
     }
 
-    private int stringToInt(string s)
+    public int stringToInt(string s)
     {
         int n = 0;
         for (int i = 0; i < s.Length; i++)
