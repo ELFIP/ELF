@@ -9,7 +9,7 @@
 
                 </asp:TableHeaderCell>
                 <asp:TableHeaderCell style="padding:5px">
-                    <asp:TextBox ID="cauta_curs" runat="server" placeholder="Cauta curs" Width="30%">
+                    <asp:TextBox ID="cauta_curs" runat="server" placeholder="Cauta curs" Width="30%" AutoPostBack="false">
 
                     </asp:TextBox>
                 </asp:TableHeaderCell>
@@ -33,5 +33,4 @@
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
-
 </asp:Content>
