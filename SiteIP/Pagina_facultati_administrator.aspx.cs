@@ -9,10 +9,8 @@ using System.Data.SqlClient;
 public partial class Pagina_facultati_administrator : System.Web.UI.Page
 {
     Auxiliare a = new Auxiliare();
-    // DateUtilizator dU = new DateUtilizator();
-    int numar_facultati = 0;
-    String[] nume_facultati = new String[20];
-    String[] localitate_facultati = new String[20];
+    List<String> nume_facultati = new List<String>();
+    List<String> localitate_facultati = new List<String>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,7 +20,6 @@ public partial class Pagina_facultati_administrator : System.Web.UI.Page
 
     protected void selecteazaFacultati()
     {
-        numar_facultati = 0;
         SqlCommand comanda = new SqlCommand();
         SqlConnection conexiune;
         conexiune = new SqlConnection(a.string_bazadedate);
@@ -33,16 +30,16 @@ public partial class Pagina_facultati_administrator : System.Web.UI.Page
         sdr = comanda.ExecuteReader();
         while (sdr.Read())
         {
-            nume_facultati[numar_facultati] = sdr.GetValue(0).ToString();
-            localitate_facultati[numar_facultati] = sdr.GetValue(1).ToString();
-            numar_facultati++;
+            nume_facultati.Add(sdr.GetValue(0).ToString());
+            localitate_facultati.Add(sdr.GetValue(1).ToString());
         }
         conexiune.Close();
     }
 
     protected void afiseazaFacultati()
     {
-        for (int i = 0; i < numar_facultati; i++)
+
+        for (int i = 0; i < nume_facultati.Count; i++)
         {
             Panel facultate = new Panel();
             facultate.CssClass = "facultate";
@@ -52,8 +49,8 @@ public partial class Pagina_facultati_administrator : System.Web.UI.Page
             nume_facultate.Height = new Unit("100%");
 
             HyperLink hnf = new HyperLink();
-            hnf.NavigateUrl = nume_facultati[i] + ".aspx";
-            hnf.Text = nume_facultati[i];
+            hnf.NavigateUrl = "Facultati/" + nume_facultati[i] + " " + localitate_facultati[i] + "/" + nume_facultati[i] + " " + localitate_facultati[i] + ".aspx";
+            hnf.Text = nume_facultati[i] + " " + localitate_facultati[i];
 
             nume_facultate.Controls.Add(hnf);
 
@@ -74,4 +71,5 @@ public partial class Pagina_facultati_administrator : System.Web.UI.Page
     {
         Response.Redirect("Formular Facultate.aspx");
     }
+
 }

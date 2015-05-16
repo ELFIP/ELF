@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.IO;
 
 public partial class Formular_Facultate : System.Web.UI.Page
 {
@@ -31,9 +32,19 @@ public partial class Formular_Facultate : System.Web.UI.Page
     {
         String nume = nume_facultate.Text;
         String localitate = localitatea_facultatii.Text;
+        creazaFolder();
         creazaASPX();
         creazaC();
-        Response.Redirect(nume + " " + localitate + ".aspx");
+        Response.Redirect("\\Facultati\\" + nume + " " + localitate + "\\" +  nume + " " + localitate + ".aspx");
+    }
+
+    private void creazaFolder()
+    {
+        var folder = Server.MapPath("~/Facultati/" + nume_facultate.Text + " " + localitatea_facultatii.Text);
+        if (!Directory.Exists(folder))
+        {
+            Directory.CreateDirectory(folder);
+        }
     }
 
     private void creazaASPX() {
@@ -66,7 +77,7 @@ public partial class Formular_Facultate : System.Web.UI.Page
         "    </asp:Panel>",
         "</asp:Content>"
                              };
-        System.IO.File.WriteAllLines(Server.MapPath(nume + " " + localitate + ".aspx"), aspxLines);
+        System.IO.File.WriteAllLines(Server.MapPath("\\Facultati\\" + nume + " " + localitate + "\\" + nume + " " + localitate + ".aspx"), aspxLines);
     }
 
     private void creazaC() {
@@ -90,7 +101,7 @@ public partial class Formular_Facultate : System.Web.UI.Page
             "}"
                              };
 
-        System.IO.File.WriteAllLines(Server.MapPath(nume + " " + localitate + ".aspx.cs"), codeLines);
+        System.IO.File.WriteAllLines(Server.MapPath("\\Facultati\\" + nume + " " + localitate + "\\" + nume + " " + localitate + ".aspx.cs"), codeLines);
     }
 
     private void insereazaFacultatea()
