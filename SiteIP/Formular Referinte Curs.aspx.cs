@@ -13,6 +13,9 @@ public partial class Formular_Referinte_Curs : System.Web.UI.Page
     List<string> lista_nume_facultati = new List<string>();
     List<CheckBox> checkbox_facultati = new List<CheckBox>();
     List<TextBox> nume_tag = new List<TextBox>();
+    List<Label> nume_referinte = new List<Label>();
+    List<Button> sterge_referinte = new List<Button>();
+    List<int> id_referinte = new List<int>();
     int id_curs;
     string nume_curs;
 
@@ -20,6 +23,8 @@ public partial class Formular_Referinte_Curs : System.Web.UI.Page
     {
         selecteazaNumeCurs();
         selecteazaIdCurs();
+        selecteazaReferinteleDejaExistente();
+        afiseazaReferinteleExistente();
         selecteazaFacultati();
         adaugaTabel();
     }
@@ -47,6 +52,82 @@ public partial class Formular_Referinte_Curs : System.Web.UI.Page
         }
     }
 
+    private void selecteazaReferinteleDejaExistente()
+    {
+        SqlCommand comanda = new SqlCommand();
+        SqlConnection conexiune;
+        conexiune = new SqlConnection(a.string_bazadedate);
+        comanda.Connection = conexiune;
+        comanda.Connection.Open();
+        SqlDataReader sdr;
+        comanda.CommandText = "SELECT f.id_facultate, f.nume FROM Facultate f, Tag t WHERE f.id_facultate = t.id_facultate AND t.id_curs = " + id_curs + ";";
+        sdr = comanda.ExecuteReader();
+        while (sdr.Read())
+        {
+            // Inseram id-ul;
+            int id = int.Parse(sdr.GetValue(0).ToString());
+            id_referinte.Add(id);
+
+            // Inseram un Label nou cu numele facultatii;
+            Label aux1 = new Label();
+            aux1.Text = sdr.GetValue(1).ToString();
+            nume_referinte.Add(aux1);
+
+            // Inseram un buton de stergere a referintei;
+            Button aux2 = new Button();
+            aux2.Text = "Sterge";
+            aux2.ID = "buton" + id;
+            sterge_referinte.Add(aux2);
+        }
+        conexiune.Close();
+    }
+
+    private void afiseazaReferinteleExistente()
+    {
+        Table tabel_referinte = new Table();
+        tabel_referinte.ID = "tabel_referinte";
+        tabel_referinte.Width = new Unit("100%");
+
+        for (int i = 0; i < id_referinte.Count; i++)
+        {
+            TableRow rand_referinta = new TableRow();
+            TableCell celula_referinta = new TableCell();
+            celula_referinta.HorizontalAlign = HorizontalAlign.Center;
+            celula_referinta.Attributes.Add("style", "padding: 10px");
+            celula_referinta.Width = new Unit("50%");
+
+            TableCell celula_stergere = new TableCell();
+            celula_stergere.HorizontalAlign = HorizontalAlign.Center;
+            celula_stergere.Attributes.Add("style", "padding: 10px");
+            celula_stergere.Width = new Unit("50%");
+
+            celula_referinta.Controls.Add(nume_referinte[i]);
+            celula_stergere.Controls.Add(sterge_referinte[i]);
+
+            rand_referinta.Controls.Add(celula_referinta);
+            rand_referinta.Controls.Add(celula_stergere);
+
+            tabel_referinte.Controls.Add(rand_referinta);
+        }
+
+        deja_existente.Controls.Add(tabel_referinte);
+    }
+
+    private String getString(List<int> id)
+    {
+        String s = "(";
+        for (int i = 0; i < id.Count - 1; i ++)
+        {
+            s += id[i] + ",";
+        }
+        if (id.Count > 0) {
+            s += id[id.Count - 1];
+        }
+        s += ")";
+
+        return s;
+    }
+
     private void selecteazaFacultati()
     {
         SqlCommand comanda = new SqlCommand();
@@ -55,7 +136,7 @@ public partial class Formular_Referinte_Curs : System.Web.UI.Page
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;
-        comanda.CommandText = "SELECT id_facultate, nume FROM [Facultate];";
+        comanda.CommandText = "SELECT id_facultate, nume FROM [Facultate] WHERE id_facultate NOT IN " + getString(id_referinte) + ";";
         sdr = comanda.ExecuteReader();
         while (sdr.Read())
         {
