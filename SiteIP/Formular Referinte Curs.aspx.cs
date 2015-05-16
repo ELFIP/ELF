@@ -52,6 +52,37 @@ public partial class Formular_Referinte_Curs : System.Web.UI.Page
         }
     }
 
+    private int getID(String s)
+    {
+        int n = 0;
+        for (int i = 0; i < s.Length; i++)
+        {
+            if(s[i] >= '0' && s[i] <= '9') {
+                n = n * 10 + (s[i] - '0');
+            }
+        }
+        return n;
+    }
+
+    private void stergeReferinta(int id)
+    {
+        SqlCommand comanda = new SqlCommand();
+        SqlConnection conexiune;
+        conexiune = new SqlConnection(a.string_bazadedate);
+        comanda = new SqlCommand();
+        comanda.Connection = conexiune;
+        comanda.Connection.Open();
+        comanda.CommandText = "DELETE FROM Tag WHERE id_curs = " + id_curs + " AND id_facultate = " + id + ";";
+        comanda.ExecuteNonQuery();
+        conexiune.Close();
+    }
+
+    protected void stergeReferinta(object sender, EventArgs e)
+    {
+        int id_buton = getID(((Button)sender).ID);
+        stergeReferinta(id_buton);
+    }
+
     private void selecteazaReferinteleDejaExistente()
     {
         SqlCommand comanda = new SqlCommand();
@@ -77,6 +108,7 @@ public partial class Formular_Referinte_Curs : System.Web.UI.Page
             Button aux2 = new Button();
             aux2.Text = "Sterge";
             aux2.ID = "buton" + id;
+            aux2.Click += stergeReferinta;
             sterge_referinte.Add(aux2);
         }
         conexiune.Close();
@@ -136,7 +168,14 @@ public partial class Formular_Referinte_Curs : System.Web.UI.Page
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;
-        comanda.CommandText = "SELECT id_facultate, nume FROM [Facultate] WHERE id_facultate NOT IN " + getString(id_referinte) + ";";
+        if (id_referinte.Count == 0)
+        {
+            comanda.CommandText = "SELECT id_facultate, nume FROM [Facultate];";
+        }
+        else
+        {
+            comanda.CommandText = "SELECT id_facultate, nume FROM [Facultate] WHERE id_facultate NOT IN " + getString(id_referinte) + ";";
+        }
         sdr = comanda.ExecuteReader();
         while (sdr.Read())
         {
