@@ -13,9 +13,16 @@ public partial class Formular_Referinte_Curs : System.Web.UI.Page
     List<string> lista_nume_facultati = new List<string>();
     List<CheckBox> checkbox_facultati = new List<CheckBox>();
     List<TextBox> nume_tag = new List<TextBox>();
+
+    // Numele facultatilor care au deja referinta la cursul respectiv;
     List<Label> nume_referinte = new List<Label>();
+
+    // Butoanele de stergere;
     List<Button> sterge_referinte = new List<Button>();
+
+    // Id-urile facultatilor care deja au referinta la cursul respectiv;
     List<int> id_referinte = new List<int>();
+
     int id_curs;
     string nume_curs;
 
@@ -81,6 +88,7 @@ public partial class Formular_Referinte_Curs : System.Web.UI.Page
     {
         int id_buton = getID(((Button)sender).ID);
         stergeReferinta(id_buton);
+        Response.Redirect("Formular Referinte Curs.aspx?nume_curs=" + nume_curs);
     }
 
     private void selecteazaReferinteleDejaExistente()
@@ -170,10 +178,12 @@ public partial class Formular_Referinte_Curs : System.Web.UI.Page
         SqlDataReader sdr;
         if (id_referinte.Count == 0)
         {
+            // In cazul in care nu avem nicio referinta la cursul respectiv;
             comanda.CommandText = "SELECT id_facultate, nume FROM [Facultate];";
         }
         else
         {
+            // In cazul in care avem referinte la cursul respectiv;
             comanda.CommandText = "SELECT id_facultate, nume FROM [Facultate] WHERE id_facultate NOT IN " + getString(id_referinte) + ";";
         }
         sdr = comanda.ExecuteReader();
@@ -247,6 +257,7 @@ public partial class Formular_Referinte_Curs : System.Web.UI.Page
     protected void adauga_referinte_Click(object sender, EventArgs e)
     {
         insereazaReferinte();
+        Response.Redirect("Formular Referinte Curs.aspx?nume_curs=" + nume_curs);
     }
 
 }

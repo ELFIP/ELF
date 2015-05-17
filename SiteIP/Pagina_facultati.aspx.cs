@@ -9,8 +9,7 @@ using System.Data.SqlClient;
 public partial class Pagina_facultati : System.Web.UI.Page
 {
     Auxiliare a = new Auxiliare();
-    List<String> nume_facultati = new List<String>();
-    List<String> localitate_facultati = new List<String>();
+    List<Panel> panou_facultati = new List<Panel>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -30,41 +29,54 @@ public partial class Pagina_facultati : System.Web.UI.Page
         sdr = comanda.ExecuteReader();
         while (sdr.Read())
         {
-            nume_facultati.Add(sdr.GetValue(0).ToString());
-            localitate_facultati.Add(sdr.GetValue(1).ToString());
+            // Extragem numele si localitatea facultatilor;
+            String nume = sdr.GetValue(0).ToString();
+            String localitate = sdr.GetValue(1).ToString();
+
+            // Panou pentru fiecare facultate;
+            Panel facultate = new Panel();
+
+            // Cream hyperlink-uri catre pagina facultatii;
+            HyperLink hnf = new HyperLink();
+            hnf.NavigateUrl = "Facultati/" + nume + " " + localitate + "/" + nume + " " + localitate + ".aspx";
+            hnf.Text = nume;
+
+            Label label_localitate = new Label();
+            label_localitate.Width = new Unit("50%");
+            label_localitate.Height = new Unit("100%");
+            label_localitate.Text = localitate;
+
+            facultate.Controls.Add(hnf);
+            facultate.Controls.Add(label_localitate);
+
+            // Adaugam panoul facultatii in lista;
+            panou_facultati.Add(facultate);
         }
         conexiune.Close();
     }
 
     protected void afiseazaFacultati()
     {
-
-        for (int i = 0; i < nume_facultati.Count; i ++ )
+        for (int i = 0; i < panou_facultati.Count; i++)
         {
-            Panel facultate = new Panel();
-            facultate.CssClass = "facultate";
+            // Adaugam Label-urile;
+            TableRow rand_facultate = new TableRow();
+            TableCell celula_facultate = new TableCell();
+            celula_facultate.HorizontalAlign = HorizontalAlign.Center;
+            celula_facultate.Attributes.Add("style", "padding: 10px");
+            celula_facultate.Width = new Unit("50%");
 
-            Panel nume_facultate = new Panel();
-            nume_facultate.Width = new Unit("50%");
-            nume_facultate.Height = new Unit("100%");
+            celula_facultate.Controls.Add(panou_facultati[i]);
 
-            HyperLink hnf = new HyperLink();
-            hnf.NavigateUrl = "Facultati/" + nume_facultati[i] + " " + localitate_facultati[i] + "/" + nume_facultati[i] + " " + localitate_facultati[i] + ".aspx";
-            hnf.Text = nume_facultati[i] + " " + localitate_facultati[i];
+            rand_facultate.Controls.Add(celula_facultate);
 
-            nume_facultate.Controls.Add(hnf);
-
-            Label localitate_facultate = new Label();
-            localitate_facultate.Width = new Unit("50%");
-            localitate_facultate.Height = new Unit("100%");
-            localitate_facultate.Text = localitate_facultati[i];
-
-            facultate.Controls.Add(nume_facultate);
-            facultate.Controls.Add(localitate_facultate);
-
-            panou_facultati.Controls.Add(facultate);
-            panou_facultati.Controls.Add(new LiteralControl("<br />"));
+            tabel_link_facultati.Controls.Add(rand_facultate);
         }
+    }
+
+    protected void adauga_facultate_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Formular Facultate.aspx");
     }
 
 }

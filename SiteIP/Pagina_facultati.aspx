@@ -3,7 +3,18 @@
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
 </asp:Content>
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
-    <asp:Panel ID="panou_facultati" runat="server">
-
-    </asp:Panel>
+    <asp:Table ID="tabel_facultati" runat="server" Width="80%" Style="margin-left: 10%">
+        <asp:TableHeaderRow Width="100%">
+            <asp:TableHeaderCell HorizontalAlign="Center" Style="padding: 10px" Width="50%">
+                <asp:Label ID="numeFacultati" runat="server" Text="Facultati" Width="50%">
+                </asp:Label>
+            </asp:TableHeaderCell>
+        </asp:TableHeaderRow>
+        <asp:TableRow>
+            <asp:TableCell HorizontalAlign="Center" Style="padding: 10px" Width="50%">
+                <asp:Table ID="tabel_link_facultati" runat="server">
+                </asp:Table>
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
 </asp:Content>
