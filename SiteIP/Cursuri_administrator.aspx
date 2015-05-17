@@ -26,6 +26,11 @@
 
                     </asp:Table>
                 </asp:TableCell>
+                <asp:TableCell Width="80%" HorizontalAlign="Center">
+                    <asp:Table ID="tabel_stergere" runat="server" HorizontalAlign="Center" style="padding:5px">
+
+                    </asp:Table>
+                </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow>
                 <asp:TableCell HorizontalAlign="Center" ColumnSpan="2">
