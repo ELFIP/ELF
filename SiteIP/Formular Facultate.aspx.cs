@@ -11,10 +11,57 @@ public partial class Formular_Facultate : System.Web.UI.Page
 {
 
     Auxiliare a = new Auxiliare();
+    String format_imagine = "";
+    String nume_facultate_ = "";
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            Session["format_imagine"] = "";
+            Session["nume_facultate"] = "";
+        }
+        else
+        {
+            format_imagine = (String)Session["format_imagine"];
+            nume_facultate_ = (String)Session["nume_facultate"];
+        }
+    }
 
+    public string format(string nume)
+    {
+        string s = "";
+        string[] rezultat = nume.Split('.');
+        foreach (string word in rezultat)
+        {
+            s = word;
+        }
+        return s;
+    }
+
+    protected void Upload(object sender, EventArgs e)
+    {
+        if (FileUpload1.HasFile)
+        {
+            if (nume_facultate.Text == "")
+            {
+                alerta_nume.Text = "Trebuie sa alegi un nume pentru facultate!";
+            }
+            else
+            {
+                alerta_nume.Text = "";
+                lbl_debug.Text = "";
+                format_imagine = format(FileUpload1.FileName);
+                Session["format_imagine"] = format_imagine;
+                Session["nume_facultate"] = nume_facultate.Text;
+                FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Imagini_facultati/") + nume_facultate.Text + "." + format_imagine);
+                imagine_facultate.ImageUrl = "/Imagini_facultati/" + nume_facultate.Text + "." + format_imagine;
+            }
+        }
+        else
+        {
+            lbl_debug.Text = "Selecteaza imaginea pe care vrei sa o adaugi!";
+        }
     }
 
     protected void adauga_facultate_Click(object sender, EventArgs e)

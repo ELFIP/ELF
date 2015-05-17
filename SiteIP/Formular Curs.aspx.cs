@@ -10,10 +10,55 @@ using System.IO;
 public partial class Formular_Curs : System.Web.UI.Page
 {
     Auxiliare a = new Auxiliare();
+    String format_imagine = "";
+    String nume_curs = "";
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack){
+            Session["format_videoclip"] = "";
+            Session["nume_curs"] = "";
+        }
+        else
+        {
+            format_imagine = (String)Session["format_videoclip"];
+            nume_curs = (String)Session["nume_curs"];
+        }
+    }
 
+    public string format(string nume)
+    {
+        string s = "";
+        string[] rezultat = nume.Split('.');
+        foreach (string word in rezultat)
+        {
+            s = word;
+        }
+        return s;
+    }
+
+    protected void Upload(object sender, EventArgs e)
+    {
+        if (FileUpload1.HasFile)
+        {
+            if(numeCurs.Text == "") {
+                alerta_nume.Text = "Trebuie sa alegi un nume pentru curs!";
+            }
+            else
+            {
+                alerta_nume.Text = "";
+                lbl_debug.Text = "";
+                format_imagine = format(FileUpload1.FileName);
+                Session["format_videoclip"] = format_imagine;
+                Session["nume_curs"] = numeCurs.Text;
+                FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Imagini_cursuri/") + numeCurs.Text + "." + format_imagine);
+                imagine_curs.ImageUrl = "/Imagini_cursuri/" + numeCurs.Text + "." + format_imagine;
+            }
+        }
+        else
+        {
+            lbl_debug.Text = "Selecteaza imaginea pe care vrei sa o adaugi!";
+        }
     }
 
     protected void adauga_curs_Click(object sender, EventArgs e)
@@ -71,7 +116,7 @@ public partial class Formular_Curs : System.Web.UI.Page
         dbcommand = new SqlCommand();
         dbcommand.Connection = dbconnection;
         dbcommand.Connection.Open();
-        dbcommand.CommandText = "Insert into [Curs] values (" + (maxIdCurs() + 1) + ", '" + numeCurs.Text + "', 0);";
+        dbcommand.CommandText = "Insert into [Curs] values (" + (maxIdCurs() + 1) + ", '" + numeCurs.Text + "', 0, '" + nume_curs + "." + format_imagine + "');";
         dbcommand.ExecuteNonQuery();
         dbconnection.Close();
     }
@@ -157,6 +202,7 @@ public partial class Formular_Curs : System.Web.UI.Page
 "   <asp:Table ID=\"forma\" runat=\"server\" Width=\"80%\" Style=\"margin-left: 10%\">",
 "       <asp:TableHeaderRow Width=\"100%\">",
 "           <asp:TableHeaderCell HorizontalAlign=\"Center\" Style=\"padding: 10px\">",
+"               <asp:Image ID=\"imagine_curs\" runat=\"server\" ImageUrl=\"~/Imagini_cursuri/" + nume_curs + "." + format_imagine + "\" Width=\"100px\" Height=\"100px\"/>",
 "               <asp:Label ID=\"numeCurs\" runat=\"server\" Text=\"" + numeCurs.Text +"\" Width=\"50%\"></asp:Label>",
 "           </asp:TableHeaderCell>",
 "            <asp:TableHeaderCell HorizontalAlign=\"Center\" Style=\"padding: 10px\">",
@@ -450,6 +496,7 @@ public partial class Formular_Curs : System.Web.UI.Page
 "   <asp:Table ID=\"forma\" runat=\"server\" Width=\"80%\" Style=\"margin-left: 10%\">",
 "       <asp:TableHeaderRow >",
 "           <asp:TableHeaderCell HorizontalAlign=\"Center\" Style=\"padding: 10px\">",
+"               <asp:Image ID=\"imagine_curs\" runat=\"server\" ImageUrl=\"~/Imagini_cursuri/" + nume_curs + "." + format_imagine + "\" Width=\"100px\" Height=\"100px\"/>",
 "               <asp:Label ID=\"numeCurs\" runat=\"server\" Text=\"" + numeCurs.Text +"\" Width=\"50%\"></asp:Label>",
 "           </asp:TableHeaderCell>",
 "            <asp:TableHeaderCell HorizontalAlign=\"Center\" Style=\"padding: 10px\">",
