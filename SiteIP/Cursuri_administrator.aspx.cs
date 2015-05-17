@@ -37,38 +37,79 @@ public partial class Cursuri_administrator : System.Web.UI.Page
         else
         {
             nume_taguri = (List<CheckBox>)Session["lista_taguri"];
-            //Response.Redirect("login.aspx?n=" + nume_taguri.Count);
+            //Response.Redirect("login.aspx?n=" + nume_taguri[0].Checked);
             afiseazaTagurile();
             selecteazaCursurileCautate();
             afiseazaCursurile();
         }
     }
 
-    protected void selecteazaCursurileCautate()
+    private List<String> getList(List<CheckBox> tag)
     {
-        for (int i = 0; i < nume_taguri.Count; i++)
+        List<String> s = new List<String>();
+        for (int i = 0; i < tag.Count; i++)
         {
-            if (nume_taguri[i].Checked == true)
+            if (tag[i].Checked == true)
             {
-                SqlCommand comanda = new SqlCommand();
-                SqlConnection conexiune;
-                conexiune = new SqlConnection(a.string_bazadedate);
-                comanda.Connection = conexiune;
-                comanda.Connection.Open();
-                SqlDataReader sdr;
-                comanda.CommandText = "SELECT c.nume FROM Curs c, Tag t WHERE t.id_curs = c.id_curs AND t.nume = '" + nume_taguri[i].Text + "' AND c.nume LIKE '%" + cauta_curs.Text + "%';";
-                sdr = comanda.ExecuteReader();
-                while (sdr.Read())
-                {
-                    string nume_curs = sdr.GetValue(0).ToString();
-                    HyperLink curs = new HyperLink();
-                    curs.NavigateUrl = "Cursuri/" + nume_curs + "/" + nume_curs + ".aspx";
-                    curs.Text = nume_curs;
-                    nume_cursuri.Add(curs);
-                }
-                conexiune.Close();
+                s.Add(tag[i].Text);
             }
         }
+        return s;
+    }
+
+    private String getString(List<String> id)
+    {
+        String s = "(";
+        for (int i = 0; i < id.Count - 1; i++)
+        {
+            s += "'" + id[i] + "'" + ",";
+        }
+        if (id.Count > 0)
+        {
+            s += "'" + id[id.Count - 1] + "'";
+        }
+        s += ")";
+
+        return s;
+    }
+
+    protected void selecteazaCursurileCautate()
+    {
+        List<String> taguri_selectate = getList(nume_taguri);
+        SqlCommand comanda = new SqlCommand();
+        SqlConnection conexiune;
+        conexiune = new SqlConnection(a.string_bazadedate);
+        comanda.Connection = conexiune;
+        comanda.Connection.Open();
+        SqlDataReader sdr;
+        if(taguri_selectate.Count == 0) {
+            comanda.CommandText = "SELECT id_curs, nume FROM Curs WHERE nume LIKE '%" + cauta_curs.Text + "%';";
+        }
+        else
+        {
+            comanda.CommandText = "SELECT c.id_curs, c.nume FROM Curs c, Tag t WHERE c.nume LIKE '%" + cauta_curs.Text + "%' AND c.id_curs = t.id_curs AND t.nume IN " + getString(taguri_selectate) + ";";
+        }
+        
+        sdr = comanda.ExecuteReader();
+        while (sdr.Read())
+        {
+            int id = int.Parse(sdr.GetValue(0).ToString());
+            String nume_curs = sdr.GetValue(1).ToString();
+
+            // Cream Hyperlink catre curs;
+            HyperLink curs = new HyperLink();
+            curs.NavigateUrl = "Cursuri/" + nume_curs + "/" + nume_curs + ".aspx";
+            curs.Text = nume_curs;
+            nume_cursuri.Add(curs);
+
+            // Cream buton de stergere a cursului;
+            Button buton = new Button();
+            buton.Text = "Sterge";
+            buton.ID = "buton" + id;
+            buton.Click += stergeCurs;
+            lista_butoane.Add(buton);
+        }
+        conexiune.Close();
     }
 
     protected void selecteazaCursurile()
@@ -79,22 +120,24 @@ public partial class Cursuri_administrator : System.Web.UI.Page
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;
-        comanda.CommandText = "SELECT id_curs,nume FROM Curs;";
+        comanda.CommandText = "SELECT id_curs, nume FROM Curs;";
         sdr = comanda.ExecuteReader();
         while (sdr.Read())
         {
             int id = int.Parse(sdr.GetValue(0).ToString());
-            string nume_curs = sdr.GetValue(1).ToString();
+            String nume_curs = sdr.GetValue(1).ToString();
+
+            // Cream Hyperlink catre curs;
             HyperLink curs = new HyperLink();
             curs.NavigateUrl = "Cursuri/" + nume_curs + "/" + nume_curs + ".aspx";
             curs.Text = nume_curs;
             nume_cursuri.Add(curs);
 
+            // Cream buton de stergere a cursului;
             Button buton = new Button();
             buton.Text = "Sterge";
             buton.ID = "buton" + id;
             buton.Click += stergeCurs;
-
             lista_butoane.Add(buton);
 
         }
@@ -105,25 +148,21 @@ public partial class Cursuri_administrator : System.Web.UI.Page
     {
         for (int i = 0; i < nume_cursuri.Count; i++)
         {
-            TableCell celula = new TableCell();
-            celula.Controls.Add(nume_cursuri[i]);
+            TableCell celula_curs = new TableCell();
+            celula_curs.HorizontalAlign = HorizontalAlign.Center;
+            celula_curs.Attributes.Add("style", "padding: 10px");
+            celula_curs.Controls.Add(nume_cursuri[i]);
+
+            TableCell celula_buton = new TableCell();
+            celula_buton.HorizontalAlign = HorizontalAlign.Center;
+            celula_buton.Attributes.Add("style", "padding: 10px");
+            celula_buton.Controls.Add(lista_butoane[i]);
 
             TableRow rand = new TableRow();
-            rand.Controls.Add(celula);
+            rand.Controls.Add(celula_curs);
+            rand.Controls.Add(celula_buton);
 
             tabel_cursuri.Controls.Add(rand);
-
-            TableRow rand_buton_facultate = new TableRow();
-            TableCell celula_stergere = new TableCell();
-            celula_stergere.HorizontalAlign = HorizontalAlign.Center;
-            celula_stergere.Attributes.Add("style", "padding: 10px");
-            celula_stergere.Width = new Unit("50%");
-
-            celula_stergere.Controls.Add(lista_butoane[i]);
-
-            rand_buton_facultate.Controls.Add(celula_stergere);
-
-            tabel_stergere.Controls.Add(rand_buton_facultate);
         }
     }
 
@@ -140,17 +179,22 @@ public partial class Cursuri_administrator : System.Web.UI.Page
         while (sdr.Read())
         {
             string nume_tag = sdr.GetValue(0).ToString();
+
+            // Cream checkbox-uri pentru taguri; 
             CheckBox tag = new CheckBox();
             tag.CssClass = "checkbox";
             tag.Text = nume_tag;
             tag.ID = nume_tag;
             tag.Checked = false;
-            tag.CausesValidation = false;
-            tag.CheckedChanged += new EventHandler(CheckBox_CheckChanged);
-            tag.AutoPostBack = true;
             nume_taguri.Add(tag);
+
         }
         conexiune.Close();
+    }
+
+    protected void filtrare(object sender, EventArgs e)
+    {
+        Session["lista_taguri"] = nume_taguri;
     }
 
     public void afiseazaTagurile()
@@ -165,8 +209,21 @@ public partial class Cursuri_administrator : System.Web.UI.Page
 
             tabel_checkbox.Controls.Add(rand);
         }
-    }
 
+        Button buton_filtrare = new Button();
+        buton_filtrare.Text = "Filtrare";
+        buton_filtrare.Click += filtrare;
+
+        TableCell celula_buton_filtrare = new TableCell();
+        celula_buton_filtrare.HorizontalAlign = HorizontalAlign.Center;
+        celula_buton_filtrare.Attributes.Add("style", "padding: 10px");
+        celula_buton_filtrare.Controls.Add(buton_filtrare);
+
+        TableRow rand_buton_filtrare = new TableRow();
+        rand_buton_filtrare.Controls.Add(celula_buton_filtrare);
+
+        tabel_checkbox.Controls.Add(rand_buton_filtrare);
+    }
 
     private void stergeCurs(int id)
     {
@@ -200,4 +257,5 @@ public partial class Cursuri_administrator : System.Web.UI.Page
         }
         return n;
     }
+
 }
