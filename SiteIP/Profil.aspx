@@ -23,6 +23,8 @@
         </asp:Panel>
     </asp:Panel>
 
+    <!-- random comment -->
+
     <asp:Panel ID="Link" runat="server" CssClass="profil-nav">
         <asp:HyperLink ID="HyperLink_profil" runat="server" NavigateUrl="Profil.aspx">Profil</asp:HyperLink>
         <asp:HyperLink ID="HyperLink_cursuri" runat="server" NavigateUrl="Cursuri_profil.aspx">Cursuri</asp:HyperLink>
