@@ -44,22 +44,21 @@
     </asp:Table>
 
     <asp:Panel ID="continut" runat="server">
-        <br />
-      <!--  <asp:Panel ID="panou_listafacultati" runat="server" CssClass="item_profil">
-            <asp:DropDownList ID="lista_facultati" runat="server" CssClass="item_profil">
-            </asp:DropDownList>
-        </asp:Panel> -->
 
         <div class="aux">
             <dropdown>
-              <input id="toggle2" type="checkbox">
-              <label for="toggle2" class="animate">Facultati<i class="fa fa-bars float-right"></i></label>
-              <ul class="animate">
-                <li class="animate">Code<i class="fa fa-code float-right"></i></li>
-                <li class="animate">Zoom<i class="fa fa-arrows-alt float-right"></i></li>
-                <li class="animate">Settings<i class="fa fa-cog float-right"></i></li>
-              </ul>
-            </dropdown>
+                <input id="toggle2" type="checkbox">
+                    <label for="toggle2" class="animate">Facultati</label>
+                    <asp:BulletedList ID="BulletedList1" runat="server" DataTextField="nume" DataValueField="nume" DataSourceID="SqlDataSource1" CssClass="animate">
+                    </asp:BulletedList>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT nume FROM Facultate AS f WHERE (id_facultate = (SELECT id_facultate FROM Utilizator_Facultate AS uf WHERE (id_facultate = f.id_facultate) AND (uf.id_utilizator = (SELECT id_utilizator FROM Utilizator WHERE (email = @uem)))))">
+                        <SelectParameters>
+                            <asp:SessionParameter Name="uem" SessionField="email" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                </input>
+            </dropdown> 
         </div>
+
     </asp:Panel>
 </asp:Content>

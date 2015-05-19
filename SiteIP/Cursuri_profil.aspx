@@ -45,15 +45,20 @@
 
         <div class="aux">
             <dropdown>
-              <input id="toggle2" type="checkbox">
-              <label for="toggle2" class="animate">Cursuri<i class="fa fa-bars float-right"></i></label>
-              <ul class="animate">
-                <li class="animate">Code<i class="fa fa-code float-right"></i></li>
-                <li class="animate">Zoom<i class="fa fa-arrows-alt float-right"></i></li>
-                <li class="animate">Settings<i class="fa fa-cog float-right"></i></li>
-              </ul>
-            </dropdown>
+                <input id="toggle2" type="checkbox">
+                <label class="animate" for="toggle2">
+                Cursuri</label>
+                <asp:BulletedList ID="BulletedList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="nume" DataValueField="nume" CssClass="animate">
+                </asp:BulletedList>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT nume FROM Curs AS c WHERE (id_curs = (SELECT id_curs FROM Utilizator_Curs AS uc WHERE (id_curs = c.id_curs) AND (id_utilizator = (SELECT id_utilizator FROM Utilizator WHERE (email = @uem)))))">
+                    <SelectParameters>
+                        <asp:SessionParameter Name="uem" SessionField="email" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+            </input></dropdown>
         </div>
+        
+       
         <br />
 
     </asp:Panel>

@@ -34,14 +34,13 @@ public partial class Cursuri_profil : System.Web.UI.Page
 
     private void actualizeazaCampuri()
     {
-        lista_cursuri.Items.Add(new ListItem("Cursuri"));
+        //lista_cursuri.Items.Add(new ListItem("Cursuri"));
         label_email.Text = email;
         label_data_nasterii.Text = "Data nasterii: " + data_nasterii;
         label_data_inregistrarii.Text = "Data inregistrarii: " + data_inregistrarii;
-        foreach (String Curs in NumeCursuri)
-        {
-            lista_cursuri.Items.Add(new ListItem(Curs));
-        }
+        //foreach (String Curs in NumeCursuri)
+        //{
+          //  lista_cursuri.Items.Add(new ListItem(Curs));
+        //}
     }
-
 }

@@ -543,14 +543,14 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
 
     private void actualizeazaCampuri()
     {
-        lista_facultati.Items.Add(new ListItem("Facultati recomandate"));
+        //lista_facultati.Items.Add(new ListItem("Facultati recomandate"));
         label_email.Text = email;
         label_data_nasterii.Text = "Data nasterii: " + data_nasterii;
         label_data_inregistrarii.Text = "Data inregistrarii: " + data_inregistrarii;
-         foreach (string NumeFacultate in nume_facultati)
-           {
-             lista_facultati.Items.Add(new ListItem(NumeFacultate));
-         }
+         //foreach (string NumeFacultate in nume_facultati)
+           //{
+             //lista_facultati.Items.Add(new ListItem(NumeFacultate));
+        // }
     }
 
 }
