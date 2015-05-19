@@ -1,0 +1,53 @@
+﻿body {
+  background-image: url(https://myebony.files.wordpress.com/2011/06/inspiration1.jpg);
+  background-size: 100%;
+  background-attachment: fixed;
+}
+
+.search-cell {
+    text-align: center;
+}
+
+input {
+   border-radius: 2px 2px 2px 2px;
+  -moz-border-radius: 2px 2px 2px 2px;
+  -webkit-border-radius: 2px 2px 2px 2px;
+  border: 1px solid lightgrey;
+  padding: 5px;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 5px;
+}
+
+table {
+    background-color: rgba(102, 135, 221, 0.32);
+    border-radius: 15px;
+}
+
+.tabel-cursuri {
+    width: 100%;
+}
+
+.tabel-cursuri td {
+    padding: 10px;
+    border-left: 5px solid white;
+    border-bottom: 1px solid white;
+    border-radius: 15px;
+}
+
+
+.tabel-cursuri td a {
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+.tabel-cursuri td:hover {
+    color: white;
+    background-color: #4AA6FF;
+}
+
+.tabel-cursuri tr:nth-child(2n) {
+    background-color: rgba(102, 135, 221, 0.70);
+}
+
+

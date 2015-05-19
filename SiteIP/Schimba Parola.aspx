@@ -2,6 +2,9 @@
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
     <link rel='stylesheet' type='text/css' href="/Resources/css/PaginaDeProfil.css" />
+    <link rel='stylesheet' type='text/css' href="/Resources/Master_layout_style.css" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+
 </asp:Content>
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
 
@@ -23,7 +26,7 @@
 
     <br />
 
-    <asp:Panel ID="Link" runat="server">
+    <asp:Panel ID="Link" runat="server" CssClass="profil-nav">
         <asp:HyperLink ID="HyperLink_profil" runat="server" NavigateUrl="Profil.aspx">Profil</asp:HyperLink>
         <asp:HyperLink ID="HyperLink_cursuri" runat="server" NavigateUrl="Cursuri_profil.aspx">Cursuri</asp:HyperLink>
         <asp:HyperLink ID="HyperLink_facultati" runat="server" NavigateUrl="Facultati_recomandate_profil.aspx">Facultati</asp:HyperLink>
@@ -32,7 +35,7 @@
 
     <br />
 
-    <asp:Panel ID="continut" runat="server" CssClass="item_profil">
+    <asp:Panel ID="continut" runat="server" CssClass="continut">
         <br />
         <asp:Label ID="Msg" ForeColor="maroon" runat="server" />
         <table cellpadding="3" border="0">
