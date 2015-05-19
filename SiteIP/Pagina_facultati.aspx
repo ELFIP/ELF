@@ -1,6 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Pagina_facultati.aspx.cs" Inherits="Pagina_facultati" MasterPageFile="MasterPage.master"%>
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
+    <link rel='stylesheet' type='text/css' href="/Resources/css/facultatiStyle.css" />
+    
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+
 </asp:Content>
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
     <asp:Table ID="tabel_facultati" runat="server" Width="80%" Style="margin-left: 10%">

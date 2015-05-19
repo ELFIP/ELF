@@ -4,11 +4,12 @@
   background-attachment: fixed;
 }
 
-.search-cell {
-    text-align: center;
+.th-image {
+    background-color: rgba(102, 135, 221, 0.32);
+    border-radius: 15px;
 }
 
-input {
+input,textarea {
    border-radius: 2px 2px 2px 2px;
   -moz-border-radius: 2px 2px 2px 2px;
   -webkit-border-radius: 2px 2px 2px 2px;
@@ -18,36 +19,14 @@ input {
   border-radius: 5px;
 }
 
-table {
-    background-color: rgba(102, 135, 221, 0.32);
-    border-radius: 15px;
-}
-
-.tabel-cursuri {
-    width: 100%;
-}
-
-.tabel-cursuri td {
-    padding: 10px;
-    border-left: 5px solid white;
-    border-bottom: 1px solid white;
-    border-radius: 15px;
-}
-
-
-.tabel-cursuri td a {
-    font-family: 'Open Sans', sans-serif;
-    text-decoration: none;
-    color: black;
-}
-
-.tabel-cursuri td:hover {
+.buton-sec {
+    background: lightblue;
     color: white;
-    background-color: #4AA6FF;
+    border: 1px solid white;
 }
 
-.tabel-cursuri tr:nth-child(2n) {
-    background-color: rgba(102, 135, 221, 0.70);
+.buton-sec:hover {
+    background: #5c80db;
 }
 
 .buton {
@@ -83,5 +62,3 @@ table {
     color: black;
     border: 1px solid white;
 }
-
-
