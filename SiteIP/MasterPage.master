@@ -6,12 +6,13 @@
 <head runat="server">
     <title></title>
     <link rel="Stylesheet" href="Resources/Administrare_utilizator.css" type="text/css" />
+    <link rel="Stylesheet" href="Resources/Master_layout_style.css" type="text/css" />
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
 
-    <asp:Panel ID="panou_meniu" runat="server">
+    <asp:Panel ID="panou_meniu" runat="server" CssClass="header-bar">
         <asp:HyperLink ID="hyperlink_login" NavigateUrl="login.aspx" runat="server">LogIn</asp:HyperLink>
         <asp:HyperLink ID="hyperlink_inregistrare" NavigateUrl="register.aspx" runat="server">Inregistrare</asp:HyperLink>
         <asp:HyperLink ID="hyperlink_cursuri" NavigateUrl="Cursuri.aspx" runat="server">Cursuri</asp:HyperLink>
@@ -21,7 +22,7 @@
     <form id="form1" runat="server">
     <div>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        fsdfsdfs
+        fsdfsdfs <- me like
         </asp:ContentPlaceHolder>
     </div>
     </form>

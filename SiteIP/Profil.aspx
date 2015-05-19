@@ -2,6 +2,8 @@
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
     <link rel='stylesheet' type='text/css' href="/Resources/css/PaginaDeProfil.css" />
+    <link rel='stylesheet' type='text/css' href="/Resources/Master_layout_style.css" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 </asp:Content>
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
 
@@ -21,34 +23,31 @@
         </asp:Panel>
     </asp:Panel>
 
-    <br />
-
-    <asp:Panel ID="Link" runat="server">
+    <asp:Panel ID="Link" runat="server" CssClass="profil-nav">
         <asp:HyperLink ID="HyperLink_profil" runat="server" NavigateUrl="Profil.aspx">Profil</asp:HyperLink>
         <asp:HyperLink ID="HyperLink_cursuri" runat="server" NavigateUrl="Cursuri_profil.aspx">Cursuri</asp:HyperLink>
         <asp:HyperLink ID="HyperLink_facultati" runat="server" NavigateUrl="Facultati_recomandate_profil.aspx">Facultati</asp:HyperLink>
         <asp:HyperLink ID="HyperLink_schimba_parola" runat="server" NavigateUrl="Schimba Parola.aspx">Schimba Parola</asp:HyperLink>
     </asp:Panel>
 
-    <br />
 
-    <asp:Panel ID="continut" runat="server">
+    <asp:Panel ID="continut" runat="server" CssClass="continut">
         <asp:Panel ID="panou_nume" runat="server" CssClass="item_profil">
-            <asp:Label ID="label_nume" runat="server" Text="Nume" CssClass="item_profil">
+            <asp:Label ID="label_nume" runat="server" Text="Nume" CssClass="eti">
             </asp:Label>
             <br />
             <asp:TextBox ID="textbox_nume" runat="server" CssClass="item_profil">
             </asp:TextBox>
         </asp:Panel>
         <asp:Panel ID="panou_prenume" runat="server" CssClass="item_profil">
-            <asp:Label ID="label_prenume" runat="server" Text="Prenume" CssClass="item_profil">
+            <asp:Label ID="label_prenume" runat="server" Text="Prenume" CssClass="eti">
             </asp:Label>
             <br />
             <asp:TextBox ID="textbox_prenume" runat="server" CssClass="item_profil">
             </asp:TextBox>
         </asp:Panel>
         <asp:Panel ID="panou_domiciliu" runat="server" CssClass="item_profil">
-            <asp:Label ID="label_domiciliu" runat="server" Text="Domiciliu" CssClass="item_profil">
+            <asp:Label ID="label_domiciliu" runat="server" Text="Domiciliu" CssClass="eti">
             </asp:Label>
             <br />
             <asp:TextBox ID="textbox_domiciliu" runat="server" CssClass="item_profil">
@@ -65,7 +64,7 @@
                 </asp:Label>
             </asp:Panel>
             <br />
-            <asp:Button ID="actualizare_profil" runat="server" Text="Actualizeaza Profil" OnClick="actualizare_profil_Click" CssClass="item_profil" />
+            <asp:Button ID="actualizare_profil" runat="server" Text="Actualizeaza Profil" OnClick="actualizare_profil_Click" CssClass="buton" />
         </asp:Panel>
         <br />
     </asp:Panel>

@@ -1,8 +1,10 @@
 ﻿.header_profil {
-    background-color:gray;
-    width: 80%;
+    background-color: rgba(102, 135, 221, 0.32);
+    border-radius: 15px;
+    display: block;
+    width: 400px;
+    margin: 0 auto;
     height: 70px;
-    margin-left: 10%;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -27,9 +29,8 @@
 }
 
 .item_profil {
-    width: 70%;
-    background-color:gray;
-    margin-left: 15%;
+    margin: 0 auto;
+    width: 500px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -45,7 +46,8 @@
 
 .facultate {
     width: 70%;
-    background-color:gray;
+    background-color: rgb(102, 135, 221);
+    border-radius: 15px;
     margin-left: 15%;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -65,4 +67,70 @@
     padding: 5px;
     margin-left: 10px;
     height: 20px;
+}
+
+.continut {
+    width: 600px;
+    padding-top: 10px;
+    margin: 0 auto;
+    background-color: rgba(102, 135, 221, 0.32);
+    border-radius: 15px;
+}
+
+input {
+   border-radius: 2px 2px 2px 2px;
+  -moz-border-radius: 2px 2px 2px 2px;
+  -webkit-border-radius: 2px 2px 2px 2px;
+  border: 1px solid lightgrey;
+  padding: 5px;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 5px;
+}
+
+.continut .eti {
+    width: 70%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+body {
+  background-image: url(https://myebony.files.wordpress.com/2011/06/inspiration1.jpg);
+  background-size: 100%;
+  background-attachment: fixed;
+}
+
+.buton {
+    color: white;
+    border: 1px solid blue;
+    display: block;
+    width: 400px;
+    margin: 0 auto;
+
+    background: #7db9e8; /* Old browsers */
+    background: -moz-linear-gradient(top,  #7db9e8 0%, #2989d8 23%, #0075d6 92%, #1e5799 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7db9e8), color-stop(23%,#2989d8), color-stop(92%,#0075d6), color-stop(100%,#1e5799)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #7db9e8 0%,#2989d8 23%,#0075d6 92%,#1e5799 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #7db9e8 0%,#2989d8 23%,#0075d6 92%,#1e5799 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #7db9e8 0%,#2989d8 23%,#0075d6 92%,#1e5799 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #7db9e8 0%,#2989d8 23%,#0075d6 92%,#1e5799 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799',GradientType=0 ); /* IE6-9 */
+}
+
+.buton:hover {
+    background: #a7d0ef; /* Old browsers */
+    background: -moz-linear-gradient(top,  #a7d0ef 0%, #6caee4 23%, #33a3ff 92%, #448ada 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a7d0ef), color-stop(23%,#6caee4), color-stop(92%,#33a3ff), color-stop(100%,#448ada)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #a7d0ef 0%,#6caee4 23%,#33a3ff 92%,#448ada 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #a7d0ef 0%,#6caee4 23%,#33a3ff 92%,#448ada 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #a7d0ef 0%,#6caee4 23%,#33a3ff 92%,#448ada 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #a7d0ef 0%,#6caee4 23%,#33a3ff 92%,#448ada 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a7d0ef', endColorstr='#448ada',GradientType=0 ); /* IE6-9 */
+}
+
+.buton:active {
+    background: lightblue;
+    color: black;
+    border: 1px solid white;
 }
