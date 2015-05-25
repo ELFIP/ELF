@@ -532,7 +532,7 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;
-        comanda.CommandText = "SELECT f.nume FROM Facultate f, Utilizator_facultate uf WHERE uf.id_utilizator = " + id_utilizator + " AND f.id_facultate = uf.id_facultate;";
+        comanda.CommandText = "SELECT TOP 10 f.nume FROM Facultate f, Utilizator_facultate uf WHERE uf.id_utilizator = " + id_utilizator + " AND f.id_facultate = uf.id_facultate ORDER BY uf.scor DESC;";
         sdr = comanda.ExecuteReader();
         while (sdr.Read())
         {

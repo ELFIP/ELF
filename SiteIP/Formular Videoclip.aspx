@@ -20,6 +20,11 @@
            </asp:TableRow>
            <asp:TableRow>
                <asp:TableCell HorizontalAlign="Center">
+                   <asp:Label ID="eroare_marime" runat="server" Text=""></asp:Label>
+               </asp:TableCell>
+           </asp:TableRow>
+           <asp:TableRow>
+               <asp:TableCell HorizontalAlign="Center">
                    <iframe width="560" ID="afiseaza" height="315" src="" frameborder="0" allowfullscreen runat="server"></iframe>
                </asp:TableCell>
            </asp:TableRow>

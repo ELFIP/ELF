@@ -14,6 +14,8 @@ public partial class Forma_Test : System.Web.UI.Page
     List<TextBox> numarRaspunsuri = new List<TextBox>();
     List<List<CheckBox>> bifat = new List<List<CheckBox>>();
     List<List<TextBox>> raspunsuri = new List<List<TextBox>>();
+    Button buton_creazaSchelet = new Button();
+    Button buton_creazaTest = new Button();
     string nume_curs = null;
     int id_curs;
 
@@ -67,6 +69,9 @@ public partial class Forma_Test : System.Web.UI.Page
     protected void genereazaIntrebari(object sender, EventArgs e)
     {
         adaugaIntrebari();
+        numeTest.Enabled = false;
+        timpTest.Enabled = false;
+        numarIntrebari.Enabled = false;
         buton_genereazaIntrebari.Enabled = false;
     }
 
@@ -112,7 +117,6 @@ public partial class Forma_Test : System.Web.UI.Page
         celula_buton_creaza.ColumnSpan = 2;
         celula_buton_creaza.Attributes.Add("style", "padding: 10px");
 
-        Button buton_creazaSchelet = new Button();
         buton_creazaSchelet.Text = "Genereaza Raspunsuri";
         buton_creazaSchelet.ID = "buton_raspunsuri";
         buton_creazaSchelet.Click += genereazaRaspunsuri;
@@ -180,7 +184,6 @@ public partial class Forma_Test : System.Web.UI.Page
         celula_buton_creaza.ColumnSpan = 2;
         celula_buton_creaza.Attributes.Add("style", "padding: 10px");
 
-        Button buton_creazaSchelet = new Button();
         buton_creazaSchelet.Text = "Genereaza Raspunsuri";
         buton_creazaSchelet.ID = "buton_raspunsuri";
         buton_creazaSchelet.Click += genereazaRaspunsuri;
@@ -260,12 +263,11 @@ public partial class Forma_Test : System.Web.UI.Page
         celula_buton_creaza.ColumnSpan = 2;
         celula_buton_creaza.Attributes.Add("style", "padding: 10px");
 
-        Button buton_creazaSchelet = new Button();
-        buton_creazaSchelet.Text = "Creaza Test";
-        buton_creazaSchelet.ID = "buton_creaza";
-        buton_creazaSchelet.Click += creazaTest;
+        buton_creazaTest.Text = "Creaza Test";
+        buton_creazaTest.ID = "buton_creaza";
+        buton_creazaTest.Click += creazaTest;
 
-        celula_buton_creaza.Controls.Add(buton_creazaSchelet);
+        celula_buton_creaza.Controls.Add(buton_creazaTest);
         rand_buton_adaugare.Controls.Add(celula_buton_creaza);
 
         tabel_generare.Controls.Add(rand_tabel);
@@ -350,12 +352,11 @@ public partial class Forma_Test : System.Web.UI.Page
         celula_buton_creaza.ColumnSpan = 2;
         celula_buton_creaza.Attributes.Add("style", "padding: 10px");
 
-        Button buton_creazaSchelet = new Button();
-        buton_creazaSchelet.Text = "Creaza Test";
-        buton_creazaSchelet.ID = "buton_creaza";
-        buton_creazaSchelet.Click += creazaTest;
+        buton_creazaTest.Text = "Creaza Test";
+        buton_creazaTest.ID = "buton_creaza";
+        buton_creazaTest.Click += creazaTest;
 
-        celula_buton_creaza.Controls.Add(buton_creazaSchelet);
+        celula_buton_creaza.Controls.Add(buton_creazaTest);
         rand_buton_adaugare.Controls.Add(celula_buton_creaza);
 
         tabel_generare.Controls.Add(rand_tabel);
@@ -369,6 +370,15 @@ public partial class Forma_Test : System.Web.UI.Page
     protected void genereazaRaspunsuri(object sender, EventArgs e)
     {
         adaugaRaspunsuri();
+        buton_creazaSchelet.Enabled = false;
+        for (int i = 0; i < intrebari.Count; i ++ )
+        {
+            intrebari[i].Enabled = false;
+        }
+        for (int i = 0; i < numarRaspunsuri.Count; i++)
+        {
+            numarRaspunsuri[i].Enabled = false;
+        }
     }
 
     private void adaugaInBazaDeDate()

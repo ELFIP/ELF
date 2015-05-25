@@ -14,34 +14,28 @@ public partial class Cursuri_administrator : System.Web.UI.Page
     List<Button> lista_butoane = new List<Button>();
     Auxiliare a = new Auxiliare();
 
-    protected void CheckBox_CheckChanged(object sender, EventArgs e)
-    {
-        Response.Redirect("login.aspx");
-        Response.Write(((CheckBox)sender).ClientID);
-    }
-
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if ((bool)Session["este_administrator"])
-        //{
-        //    Response.Redirect("Cursuri_administrator.aspx" );
-        // }
+        
         if (!IsPostBack)
         {
             selecteazaCursurile();
             afiseazaCursurile();
             selecteazaTagurile();
             afiseazaTagurile();
-            Session["lista_taguri"] = nume_taguri;
+            Session["nume_taguri"] = nume_taguri;
         }
         else
         {
-            nume_taguri = (List<CheckBox>)Session["lista_taguri"];
-            //Response.Redirect("login.aspx?n=" + nume_taguri[0].Checked);
+            nume_cursuri.Clear();
+            nume_taguri = ( List < CheckBox > )Session["nume_taguri"];
+            //selecteazaTagurile();
             afiseazaTagurile();
-            selecteazaCursurileCautate();
-            afiseazaCursurile();
+          //  afiseazaTagurile();
+         //   selecteazaCursurileCautate();
+         //   afiseazaCursurile();
         }
+
     }
 
     private List<String> getList(List<CheckBox> tag)
@@ -82,14 +76,15 @@ public partial class Cursuri_administrator : System.Web.UI.Page
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;
-        if(taguri_selectate.Count == 0) {
+        if (taguri_selectate.Count == 0)
+        {
             comanda.CommandText = "SELECT id_curs, nume FROM Curs WHERE nume LIKE '%" + cauta_curs.Text + "%';";
         }
         else
         {
-            comanda.CommandText = "SELECT c.id_curs, c.nume FROM Curs c, Tag t WHERE c.nume LIKE '%" + cauta_curs.Text + "%' AND c.id_curs = t.id_curs AND t.nume IN " + getString(taguri_selectate) + ";";
+            comanda.CommandText = "SELECT DISTINCT c.id_curs, c.nume FROM Curs c, Tag t WHERE c.nume LIKE '%" + cauta_curs.Text + "%' AND c.id_curs = t.id_curs AND t.nume IN " + getString(taguri_selectate) + ";";
         }
-        
+
         sdr = comanda.ExecuteReader();
         while (sdr.Read())
         {
@@ -194,7 +189,11 @@ public partial class Cursuri_administrator : System.Web.UI.Page
 
     protected void filtrare(object sender, EventArgs e)
     {
-        Session["lista_taguri"] = nume_taguri;
+        nume_cursuri.Clear();
+        selecteazaCursurileCautate();
+        afiseazaCursurile();
+      //  Response.Redirect("login.aspx?o=1");
+        //ViewState["lista_taguri"] = nume_taguri;
     }
 
     public void afiseazaTagurile()
@@ -209,20 +208,6 @@ public partial class Cursuri_administrator : System.Web.UI.Page
 
             tabel_checkbox.Controls.Add(rand);
         }
-
-        Button buton_filtrare = new Button();
-        buton_filtrare.Text = "Filtrare";
-        buton_filtrare.Click += filtrare;
-
-        TableCell celula_buton_filtrare = new TableCell();
-        celula_buton_filtrare.HorizontalAlign = HorizontalAlign.Center;
-        celula_buton_filtrare.Attributes.Add("style", "padding: 10px");
-        celula_buton_filtrare.Controls.Add(buton_filtrare);
-
-        TableRow rand_buton_filtrare = new TableRow();
-        rand_buton_filtrare.Controls.Add(celula_buton_filtrare);
-
-        tabel_checkbox.Controls.Add(rand_buton_filtrare);
     }
 
     private void stergeCurs(int id)

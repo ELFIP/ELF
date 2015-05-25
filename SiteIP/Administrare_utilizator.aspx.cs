@@ -8,11 +8,11 @@ using System.Data.SqlClient;
 
 public partial class Administrare_utilizator : System.Web.UI.Page
 {
-    private String[] email = new String[200];
-    private String[] nume = new String[200];
-    private String[] prenume = new String[200];
-    private String[] parola = new String[200];
-    private int[] este_admin = new int[200];
+    private List<String> email = new List<String>();
+    private List<String> nume = new List<String>();
+    private List<String> prenume = new List<String>();
+    private List<String> parola = new List<String>();
+    private List<int> este_admin = new List<int>();
     Auxiliare a = new Auxiliare();
 
     int numar_utilizatori = 0;
@@ -36,11 +36,11 @@ public partial class Administrare_utilizator : System.Web.UI.Page
         sdr = comanda.ExecuteReader();
         while (sdr.Read())
         {
-            email[numar_utilizatori] = sdr.GetValue(0).ToString();
-            nume[numar_utilizatori] = sdr.GetValue(1).ToString();
-            prenume[numar_utilizatori] = sdr.GetValue(2).ToString();
-            parola[numar_utilizatori] = sdr.GetValue(3).ToString();
-            este_admin[numar_utilizatori] = int.Parse(sdr.GetValue(4).ToString());
+            email.Add(sdr.GetValue(0).ToString());
+            nume.Add(sdr.GetValue(1).ToString());
+            prenume.Add(sdr.GetValue(2).ToString());
+            parola.Add(sdr.GetValue(3).ToString());
+            este_admin.Add(int.Parse(sdr.GetValue(4).ToString()));
             numar_utilizatori++;
         }
         conexiune.Close();
@@ -52,7 +52,7 @@ public partial class Administrare_utilizator : System.Web.UI.Page
 
         adaugaHeader();
 
-        for (int i = 0; i < numar_utilizatori; i ++ )
+        for (int i = 0; i < email.Count; i ++ )
         {
             
             Button sterge = new Button();

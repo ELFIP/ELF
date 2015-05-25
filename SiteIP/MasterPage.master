@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" EnableViewState="true" %>
 
 <!DOCTYPE html>
 
@@ -16,8 +16,9 @@
         <asp:HyperLink ID="hyperlink_login" NavigateUrl="login.aspx" runat="server">LogIn</asp:HyperLink>
         <asp:HyperLink ID="hyperlink_inregistrare" NavigateUrl="register.aspx" runat="server">Inregistrare</asp:HyperLink>
         <asp:HyperLink ID="hyperlink_cursuri" NavigateUrl="Cursuri.aspx" runat="server">Cursuri</asp:HyperLink>
-        <asp:HyperLink ID="hyperlink1" NavigateUrl="Pagina_facultati.aspx" runat="server">Facultati</asp:HyperLink>
+        <asp:HyperLink ID="hyperlink_facultati" NavigateUrl="Pagina_facultati.aspx" runat="server">Facultati</asp:HyperLink>
         <asp:HyperLink ID="hyperlink_profil" NavigateUrl="Profil.aspx" runat="server">Profil</asp:HyperLink>
+        <asp:HyperLink ID="hyperlink_administrare_utilizator" NavigateUrl="Administrare_utilizator.aspx" runat="server">Administrare Utilizator</asp:HyperLink>
     </asp:Panel>
     <form id="form1" runat="server">
     <div>

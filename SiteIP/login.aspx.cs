@@ -27,9 +27,28 @@ public partial class login : System.Web.UI.Page
     private ArrayList NumeFacultatiRecomandate = new ArrayList();
     Auxiliare a = new Auxiliare();
 
+    public String Test
+    {
+        get
+        {
+            if (ViewState["Test"] == null)
+            {
+                ViewState["Test"] = String.Empty;
+            }
+            return ViewState["Test"].ToString();
+        }
+        set
+        {
+            ViewState["Test"] = value;
+        }
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!Page.IsPostBack)
+        {
+            this.Test = "Test";
+        }
     }
 
     protected void btn_login_Click(object sender, EventArgs e)
