@@ -25,6 +25,8 @@
             <br /><br />
             <asp:TextBox ID="tb_parola" runat="server" CssClass="inputs" placeholder="Parola" TextMode="password"></asp:TextBox>
             <br /><br />
+            <asp:HyperLink ID="hyperlink_register" runat="server" NavigateUrl="register.aspx">Register</asp:HyperLink>
+            <br /><br />
             <asp:Button ID="btn_login" runat="server" CssClass="buton" Text="Login" OnClick="btn_login_Click" />
             <asp:Label ID="lbl_alertDateLogin" CssClass="eroareLogin" runat="server" Text=""></asp:Label>
         </form>
