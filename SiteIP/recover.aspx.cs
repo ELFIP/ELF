@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 public partial class recover : System.Web.UI.Page
 {
-    Auxiliare a = new Auxiliare(); 
+    Auxiliare a = new Auxiliare();
     private string parolaTrimisa;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -24,7 +24,6 @@ public partial class recover : System.Web.UI.Page
         if (email_valid(tb_email.Text))
         {
             SendMail();
-            update_parola();
             lbl_debug.Text = "Un email cu noile date de accesare a contului au fost trimise catre: " + tb_email.Text;
             tb_email.Visible = false;
             btn_trimite.Visible = false;
@@ -70,7 +69,10 @@ public partial class recover : System.Web.UI.Page
         string subject = "ELF-Recuperare parola";
         string body = "Buna ziua, pentru a folosi contul de ELF, folositi urmatoarele date:\n";
         body += "Email: " + tb_email.Text + "\n";
-        body += "Parola: " + parolaTrimisa;
+        body += "Parola: " + parolaTrimisa + "\n";
+        body += "Acceseaza linkul de mai jos pentru a accepta noua parola si a intra in cont:\n";
+        body += "http://localhost:53371/resetpassword.aspx?email=" + tb_email.Text + "&parola=" + parolaTrimisa;
+
         var smtp = new System.Net.Mail.SmtpClient();
         {
             smtp.Host = "smtp.gmail.com";
@@ -94,16 +96,15 @@ public partial class recover : System.Web.UI.Page
         return result;
     }
 
-    private void update_parola()
+    private string link_unic(string word, int shift)
     {
-        SqlCommand dbcommand = new SqlCommand();
-        SqlConnection dbconnection;
-        dbconnection = new SqlConnection(a.string_bazadedate);
-        dbcommand = new SqlCommand();
-        dbcommand.Connection = dbconnection;
-        dbcommand.Connection.Open();
-        dbcommand.CommandText = "UPDATE [Utilizator] SET parola = '" + parolaTrimisa + "' WHERE email = '" + tb_email.Text + "';";
-        dbcommand.ExecuteNonQuery();
-        dbconnection.Close();
+        char[] buffer = word.ToCharArray();
+        for (int i = 0; i < buffer.Length; i++)
+        {
+            char letter = buffer[i];
+            letter = (char)(letter + shift);
+            buffer[i] = letter;
+        }
+        return new string(buffer);
     }
 }
