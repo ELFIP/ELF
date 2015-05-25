@@ -11,6 +11,7 @@ public partial class Pagina_facultati_administrator : System.Web.UI.Page
     Auxiliare a = new Auxiliare();
     List<Button> sterge_facultati = new List<Button>();
     List<Panel> panou_facultati = new List<Panel>();
+    List<Image> lista_imagini = new List<Image>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -59,7 +60,7 @@ public partial class Pagina_facultati_administrator : System.Web.UI.Page
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;
-        comanda.CommandText = "SELECT id_facultate, nume, localitate FROM Facultate;";
+        comanda.CommandText = "SELECT id_facultate, nume, localitate, imagine FROM Facultate;";
         sdr = comanda.ExecuteReader();
         while (sdr.Read())
         {
@@ -69,6 +70,15 @@ public partial class Pagina_facultati_administrator : System.Web.UI.Page
             // Extragem numele si localitatea facultatilor;
             String nume = sdr.GetValue(1).ToString();
             String localitate = sdr.GetValue(2).ToString();
+
+            Image imagine = new Image();
+            imagine.AlternateText = "No image";
+            imagine.ImageUrl = "~/Imagini_facultati/" + sdr.GetValue(3).ToString();
+
+            imagine.Width = 100;
+            imagine.Height = 100;
+
+            lista_imagini.Add(imagine);
 
             // Panou pentru fiecare facultate;
             Panel facultate = new Panel();
@@ -106,6 +116,11 @@ public partial class Pagina_facultati_administrator : System.Web.UI.Page
         for (int i = 0; i < panou_facultati.Count; i++)
         {
             // Adaugam Label-urile;
+            TableCell celula_imagine = new TableCell();
+            celula_imagine.HorizontalAlign = HorizontalAlign.Center;
+            celula_imagine.Attributes.Add("style", "padding: 10px");
+            celula_imagine.Controls.Add(lista_imagini[i]);
+
             TableRow rand_facultate = new TableRow();
             TableCell celula_facultate = new TableCell();
             celula_facultate.HorizontalAlign = HorizontalAlign.Center;
@@ -114,12 +129,14 @@ public partial class Pagina_facultati_administrator : System.Web.UI.Page
 
             celula_facultate.Controls.Add(panou_facultati[i]);
 
+            rand_facultate.Controls.Add(celula_imagine);
             rand_facultate.Controls.Add(celula_facultate);
 
             tabel_link_facultati.Controls.Add(rand_facultate);
 
             // Adaugam butoanele de stergere;
             TableRow rand_buton_facultate = new TableRow();
+
             TableCell celula_stergere = new TableCell();
             celula_stergere.HorizontalAlign = HorizontalAlign.Center;
             celula_stergere.Attributes.Add("style", "padding: 10px");

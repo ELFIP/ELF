@@ -10,6 +10,7 @@ public partial class Pagina_facultati : System.Web.UI.Page
 {
     Auxiliare a = new Auxiliare();
     List<Panel> panou_facultati = new List<Panel>();
+    List<Image> lista_imagini = new List<Image>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -25,13 +26,22 @@ public partial class Pagina_facultati : System.Web.UI.Page
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;
-        comanda.CommandText = "SELECT nume, localitate FROM Facultate;";
+        comanda.CommandText = "SELECT nume,localitate,imagine FROM Facultate;";
         sdr = comanda.ExecuteReader();
         while (sdr.Read())
         {
             // Extragem numele si localitatea facultatilor;
             String nume = sdr.GetValue(0).ToString();
             String localitate = sdr.GetValue(1).ToString();
+
+            Image imagine = new Image();
+            imagine.AlternateText = "No image";
+            imagine.ImageUrl = "~/Imagini_facultati/" + sdr.GetValue(2).ToString();
+
+            imagine.Width = 100;
+            imagine.Height = 100;
+
+            lista_imagini.Add(imagine);
 
             // Panou pentru fiecare facultate;
             Panel facultate = new Panel();
@@ -60,6 +70,11 @@ public partial class Pagina_facultati : System.Web.UI.Page
         for (int i = 0; i < panou_facultati.Count; i++)
         {
             // Adaugam Label-urile;
+            TableCell celula_imagine = new TableCell();
+            celula_imagine.HorizontalAlign = HorizontalAlign.Center;
+            celula_imagine.Attributes.Add("style", "padding: 10px");
+            celula_imagine.Controls.Add(lista_imagini[i]);
+
             TableRow rand_facultate = new TableRow();
             TableCell celula_facultate = new TableCell();
             celula_facultate.HorizontalAlign = HorizontalAlign.Center;
@@ -68,6 +83,7 @@ public partial class Pagina_facultati : System.Web.UI.Page
 
             celula_facultate.Controls.Add(panou_facultati[i]);
 
+            rand_facultate.Controls.Add(celula_imagine);
             rand_facultate.Controls.Add(celula_facultate);
 
             tabel_link_facultati.Controls.Add(rand_facultate);

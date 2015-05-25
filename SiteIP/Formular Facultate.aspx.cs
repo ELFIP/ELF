@@ -175,7 +175,7 @@ public partial class Formular_Facultate : System.Web.UI.Page
         dbcommand = new SqlCommand();
         dbcommand.Connection = dbconnection;
         dbcommand.Connection.Open();
-        dbcommand.CommandText = "Insert into [Facultate] values (" + (maxIdFacultate() + 1) + ", '" + nume_facultate.Text +"', '" + adresa_facultatii.Text + "', '" + localitatea_facultatii.Text + "');";
+        dbcommand.CommandText = "Insert into [Facultate] values (" + (maxIdFacultate() + 1) + ", '" + nume_facultate.Text +"', '" + adresa_facultatii.Text + "', '" + localitatea_facultatii.Text + "' , '" + format_imagine + "');";
         dbcommand.ExecuteNonQuery();
         dbconnection.Close();
     }

@@ -12,6 +12,7 @@ public partial class Cursuri_administrator : System.Web.UI.Page
     List<HyperLink> nume_cursuri = new List<HyperLink>();
     List<CheckBox> nume_taguri = new List<CheckBox>();
     List<Button> lista_butoane = new List<Button>();
+    List<Image> lista_imagini = new List<Image>();
     Auxiliare a = new Auxiliare();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -78,11 +79,11 @@ public partial class Cursuri_administrator : System.Web.UI.Page
         SqlDataReader sdr;
         if (taguri_selectate.Count == 0)
         {
-            comanda.CommandText = "SELECT id_curs, nume FROM Curs WHERE nume LIKE '%" + cauta_curs.Text + "%';";
+            comanda.CommandText = "SELECT id_curs, nume, imagine FROM Curs WHERE nume LIKE '%" + cauta_curs.Text + "%';";
         }
         else
         {
-            comanda.CommandText = "SELECT DISTINCT c.id_curs, c.nume FROM Curs c, Tag t WHERE c.nume LIKE '%" + cauta_curs.Text + "%' AND c.id_curs = t.id_curs AND t.nume IN " + getString(taguri_selectate) + ";";
+            comanda.CommandText = "SELECT DISTINCT c.id_curs, c.nume, c.imagine FROM Curs c, Tag t WHERE c.nume LIKE '%" + cauta_curs.Text + "%' AND c.id_curs = t.id_curs AND t.nume IN " + getString(taguri_selectate) + ";";
         }
 
         sdr = comanda.ExecuteReader();
@@ -90,6 +91,15 @@ public partial class Cursuri_administrator : System.Web.UI.Page
         {
             int id = int.Parse(sdr.GetValue(0).ToString());
             String nume_curs = sdr.GetValue(1).ToString();
+
+            Image imagine = new Image();
+            imagine.AlternateText = "No image";
+            imagine.ImageUrl = "~/Imagini_cursuri/" + sdr.GetValue(2).ToString();
+
+            imagine.Width = 100;
+            imagine.Height = 100;
+
+            lista_imagini.Add(imagine);
 
             // Cream Hyperlink catre curs;
             HyperLink curs = new HyperLink();
@@ -115,12 +125,20 @@ public partial class Cursuri_administrator : System.Web.UI.Page
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;
-        comanda.CommandText = "SELECT id_curs, nume FROM Curs;";
+        comanda.CommandText = "SELECT id_curs, nume,imagine FROM Curs;";
         sdr = comanda.ExecuteReader();
         while (sdr.Read())
         {
             int id = int.Parse(sdr.GetValue(0).ToString());
             String nume_curs = sdr.GetValue(1).ToString();
+            Image imagine = new Image();
+            imagine.AlternateText = "No image";
+            imagine.ImageUrl = "~/Imagini_cursuri/" + sdr.GetValue(2).ToString();
+
+            imagine.Width=100;
+            imagine.Height = 100;
+   
+            lista_imagini.Add(imagine);
 
             // Cream Hyperlink catre curs;
             HyperLink curs = new HyperLink();
@@ -135,6 +153,8 @@ public partial class Cursuri_administrator : System.Web.UI.Page
             buton.Click += stergeCurs;
             lista_butoane.Add(buton);
 
+
+
         }
         conexiune.Close();
     }
@@ -143,6 +163,11 @@ public partial class Cursuri_administrator : System.Web.UI.Page
     {
         for (int i = 0; i < nume_cursuri.Count; i++)
         {
+            TableCell celula_imagine = new TableCell();
+            celula_imagine.HorizontalAlign = HorizontalAlign.Center;
+            celula_imagine.Attributes.Add("style", "padding: 10px");
+            celula_imagine.Controls.Add(lista_imagini[i]);
+
             TableCell celula_curs = new TableCell();
             celula_curs.HorizontalAlign = HorizontalAlign.Center;
             celula_curs.Attributes.Add("style", "padding: 10px");
@@ -154,6 +179,7 @@ public partial class Cursuri_administrator : System.Web.UI.Page
             celula_buton.Controls.Add(lista_butoane[i]);
 
             TableRow rand = new TableRow();
+            rand.Controls.Add(celula_imagine);
             rand.Controls.Add(celula_curs);
             rand.Controls.Add(celula_buton);
 
