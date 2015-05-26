@@ -52,7 +52,7 @@ public partial class Formular_Curs : System.Web.UI.Page
                 Session["format_videoclip"] = format_imagine;
                 Session["nume_curs"] = numeCurs.Text;
                 FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Imagini_cursuri/") + numeCurs.Text + "." + format_imagine);
-                imagine_curs.ImageUrl = "/Imagini_cursuri/" + numeCurs.Text + "." + format_imagine;
+                imagine_curs.ImageUrl = "~/Imagini_cursuri/" + numeCurs.Text + "." + format_imagine;
             }
         }
         else
@@ -193,7 +193,7 @@ public partial class Formular_Curs : System.Web.UI.Page
     {
 
         String[] aspxLines = {
-"<%@ Page Language=\"C#\" AutoEventWireup=\"true\" CodeFile=\"" + numeCurs.Text + ".aspx.cs\" Inherits=\"" + numeCurs.Text + "\" MasterPageFile=\"~/MasterPage.master\" %>",
+"<%@ Page Language=\"C#\" AutoEventWireup=\"true\" CodeFile=\"" + numeCurs.Text + ".aspx.cs\" Inherits=\"" + numeCurs.Text.Replace(" ", "_") + "\" MasterPageFile=\"~/MasterPage.master\" %>",
 
 "<asp:Content runat=\"server\" ID=\"Content1\" ContentPlaceHolderID=\"head\">",
 "</asp:Content>",
@@ -266,7 +266,7 @@ public partial class Formular_Curs : System.Web.UI.Page
 "using System.Web.UI.WebControls;",
 "using System.Data.SqlClient;",
 " ",
-"public partial class " + numeCurs.Text + " : System.Web.UI.Page",
+"public partial class " + numeCurs.Text.Replace(" ", "_") + " : System.Web.UI.Page",
 "{",
 "    Auxiliare a = new Auxiliare();",
 "    private string nume_curs;",
@@ -487,7 +487,7 @@ public partial class Formular_Curs : System.Web.UI.Page
     {
 
         String[] aspxLines = {
-"<%@ Page Language=\"C#\" AutoEventWireup=\"true\" CodeFile=\"" + numeCurs.Text + "_administrator.aspx.cs\" Inherits=\"" + numeCurs.Text + "_administrator\" MasterPageFile=\"~/MasterPage.master\" %>",
+"<%@ Page Language=\"C#\" AutoEventWireup=\"true\" CodeFile=\"" + numeCurs.Text + "_administrator.aspx.cs\" Inherits=\"" + numeCurs.Text.Replace(" ", "_") + "_administrator\" MasterPageFile=\"~/MasterPage.master\" %>",
 
 "<asp:Content runat=\"server\" ID=\"Content1\" ContentPlaceHolderID=\"head\">",
 "</asp:Content>",
@@ -571,7 +571,7 @@ public partial class Formular_Curs : System.Web.UI.Page
 "using System.Web.UI.WebControls;",
 "using System.Data.SqlClient;",
 " ",
-"public partial class " + numeCurs.Text + "_administrator : System.Web.UI.Page",
+"public partial class " + numeCurs.Text.Replace(" ", "_") + "_administrator : System.Web.UI.Page",
 "{",
 "    Auxiliare a = new Auxiliare();",
 "    private string nume_curs;",

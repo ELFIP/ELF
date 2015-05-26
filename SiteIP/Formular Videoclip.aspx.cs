@@ -133,7 +133,7 @@ public partial class Formular_Videoclip : System.Web.UI.Page
     private void creazaASPX()
     {
         String[] aspxLines = {
-"<%@ Page Language=\"C#\" AutoEventWireup=\"true\" CodeFile=\"" + numeVideoclip.Text + ".aspx.cs\" Inherits=\"" + numeVideoclip.Text + "\" MasterPageFile=\"~/MasterPage.master\"%>",
+"<%@ Page Language=\"C#\" AutoEventWireup=\"true\" CodeFile=\"" + numeVideoclip.Text + ".aspx.cs\" Inherits=\"" + numeVideoclip.Text.Replace(" ", "_") + "\" MasterPageFile=\"~/MasterPage.master\"%>",
 " ",
 "<asp:Content runat=\"server\" ID=\"Content1\" ContentPlaceHolderID=\"head\">",
 "</asp:Content>",
@@ -201,7 +201,7 @@ public partial class Formular_Videoclip : System.Web.UI.Page
 "using System.Web.UI.WebControls;",
 "using System.Data.SqlClient;",
 " ",
-"public partial class " + numeVideoclip.Text + " : System.Web.UI.Page",
+"public partial class " + numeVideoclip.Text.Replace(" ", "_") + " : System.Web.UI.Page",
 "{",
 "    Auxiliare a = new Auxiliare();",
 "    int id_videoclip;",

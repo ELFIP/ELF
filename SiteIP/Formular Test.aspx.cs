@@ -460,7 +460,7 @@ public partial class Forma_Test : System.Web.UI.Page
     private void creazaASPX()
     {
         String[] aspxLines = {
-"<%@ Page Language=\"C#\" AutoEventWireup=\"true\" CodeFile=\"" + numeTest.Text + ".aspx.cs\" Inherits=\"" + numeTest.Text + "\" MasterPageFile=\"~/MasterPage.master\"%>",
+"<%@ Page Language=\"C#\" AutoEventWireup=\"true\" CodeFile=\"" + numeTest.Text + ".aspx.cs\" Inherits=\"" + numeTest.Text.Replace(" ", "_") + "\" MasterPageFile=\"~/MasterPage.master\"%>",
 " ",
 "<asp:Content runat=\"server\" ID=\"Content1\" ContentPlaceHolderID=\"head\">",
 "    <script type=\"text/javascript\">",
@@ -636,7 +636,7 @@ public partial class Forma_Test : System.Web.UI.Page
 "using System.Web.UI.WebControls;",
 "using System.Data.SqlClient;",
 " ",
-"public partial class " + numeTest.Text + " : System.Web.UI.Page",
+"public partial class " + numeTest.Text.Replace(" ", "_") + " : System.Web.UI.Page",
 "{",
 "    Auxiliare a = new Auxiliare();",
 "    int id_test;",
