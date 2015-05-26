@@ -11,7 +11,7 @@ public partial class Cursuri_administrator : System.Web.UI.Page
 
     List<HyperLink> nume_cursuri = new List<HyperLink>();
     List<CheckBox> nume_taguri = new List<CheckBox>();
-    List<Button> lista_butoane = new List<Button>();
+    List<HyperLink> lista_sterge = new List<HyperLink>();
     List<Image> lista_imagini = new List<Image>();
     Auxiliare a = new Auxiliare();
 
@@ -107,12 +107,12 @@ public partial class Cursuri_administrator : System.Web.UI.Page
             curs.Text = nume_curs;
             nume_cursuri.Add(curs);
 
-            // Cream buton de stergere a cursului;
-            Button buton = new Button();
-            buton.Text = "Sterge";
-            buton.ID = "buton" + id;
-            buton.Click += stergeCurs;
-            lista_butoane.Add(buton);
+            // Cream hyperlink de stergere a cursului;
+            HyperLink hyperlink = new HyperLink();
+            hyperlink.Text = "Sterge";
+            hyperlink.ID = "hyperlink" + id;
+            hyperlink.NavigateUrl = "Sterge_curs.aspx?id_curs=" + id;
+            lista_sterge.Add(hyperlink);
         }
         conexiune.Close();
     }
@@ -146,14 +146,12 @@ public partial class Cursuri_administrator : System.Web.UI.Page
             curs.Text = nume_curs;
             nume_cursuri.Add(curs);
 
-            // Cream buton de stergere a cursului;
-            Button buton = new Button();
-            buton.Text = "Sterge";
-            buton.ID = "buton" + id;
-            buton.Click += stergeCurs;
-            lista_butoane.Add(buton);
-
-
+            // Cream hyperlink de stergere a cursului;
+            HyperLink hyperlink = new HyperLink();
+            hyperlink.Text = "Sterge";
+            hyperlink.ID = "hyperlink" + id;
+            hyperlink.NavigateUrl = "Sterge_curs.aspx?id_curs=" + id;
+            lista_sterge.Add(hyperlink);
 
         }
         conexiune.Close();
@@ -176,7 +174,7 @@ public partial class Cursuri_administrator : System.Web.UI.Page
             TableCell celula_buton = new TableCell();
             celula_buton.HorizontalAlign = HorizontalAlign.Center;
             celula_buton.Attributes.Add("style", "padding: 10px");
-            celula_buton.Controls.Add(lista_butoane[i]);
+            celula_buton.Controls.Add(lista_sterge[i]);
 
             TableRow rand = new TableRow();
             rand.Controls.Add(celula_imagine);
@@ -236,37 +234,6 @@ public partial class Cursuri_administrator : System.Web.UI.Page
         }
     }
 
-    private void stergeCurs(int id)
-    {
-        SqlCommand comanda = new SqlCommand();
-        SqlConnection conexiune;
-        conexiune = new SqlConnection(a.string_bazadedate);
-        comanda = new SqlCommand();
-        comanda.Connection = conexiune;
-        comanda.Connection.Open();
-        comanda.CommandText = "DELETE FROM Curs WHERE id_curs = " + id + ";";
-        comanda.ExecuteNonQuery();
-        conexiune.Close();
-    }
 
-    protected void stergeCurs(object sender, EventArgs e)
-    {
-        int id_buton = getID(((Button)sender).ID);
-        stergeCurs(id_buton);
-        Response.Redirect("Cursuri_administrator.aspx");
-    }
-
-    private int getID(String s)
-    {
-        int n = 0;
-        for (int i = 0; i < s.Length; i++)
-        {
-            if (s[i] >= '0' && s[i] <= '9')
-            {
-                n = n * 10 + (s[i] - '0');
-            }
-        }
-        return n;
-    }
 
 }

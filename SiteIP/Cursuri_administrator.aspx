@@ -17,7 +17,7 @@
                         <asp:TableHeaderRow>
                             <asp:TableCell HorizontalAlign="Center" style="padding:10px">
                                 <asp:Button ID="buton_filtrare" runat="server" Text="Filtrare" OnClick="filtrare" />
-                            </asp:TableCell>
+                            </asp:TableCell> 
                         </asp:TableHeaderRow>
                     </asp:Table>
                 </asp:TableCell>
