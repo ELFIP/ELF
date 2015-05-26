@@ -15,9 +15,9 @@ public partial class Panou_de_control_recomandari : System.Web.UI.Page
     int v_note;
     int v_videoclipuri;
     int v_teste;
-    int v_nota_curs;
     int v_nota_data_videoclip;
     int v_videoclipuri_vazute;
+    int v_teste_date;
     int v_nota_data_test;
     int v_nota_test;
 
@@ -40,7 +40,6 @@ public partial class Panou_de_control_recomandari : System.Web.UI.Page
         v_note = int.Parse(note.Text);
         v_videoclipuri = int.Parse(videoclipuri.Text);
         v_teste = int.Parse(teste.Text);
-        v_nota_curs = int.Parse(nota_obtinuta_curs.Text);
         v_nota_data_videoclip = int.Parse(nota_data_videoclipuri.Text);
         v_videoclipuri_vazute = int.Parse(numar_videoclipuri_vazute.Text);
         v_nota_data_test = int.Parse(nota_data_teste.Text);
@@ -55,7 +54,7 @@ public partial class Panou_de_control_recomandari : System.Web.UI.Page
         comanda = new SqlCommand();
         comanda.Connection = conexiune;
         comanda.Connection.Open();
-        comanda.CommandText = "UPDATE Recomandari SET date_colectate = " + v_date_colectate + ", curs = " + v_curs + ", judet =" + v_judet + ", note =" + v_note + ", videoclipuri =" + v_videoclipuri + ", teste = " + v_teste + ", nota_curs =" + v_nota_curs + ", nota_data_videoclip = " + v_nota_data_videoclip + ", videoclipuri_vazute = " + v_videoclipuri_vazute + ", nota_data_test = " + v_nota_data_test + ", nota_test = " + v_nota_test +" WHERE id_recomandare = 1;";
+        comanda.CommandText = "UPDATE Recomandari SET date_colectate = " + v_date_colectate + ", curs = " + v_curs + ", judet =" + v_judet + ", note =" + v_note + ", videoclipuri =" + v_videoclipuri + ", teste = " + v_teste + ", nota_curs =" + v_teste_date + ", nota_data_videoclip = " + v_nota_data_videoclip + ", videoclipuri_vazute = " + v_videoclipuri_vazute + ", nota_data_test = " + v_nota_data_test + ", nota_test = " + v_nota_test + " WHERE id_recomandare = 1;";
         comanda.ExecuteNonQuery();
         conexiune.Close();
     }

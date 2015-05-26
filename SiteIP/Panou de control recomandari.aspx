@@ -36,7 +36,7 @@
                                         <asp:TextBox ID="nota_data_videoclipuri" runat="server" placeholder="Nota Videoclip" CssClass="procentaje video_grp"></asp:TextBox>
                                     </li>
                                     <li>
-                                        <asp:TextBox ID="numar_videoclipuri_vazute" runat="server" placeholder="Videoclip vazut" CssClass="procentaje video_grp"></asp:TextBox>
+                                        <asp:TextBox ID="numar_videoclipuri_vazute" runat="server" placeholder="Numar" CssClass="procentaje video_grp"></asp:TextBox>
                                     </li>
                                 </ul>
                             </li>
@@ -44,15 +44,15 @@
                                 <asp:TextBox ID="teste" runat="server" placeholder="Teste" CssClass="procentaje curs_grp"></asp:TextBox>
                                 <ul>
                                     <li>
+                                        <asp:TextBox ID="numar_teste_date" runat="server" placeholder="Numar" CssClass="procentaje note_grp"></asp:TextBox>
+                                    </li>
+                                    <li>
                                         <asp:TextBox ID="nota_data_teste" runat="server" placeholder="Nota Data" CssClass="procentaje note_grp"></asp:TextBox>
                                     </li>
                                     <li>
                                         <asp:TextBox ID="nota_test" runat="server" placeholder="Nota Teste" CssClass="procentaje note_grp"></asp:TextBox>
                                     </li>
                                 </ul>
-                            </li>
-                            <li>
-                                <asp:TextBox ID="nota_obtinuta_curs" runat="server" placeholder="Nota Curs" CssClass="procentaje curs_grp"></asp:TextBox>
                             </li>
                         </ul>
 				    </li>
