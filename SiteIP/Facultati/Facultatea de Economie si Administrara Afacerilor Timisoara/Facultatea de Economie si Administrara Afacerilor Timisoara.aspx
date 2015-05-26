@@ -29,7 +29,9 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell HorizontalAlign="Center" Style="padding: 10px" ColumnSpan="2" Width="100%">
-                <asp:Label ID="alte_informatii" TextMode="MultiLine" Rows="5" Text="Incurajam toti studentii nostri sa profite la maximum de timpul lor la FEAA si Universitatea de Vest, pentru a profita de toate oportunitatile disponibile si sa se evidentieze in societate.
+                <asp:Label ID="alte_informatii" TextMode="MultiLine" Rows="5" Text="Incurajam toti studentii nostri sa profite la maximum de timpul lor la FEAA si Universitatea de Vest, pentru a 
+
+profita de toate oportunitatile disponibile si sa se evidentieze in societate.
 
 http://www.feaa.uvt.ro/ro/" runat="server" Width="100%">
                 </asp:Label>
