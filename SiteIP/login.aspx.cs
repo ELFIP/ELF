@@ -53,25 +53,33 @@ public partial class login : System.Web.UI.Page
 
     protected void btn_login_Click(object sender, EventArgs e)
     {
-        if (email_valid(tb_email.Text))
+        if(Auxiliare.utilizatori_conectati == 3) {
+            lbl_alertDateLogin.Text = "Numar maxim de utilizatori atins!";
+        }
+        else
         {
-            email = tb_email.Text;
-            if (tb_parola.Text.Equals(verificare_parola()))
+            if (email_valid(tb_email.Text))
             {
-                lbl_alertDateLogin.Text = "";
-                aflaDateUtilizator();
-                creazaVariabileleDeSesiune();
-                Response.Redirect("Profil.aspx");
+                email = tb_email.Text;
+                if (tb_parola.Text.Equals(verificare_parola()))
+                {
+                    Auxiliare.utilizatori_conectati++;
+                    lbl_alertDateLogin.Text = "";
+                    aflaDateUtilizator();
+                    creazaVariabileleDeSesiune();
+                    Response.Redirect("Profil.aspx");
+                }
+                else
+                {
+                    lbl_alertDateLogin.Text = "Date incorecte !";
+                }
             }
             else
             {
                 lbl_alertDateLogin.Text = "Date incorecte !";
             }
         }
-        else
-        {
-            lbl_alertDateLogin.Text = "Date incorecte !";
-        }
+
 
     }
 

@@ -36,9 +36,6 @@ public partial class Testul_1 : System.Web.UI.Page
     // Cate ore dureaza testul;
     public int ore_bazaDeDate = 0;
  
-    DateTime Start;
-    DateTime End;
- 
     protected void Page_Load(object sender, EventArgs e)
     {
         afiseazaIntrebarileSiRaspunsurile();
@@ -51,10 +48,26 @@ public partial class Testul_1 : System.Web.UI.Page
         afiseazaTimpRezolvare();
         if (!IsPostBack) {
            numarNote();
+            if(numar_note == 0) {
+                adaugaInBazaDeDate();
+            }
            selecteazaNotaDataTest();
            afiseazaNotaData();
            Session["Test_inceput"] = false;
         }
+    }
+
+    private void adaugaInBazaDeDate()
+    {
+        SqlCommand comanda = new SqlCommand();
+        SqlConnection conexiune;
+        conexiune = new SqlConnection(a.string_bazadedate);
+        comanda = new SqlCommand();
+        comanda.Connection = conexiune;
+        comanda.Connection.Open();
+        comanda.CommandText = "Insert into [Utilizator_Test] values (" + id_utilizator + ", " + id_test + ",  CONVERT(VARCHAR(10), GETDATE(), 10), " + 0 + ", " + 0 + ");";
+        comanda.ExecuteNonQuery();
+        conexiune.Close();
     }
  
      private void numarNote()
@@ -182,10 +195,11 @@ public partial class Testul_1 : System.Web.UI.Page
         comanda = new SqlCommand();
         comanda.Connection = conexiune;
         comanda.Connection.Open();
-        comanda.CommandText = "Insert into [Utilizator_Test] values (" + id_utilizator + ", " + id_test + ", CONVERT(VARCHAR(10), GETDATE(), 10), " + nota_obtinuta + "  , 0 );";
+        comanda.CommandText = "UPDATE [Utilizator_Test] SET nota_obtinuta = " + nota_obtinuta + " WHERE id_utilizator = " + id_utilizator + " AND id_test = " + id_test + ";";
         comanda.ExecuteNonQuery();
         conexiune.Close();
     }
+
     protected void evalueazaTest(object sender, EventArgs e)
     {
         // Testul s-a terminat;

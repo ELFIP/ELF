@@ -9,6 +9,7 @@ public partial class LogOut : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        Auxiliare.utilizatori_conectati--;
         Session.Remove("id_utilizator");
         Session.Remove("email");
         Session.Remove("parola");

@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
  
-public partial class Curs_3 : System.Web.UI.Page
+public partial class Test : System.Web.UI.Page
 {
     Auxiliare a = new Auxiliare();
     int id_videoclip;
@@ -16,7 +16,7 @@ public partial class Curs_3 : System.Web.UI.Page
     int numar_note = 0;
     double media_notelor_videoclip;
     private string email;
-
+ 
     protected void Page_Load(object sender, EventArgs e)
     {
         culegeDate();
@@ -34,12 +34,12 @@ public partial class Curs_3 : System.Web.UI.Page
             afiseazaNotaData();
         }
     }
-
+ 
     private void culegeDate()
     {
         email = (string)Session["email"];
     }
-
+ 
     private void afiseazaNotaData()
     {
         switch (nota_data)
@@ -61,7 +61,7 @@ public partial class Curs_3 : System.Web.UI.Page
                 break;
         }
     }
-
+ 
     private void numarNote()
     {
         SqlCommand comanda = new SqlCommand();
@@ -78,7 +78,7 @@ public partial class Curs_3 : System.Web.UI.Page
         }
         conexiune.Close();
     }
-
+ 
     private void selecteazaNotaDataVideoclip()
     {
         if (numar_note == 0)
@@ -100,7 +100,7 @@ public partial class Curs_3 : System.Web.UI.Page
             conexiune.Close();
         }
     }
-
+ 
     private void selecteazaIdCurs()
     {
         SqlCommand comanda = new SqlCommand();
@@ -115,7 +115,7 @@ public partial class Curs_3 : System.Web.UI.Page
         id_curs = int.Parse(sdr.GetValue(0).ToString());
         conexiune.Close();
     }
-
+ 
     private void selecteazaIdVideoclip()
     {
         SqlCommand comanda = new SqlCommand();
@@ -130,7 +130,7 @@ public partial class Curs_3 : System.Web.UI.Page
         id_videoclip = int.Parse(sdr.GetValue(0).ToString());
         conexiune.Close();
     }
-
+ 
     private void selecteazaIdUtilizator()
     {
         SqlCommand comanda = new SqlCommand();
@@ -145,7 +145,7 @@ public partial class Curs_3 : System.Web.UI.Page
         id_utilizator = int.Parse(sdr.GetValue(0).ToString());
         conexiune.Close();
     }
-
+ 
     private void adaugaInBazaDeDate()
     {
         SqlCommand comanda = new SqlCommand();
@@ -158,7 +158,7 @@ public partial class Curs_3 : System.Web.UI.Page
         comanda.ExecuteNonQuery();
         conexiune.Close();
     }
-
+ 
     private void actualizeazaNotaDataVideoclip(int nota)
     {
         SqlCommand comanda = new SqlCommand();
@@ -171,7 +171,7 @@ public partial class Curs_3 : System.Web.UI.Page
         comanda.ExecuteNonQuery();
         conexiune.Close();
     }
-
+ 
     private void selecteazaMediaNotelorVideoclip()
     {
         SqlCommand comanda = new SqlCommand();
@@ -186,7 +186,7 @@ public partial class Curs_3 : System.Web.UI.Page
         media_notelor_videoclip = int.Parse(sdr.GetValue(0).ToString());
         conexiune.Close();
     }
-
+ 
     private void actualizeazaMediaNotelorVideoclip(int nota)
     {
         SqlCommand comanda = new SqlCommand();
@@ -199,7 +199,7 @@ public partial class Curs_3 : System.Web.UI.Page
         comanda.ExecuteNonQuery();
         conexiune.Close();
     }
-
+ 
     protected void selectare(object sender, EventArgs e)
     {
         if (id_nota1.Selected == true)
