@@ -77,8 +77,8 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
             selecteazaValoriRecomandari();
             calculeazaScorFacultati();
             adaugaInBazaDeDate();
-            selecteazaFacultatileRecomandate();
-            actualizeazaCampuri();
+          //  selecteazaFacultatileRecomandate();
+          //  actualizeazaCampuri();
         }
     }
 
@@ -208,7 +208,15 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
             {
                 media_notelor_date_test.Add(double.Parse(aux2));
             }
-            nota_teste.Add(double.Parse(sdr.GetValue(10).ToString()));
+            string aux3 = sdr.GetValue(10).ToString();
+            if (aux3 == "" || aux3 == null)
+            {
+                nota_teste.Add(0);
+            }
+            else
+            {
+                nota_teste.Add(double.Parse(aux3));
+            }
         }
         conexiune.Close();
     }
@@ -224,7 +232,7 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
             double scor_judet;
             Distanta d = new Distanta(id_utilizator, localitate_utilizator, referinta_localitate_facultate[i]);
             int distanta = d.stringToInt(d.DistanceMatrixRequest(localitate_utilizator, referinta_localitate_facultate[i]));
-            scor_judet = (double)( distanta - distanta_minima ) / (double)( distanta_maxima - distanta_minima );
+            scor_judet = (double)(distanta - distanta_minima) / (double)(distanta_maxima - distanta_minima);
 
             // Aflam ponderea videoclipurilor;
             double scor_nota_data_videoclip = media_notelor_date_videoclip[i] / 5.0;
@@ -283,7 +291,7 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
                 }
 
                 scor_nota_teste = (scor_nota_teste + nota_teste[i + 1]) / 2.0;
-                
+
                 i++;
             }
 
@@ -317,7 +325,8 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
             i++;
         }
         conexiune.Close();
-        if(i == 0) {
+        if (i == 0)
+        {
             return false;
         }
         else
@@ -330,7 +339,8 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
     {
         for (int i = 0; i < id_facultati_scor.Count; i++)
         {
-            if(existaRecomandarea(id_facultati_scor[i])) {
+            if (existaRecomandarea(id_facultati_scor[i]))
+            {
                 SqlCommand comanda = new SqlCommand();
                 SqlConnection conexiune;
                 conexiune = new SqlConnection(a.string_bazadedate);
@@ -386,9 +396,9 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
         label_email.Text = email;
         label_data_nasterii.Text = "Data nasterii: " + data_nasterii;
         label_data_inregistrarii.Text = "Data inregistrarii: " + data_inregistrarii;
-         //foreach (string NumeFacultate in nume_facultati)
-           //{
-             //lista_facultati.Items.Add(new ListItem(NumeFacultate));
+        //foreach (string NumeFacultate in nume_facultati)
+        //{
+        //lista_facultati.Items.Add(new ListItem(NumeFacultate));
         // }
     }
 
