@@ -52,50 +52,53 @@ public partial class Administrare_utilizator : System.Web.UI.Page
 
         adaugaHeader();
 
-        for (int i = 0; i < email.Count; i ++ )
+        for (int i = 0; i < email.Count; i++)
         {
-            
-            Button sterge = new Button();
-            sterge.Text = "Sterge";
-            sterge.CssClass = "butoane_administrare";
-            sterge.ID = "sterge" + i;
-            sterge.Click += new EventHandler(stergeUtilizator);
-
-            Button admin = new Button();
-            admin.Text = "Admin";
-            admin.ID = "admin" + i;
-            admin.Click += new EventHandler(modificaAdmin);
-            if(este_admin[i] == 1) {
-                admin.CssClass = "admin";
-            }
-            else
+            if (email[i] != (String)Session["email"])
             {
-                admin.CssClass = "noadmin";
+                Button sterge = new Button();
+                sterge.Text = "Sterge";
+                sterge.CssClass = "butoane_administrare";
+                sterge.ID = "sterge" + i;
+                sterge.Click += new EventHandler(stergeUtilizator);
+
+                Button admin = new Button();
+                admin.Text = "Admin";
+                admin.ID = "admin" + i;
+                admin.Click += new EventHandler(modificaAdmin);
+                if (este_admin[i] == 1)
+                {
+                    admin.CssClass = "admin";
+                }
+                else
+                {
+                    admin.CssClass = "noadmin";
+                }
+
+                TableCell celula1 = new TableCell();
+                celula1.CssClass = "celula_rand";
+                celula1.Controls.Add(sterge);
+                celula1.Controls.Add(admin);
+
+                TableCell celula2 = new TableCell();
+                celula2.Text = email[i];
+                celula2.CssClass = "celula_rand";
+
+                TableCell celula3 = new TableCell();
+                celula3.Text = nume[i];
+                celula3.CssClass = "celula_rand";
+
+                TableCell celula4 = new TableCell();
+                celula4.Text = prenume[i];
+                celula4.CssClass = "celula_rand";
+
+                TableRow rand = new TableRow();
+                rand.Controls.Add(celula1);
+                rand.Controls.Add(celula2);
+                rand.Controls.Add(celula3);
+                rand.Controls.Add(celula4);
+                tabel_utilizatori.Controls.Add(rand);
             }
-
-            TableCell celula1 = new TableCell();
-            celula1.CssClass = "celula_rand";
-            celula1.Controls.Add(sterge);
-            celula1.Controls.Add(admin);
-
-            TableCell celula2 = new TableCell();
-            celula2.Text = email[i];
-            celula2.CssClass = "celula_rand";
-
-            TableCell celula3 = new TableCell();
-            celula3.Text = nume[i];
-            celula3.CssClass = "celula_rand";
-
-            TableCell celula4 = new TableCell();
-            celula4.Text = prenume[i];
-            celula4.CssClass = "celula_rand";
-
-            TableRow rand = new TableRow();
-            rand.Controls.Add(celula1);
-            rand.Controls.Add(celula2);
-            rand.Controls.Add(celula3);
-            rand.Controls.Add(celula4);
-            tabel_utilizatori.Controls.Add(rand);
         }
     }
 
