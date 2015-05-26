@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
  
-public partial class Facultatea_de_Chimie_si_Inginerie_Chimica_Cluj-Napoca : System.Web.UI.Page
+public partial class Facultatea_de_Drept_si_Stiinte_Sociale_Craiova : System.Web.UI.Page
 {
  
     protected void Page_Load(object sender, EventArgs e)

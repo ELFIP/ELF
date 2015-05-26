@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
  
-public partial class info_bucuresti : System.Web.UI.Page
+public partial class Facultatea_de_Matematica_si_Informatica_Bucuresti : System.Web.UI.Page
 {
  
     protected void Page_Load(object sender, EventArgs e)
