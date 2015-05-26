@@ -46,12 +46,18 @@ public partial class Formular_Videoclip : System.Web.UI.Page
     {
         if (FileUpload1.HasFile)
         {
-           
+            if (FileUpload1.FileBytes.Length < 1024000000) {
+                eroare_marime.Text = "";
                 format_videoclip = format(FileUpload1.FileName);
                 Session["format_videoclip"] = format_videoclip;
                 FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Cursuri/") + nume_curs + "/" + numeVideoclip.Text + "." + format_videoclip);
                 afiseaza.Src = "/Cursuri/" + nume_curs + "/" + numeVideoclip.Text + "." + format_videoclip;
-            
+            }
+            else
+            {
+                eroare_marime.Text = "Videoclipul depaseste dimensiunea maxima";
+                lbl_debug.Text = "";
+            }
         }
         else
         {

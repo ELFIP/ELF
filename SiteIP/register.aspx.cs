@@ -24,7 +24,7 @@ public partial class register : System.Web.UI.Page
         dbcommand = new SqlCommand();
         dbcommand.Connection = dbconnection;
         dbcommand.Connection.Open();
-        dbcommand.CommandText = "Insert into [Utilizator] values (" + id_max + ", '" + tb_email.Text + "', '" + tb_parola.Text + "',  '" + tb_nume.Text + "', '" + tb_prenume.Text + "', '01/01/2000', '" + DateTime.Now + "', " + int.Parse(tb_mediaNotelor.Text) + ", '" + tb_adresa.Text + "', " + 1 + " );";
+        dbcommand.CommandText = "Insert into [Utilizator] values (" + id_max + ", '" + tb_email.Text + "', '" + tb_parola.Text + "',  '" + tb_nume.Text + "', '" + tb_prenume.Text + "', '01/01/2000', '" + DateTime.Now + "', " + int.Parse(tb_mediaNotelor.Text) + ", '" + tb_adresa.Text + "', " + 0 + " );";
         dbcommand.ExecuteNonQuery();
         dbconnection.Close();
 

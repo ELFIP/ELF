@@ -53,7 +53,7 @@ public partial class login : System.Web.UI.Page
 
     protected void btn_login_Click(object sender, EventArgs e)
     {
-        if(Auxiliare.utilizatori_conectati == 3) {
+        if(Auxiliare.utilizatori_conectati == 1000) {
             lbl_alertDateLogin.Text = "Numar maxim de utilizatori atins!";
         }
         else
