@@ -32,7 +32,7 @@ public partial class Administrare_utilizator : System.Web.UI.Page
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;
-        comanda.CommandText = "SELECT email, nume, prenume, parola, este_administrator FROM Utilizator ORDER BY email;";
+        comanda.CommandText = "SELECT email, nume, prenume, parola, este_administrator FROM Utilizator where data_inregistrarii < CURRENT_TIMESTAMP - 3 ORDER BY email ;";
         sdr = comanda.ExecuteReader();
         while (sdr.Read())
         {
