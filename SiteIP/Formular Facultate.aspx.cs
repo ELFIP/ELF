@@ -19,12 +19,12 @@ public partial class Formular_Facultate : System.Web.UI.Page
         if (!IsPostBack)
         {
             Session["format_imagine"] = "";
-            Session["nume_facultate"] = "";
+            Session["nume_facultate_"] = "";
         }
         else
         {
             format_imagine = (String)Session["format_imagine"];
-            nume_facultate_ = (String)Session["nume_facultate"];
+            nume_facultate_ = (String)Session["nume_facultate_"];
         }
     }
 
@@ -53,9 +53,9 @@ public partial class Formular_Facultate : System.Web.UI.Page
                 lbl_debug.Text = "";
                 format_imagine = format(FileUpload1.FileName);
                 Session["format_imagine"] = format_imagine;
-                Session["nume_facultate"] = nume_facultate.Text;
-                FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Imagini_facultati/") + nume_facultate.Text + "." + format_imagine);
-                imagine_facultate.ImageUrl = "/Imagini_facultati/" + nume_facultate.Text + "." + format_imagine;
+                Session["nume_facultate_"] = nume_facultate.Text + localitatea_facultatii.Text;
+                FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Imagini_facultati/") + (nume_facultate.Text + localitatea_facultatii.Text) + "." + format_imagine);
+                imagine_facultate.ImageUrl = "~/Imagini_facultati/" + (nume_facultate.Text + localitatea_facultatii.Text) + "." + format_imagine;
             }
         }
         else
@@ -82,6 +82,8 @@ public partial class Formular_Facultate : System.Web.UI.Page
         creazaFolder();
         creazaASPX();
         creazaC();
+        Session.Remove("format_imagine");
+        Session.Remove("nume_facultate_");
         Response.Redirect("\\Facultati\\" + nume + " " + localitate + "\\" +  nume + " " + localitate + ".aspx");
     }
 
@@ -110,7 +112,7 @@ public partial class Formular_Facultate : System.Web.UI.Page
 "    <asp:Table ID=\"formularFacultate\" runat=\"server\" Width=\"80%\" Style=\"margin-left: 10%\">",
 "        <asp:TableRow Width=\"100%\">",
 "            <asp:TableCell HorizontalAlign=\"Center\" Style=\"padding: 10px\" Width=\"20%\">",
-"                <asp:Image ID=\"imagine_facultate\" runat=\"server\" Width=\"100px\" Height=\"100px\" ImageUrl=\"" + "/Imagini_facultati/" + nume + "." + format_imagine  + "\" />",
+"                <asp:Image ID=\"imagine_facultate\" runat=\"server\" Width=\"100px\" Height=\"100px\" ImageUrl=\"" + "~/Imagini_facultati/" + nume_facultate_ + "." + format_imagine  + "\" />",
 "            </asp:TableCell>",
 "            <asp:TableCell HorizontalAlign=\"Center\" Style=\"padding: 10px\" Width=\"50%\">",
 "                <asp:Label ID=\"nume_facultate\" runat=\"server\" Text=\"" + nume + "\" CssClass=\"nume_facultate_formular\" Width=\"50%\">",
@@ -175,7 +177,7 @@ public partial class Formular_Facultate : System.Web.UI.Page
         dbcommand = new SqlCommand();
         dbcommand.Connection = dbconnection;
         dbcommand.Connection.Open();
-        dbcommand.CommandText = "Insert into [Facultate] values (" + (maxIdFacultate() + 1) + ", '" + nume_facultate.Text +"', '" + adresa_facultatii.Text + "', '" + localitatea_facultatii.Text + "' , '" + format_imagine + "');";
+        dbcommand.CommandText = "Insert into [Facultate] values (" + (maxIdFacultate() + 1) + ", '" + nume_facultate.Text +"', '" + adresa_facultatii.Text + "', '" + localitatea_facultatii.Text + "' , '" + nume_facultate_ + "." + format_imagine + "');";
         dbcommand.ExecuteNonQuery();
         dbconnection.Close();
     }

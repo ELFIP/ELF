@@ -72,12 +72,10 @@ public partial class Pagina_facultati_administrator : System.Web.UI.Page
             String localitate = sdr.GetValue(2).ToString();
 
             Image imagine = new Image();
-            imagine.AlternateText = "No image";
+            //imagine.AlternateText = "No image";
             imagine.ImageUrl = "~/Imagini_facultati/" + sdr.GetValue(3).ToString();
-
             imagine.Width = 100;
             imagine.Height = 100;
-
             lista_imagini.Add(imagine);
 
             // Panou pentru fiecare facultate;
@@ -116,37 +114,32 @@ public partial class Pagina_facultati_administrator : System.Web.UI.Page
         for (int i = 0; i < panou_facultati.Count; i++)
         {
             // Adaugam Label-urile;
+
+            TableRow rand_facultate = new TableRow();
+
             TableCell celula_imagine = new TableCell();
             celula_imagine.HorizontalAlign = HorizontalAlign.Center;
             celula_imagine.Attributes.Add("style", "padding: 10px");
+            celula_imagine.Width = new Unit("20%");
             celula_imagine.Controls.Add(lista_imagini[i]);
 
-            TableRow rand_facultate = new TableRow();
             TableCell celula_facultate = new TableCell();
             celula_facultate.HorizontalAlign = HorizontalAlign.Center;
             celula_facultate.Attributes.Add("style", "padding: 10px");
-            celula_facultate.Width = new Unit("50%");
-
+            celula_facultate.Width = new Unit("40%");
             celula_facultate.Controls.Add(panou_facultati[i]);
-
-            rand_facultate.Controls.Add(celula_imagine);
-            rand_facultate.Controls.Add(celula_facultate);
-
-            tabel_link_facultati.Controls.Add(rand_facultate);
-
-            // Adaugam butoanele de stergere;
-            TableRow rand_buton_facultate = new TableRow();
 
             TableCell celula_stergere = new TableCell();
             celula_stergere.HorizontalAlign = HorizontalAlign.Center;
             celula_stergere.Attributes.Add("style", "padding: 10px");
-            celula_stergere.Width = new Unit("50%");
-
+            celula_stergere.Width = new Unit("40%");
             celula_stergere.Controls.Add(sterge_facultati[i]);
 
-            rand_buton_facultate.Controls.Add(celula_stergere);
+            rand_facultate.Controls.Add(celula_imagine);
+            rand_facultate.Controls.Add(celula_facultate);
+            rand_facultate.Controls.Add(celula_stergere);
 
-            tabel_butoane_stergere.Controls.Add(rand_buton_facultate);
+            tabel_link_facultati.Controls.Add(rand_facultate);
         }
     }
 

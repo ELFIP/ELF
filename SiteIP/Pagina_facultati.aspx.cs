@@ -26,7 +26,7 @@ public partial class Pagina_facultati : System.Web.UI.Page
         comanda.Connection = conexiune;
         comanda.Connection.Open();
         SqlDataReader sdr;
-        comanda.CommandText = "SELECT nume,localitate,imagine FROM Facultate;";
+        comanda.CommandText = "SELECT nume, localitate, imagine FROM Facultate;";
         sdr = comanda.ExecuteReader();
         while (sdr.Read())
         {
@@ -35,12 +35,10 @@ public partial class Pagina_facultati : System.Web.UI.Page
             String localitate = sdr.GetValue(1).ToString();
 
             Image imagine = new Image();
-            imagine.AlternateText = "No image";
+            //imagine.AlternateText = "No image";
             imagine.ImageUrl = "~/Imagini_facultati/" + sdr.GetValue(2).ToString();
-
             imagine.Width = 100;
             imagine.Height = 100;
-
             lista_imagini.Add(imagine);
 
             // Panou pentru fiecare facultate;
