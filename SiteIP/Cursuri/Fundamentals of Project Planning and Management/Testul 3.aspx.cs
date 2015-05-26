@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
  
-public partial class Testul_1 : System.Web.UI.Page
+public partial class Testul_3 : System.Web.UI.Page
 {
     Auxiliare a = new Auxiliare();
     int id_test;
@@ -20,9 +20,9 @@ public partial class Testul_1 : System.Web.UI.Page
     double media_notelor_test;
     private string email;
     List<List<CheckBox>> bifat = new List<List<CheckBox>>();
-    List<string> intrebari = new List<string>  { "Care dintre urmatoarele nu caracterizeaza un proiect?", "Care dintre urmatoarele NU este un exemplu de proiect? (Selectați toate care se aplica)", "In ceea ce priveste Reteaua Power/Interest dezvoltata de Freeman, cum ar trebui un manager de proiect sa trateze un actor cu putere mareata și interes scazut?", "Care dintre urmatoarele este una dintre cele patru baze sau dimensiuni de cartografiere a unui proiect de succes potrivit lui Shenrhar și Dvir?", "Care dintre urmatoarele aspecte nu este un bun exemplu de cum sa se defineasca succesul unui proiect pentru a produce un film?", "Care dintre urmatoarele aspecte nu este un bun exemplu de cum sa se defineasca succesul unui proiect pentru a produce un film?", "Care din urmatoarii reprezinta pasi in Cleland si ciclul King's Stakeholder? (Selectați toate care se aplica)", "Care dintre urmatoarele sunt motive principale pentru care un proiect ar putea eșua? (Selectați toate care se aplica)", "Adevarat sau fals: Revenind la o etapa a proiectului anterior, a repeta-o pe aceasta este o indicație de a planui gresit." };
-    List<List<string>> raspunsuri = new List<List<string>>  { new List<string> {  "  Instituirea unui singur produs sau serviciu", "  Un singur set de activitați", "  Un set de rutina de sarcini", "  Eforturile in favoarea crearii unui rezultat definit, cu o alocare specifica de resurse", "  Un efort temporar" },  new List<string> {  "  Operațiunile aeroportuare", "  Proiectarea și dezvoltarea noului Tesla X", "  Asamblarea unui automobil Honda CRV", "  Productiile de la Festivalul de Film Cannes din acest an", "  Scrierea unei noi carti" },  new List<string> {  "  Sa fie tinut la curent", "  Sa monitorizeze", "  Gestionare atenta", "  Sa fie multumit" },  new List<string> {  "unitate", "noutate", "responsabilitate", "armonie" },  new List<string> {  "A fost filmul de succes in castigarea premiului Academiei dorit de producatorii directorilor companiei?", "Era timpul de vizionare a filmului mai puțin decat maxim 120 de minute specificat de producatorii directorilor companiei?", "  A fost filmul terminat la timp pentru programarea lansarii din 15 mai?", "  A fost filmul produs fara sa depaseasca bugetul de 50 milioane de dolari?" },  new List<string> {  "A fost filmul de succes in castigarea premiului Academiei dorit de producatorii directorilor companiei?", "  Era timpul de vizionare a filmului mai puțin decat maxim 120 de minute specificat de producatorii directorilor companiei?", "  A fost filmul terminat la timp pentru programarea lansarii din 15 mai?", "  A fost filmul produs fara sa depaseasca bugetul de 50 milioane de dolari?" },  new List<string> {  "  Distribuiți planul de proiect cu parțile interesate", "  Aduna parțile interesate", "  Prezice comportamentul parților interesate", "  Determina punctele forte și slabe ale parților interesate", "  Intervieveaza parțile interesate " },  new List<string> {  "  Lipsa de formare pe noua tehnologie", "  Imposibilitatea de a invața din proiectele trecute", "  Lipsa de certificare de management de proiect adecvat", "  Prejudecata optimista", "  Nerespectarea stabilirii obiectivelor clare" },  new List<string> {  "adevarat", "fals" }  } ;
-    List<List<bool>> raspunsuri_corecte = new List<List<bool>>  { new List<bool> {  true, false, false, false, false },  new List<bool> {  false, true, true, false, false },  new List<bool> {  false, true, false, false },  new List<bool> {  false, true, false, false },  new List<bool> {  true, false, false, false },  new List<bool> {  false, true, false, false },  new List<bool> {  false, true, true, false, false },  new List<bool> {  true, false, true, false, false },  new List<bool> {  true, false }  } ;
+    List<string> intrebari = new List<string>  { "da" };
+    List<List<string>> raspunsuri = new List<List<string>>  { new List<string> {  "1" }  } ;
+    List<List<bool>> raspunsuri_corecte = new List<List<bool>>  { new List<bool> {  false }  } ;
     Table tabel_intrebari_raspunsuri = new Table();
     Button buton_evalueaza = new Button();
     public bool testInceput = false;
@@ -35,6 +35,9 @@ public partial class Testul_1 : System.Web.UI.Page
  
     // Cate ore dureaza testul;
     public int ore_bazaDeDate = 0;
+ 
+    DateTime Start;
+    DateTime End;
  
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -89,7 +92,7 @@ public partial class Testul_1 : System.Web.UI.Page
  
             Label intrebare = new Label();
             intrebare.ID = "intrebare" + i;
-            intrebare.Width = new Unit("700");
+            intrebare.Width = new Unit("500");
             intrebare.Text = intrebari[i];
  
             Table tabel_raspunsuri = new Table();
@@ -110,7 +113,7 @@ public partial class Testul_1 : System.Web.UI.Page
  
                 Label raspuns = new Label();
                 raspuns.ID = "raspuns" + i + "" + j;
-                raspuns.Width = new Unit("700");
+                raspuns.Width = new Unit("500");
                 raspuns.Text = raspunsuri[i][j];
  
                 celula_raspuns_i.Controls.Add(c);
@@ -398,6 +401,5 @@ public partial class Testul_1 : System.Web.UI.Page
         Session["Test_inceput"] = true;
         testInceput = (bool)Session["Test_inceput"];
     }
-
 }
  

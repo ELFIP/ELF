@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Testul 1.aspx.cs" Inherits="Testul_1" MasterPageFile="~/MasterPage.master"%>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Testul 3.aspx.cs" Inherits="Testul_3" MasterPageFile="~/MasterPage.master"%>
  
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
     <script type="text/javascript">
@@ -6,17 +6,13 @@
         var secunde = 0;
         var minute = 0;
         var ore = 0;
-        var myVar;
 
         window.onload = function () {
             if("<%=testInceput%>" == "True") {
-                myVar = setInterval(function () { myTimer() }, 1000);
+                setInterval(function () { myTimer() }, 1000);
             }
         }
  
-        function CallServerMethod() {
-        }
-
         function myTimer() {
             secunde++;
             if (secunde == 60) {
@@ -32,11 +28,12 @@
             }
  
             document.getElementById("demo").innerHTML = ore + " : " + minute + " : " + secunde;
-
+ 
             if (minute + "" == "<%=minute_bazaDeDate%>" && ore + "" == "<%=ore_bazaDeDate%>") {
                 clearInterval(myVar);
                 alert("Timpul testului s-a scurs!");
             }
+ 
         }
  
     </script>
@@ -48,7 +45,7 @@
        <asp:Table ID="formular" runat="server" Width="80%" style="margin-left: 10%">
             <asp:TableHeaderRow Width="100%">
                 <asp:TableHeaderCell HorizontalAlign="Center" style="padding:10px" Width="50%">
-                    <asp:Label ID="numeTest" runat="server" Text="Testul 1" Width="50%">
+                    <asp:Label ID="numeTest" runat="server" Text="Testul 3" Width="50%">
                     </asp:Label>
                 </asp:TableHeaderCell>
                 <asp:TableHeaderCell HorizontalAlign="Center" style="padding:10px" Width="50%">
