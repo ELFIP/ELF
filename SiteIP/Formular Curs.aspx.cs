@@ -490,6 +490,7 @@ public partial class Formular_Curs : System.Web.UI.Page
 "<%@ Page Language=\"C#\" AutoEventWireup=\"true\" CodeFile=\"" + numeCurs.Text + "_administrator.aspx.cs\" Inherits=\"" + numeCurs.Text.Replace(" ", "_") + "_administrator\" MasterPageFile=\"~/MasterPage.master\" %>",
 
 "<asp:Content runat=\"server\" ID=\"Content1\" ContentPlaceHolderID=\"head\">",
+"<link rel='stylesheet' type='text/css' href=\"/Resources/css/cursuri_each.css\" />",
 "</asp:Content>",
 "<asp:Content runat=\"server\" ID=\"content\" ContentPlaceHolderID=\"ContentPlaceHolder1\">",
 

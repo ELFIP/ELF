@@ -1,5 +1,6 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Fundamentals of Project Planning and Management_administrator.aspx.cs" Inherits="Fundamentals_of_Project_Planning_and_Management_administrator" MasterPageFile="~/MasterPage.master" %>
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
+    <link rel='stylesheet' type='text/css' href="/Resources/css/cursuri_each.css" />
 </asp:Content>
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
    <asp:Table ID="forma" runat="server" Width="80%" Style="margin-left: 10%">

@@ -1,0 +1,42 @@
+﻿body {
+  background-image: url(https://myebony.files.wordpress.com/2011/06/inspiration1.jpg);
+  background-size: 100%;
+  background-attachment: fixed;
+  font-family: 'Open Sans', sans-serif;
+}
+
+table tr:nth-child(2) > td {
+    vertical-align: top;
+}
+
+.cursuri {
+    background: #1abc9c;
+    border: 2px solid #1ABC9C;
+    border-radius: 0 5px 5px 0;
+}
+
+.cursuri a {
+    color: #ECF0F1;
+    text-decoration: none;
+    padding: 5px;
+}
+
+img {
+    border-radius: 5px;
+}
+
+.cursuri a:hover {
+    background: #ECF0F1;
+    -webkit-box-shadow: inset -1px 0px 14px 9px #1ABC9C;
+    -moz-box-shadow: inset -1px 0px 14px 9px #1ABC9C;
+    box-shadow: inset -1px 0px 14px 9px #1ABC9C;
+
+}
+
+
+.taguri {
+    background: #1abc9c;
+    border: 2px solid #1ABC9C;
+    border-radius: 5px 0 0 5px;
+    color: #ECF0F1;
+}

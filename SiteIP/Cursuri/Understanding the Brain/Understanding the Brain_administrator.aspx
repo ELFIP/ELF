@@ -1,5 +1,6 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Understanding the Brain_administrator.aspx.cs" Inherits="Understanding_the_Brain_administrator" MasterPageFile="~/MasterPage.master" %>
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
+    <link rel='stylesheet' type='text/css' href="/Resources/css/cursuri_each.css" />
 </asp:Content>
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
    <asp:Table ID="forma" runat="server" Width="80%" Style="margin-left: 10%">

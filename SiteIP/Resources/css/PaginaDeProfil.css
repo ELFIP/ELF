@@ -169,7 +169,7 @@ dropdown{
 dropdown label, dropdown ul li{
   display: block;
   width: 200px;
-  background: #ECF0F1;
+  background: #ECF0F1; 
   padding: 10px;
 }
 dropdown label:hover, dropdown ul li:hover{
@@ -246,6 +246,8 @@ dropdown ul li {
 dropdown ul {
     padding: 0;
     margin: 0;
+    border: 2px solid #1ABC9C;
+    border-top:none
 }
 
 .aux::before {

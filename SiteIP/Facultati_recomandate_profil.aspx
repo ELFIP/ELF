@@ -51,7 +51,7 @@
                     <label for="toggle2" class="animate">Facultati</label>
                     <asp:BulletedList ID="BulletedList1" runat="server" DataTextField="nume" DataValueField="nume" DataSourceID="SqlDataSource1" CssClass="animate">
                     </asp:BulletedList>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT nume FROM Facultate AS f WHERE (id_facultate = (SELECT id_facultate FROM Utilizator_Facultate AS uf WHERE (id_facultate = f.id_facultate) AND (uf.id_utilizator = (SELECT id_utilizator FROM Utilizator WHERE (email = @uem)))))">
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT TOP (10) nume FROM Facultate AS f WHERE (id_facultate = (SELECT id_facultate FROM Utilizator_Facultate AS uf WHERE (id_facultate = f.id_facultate) AND (id_utilizator = (SELECT id_utilizator FROM Utilizator WHERE (email = @uem)))))">
                         <SelectParameters>
                             <asp:SessionParameter Name="uem" SessionField="email" />
                         </SelectParameters>

@@ -1,0 +1,55 @@
+﻿body {
+  background-image: url(https://myebony.files.wordpress.com/2011/06/inspiration1.jpg);
+  background-size: 100%;
+  background-attachment: fixed;
+  font-family: 'Open Sans', sans-serif;
+}
+
+table tr:nth-child(2) > td {
+    vertical-align: top;
+}
+
+.fac {
+    background: #1abc9c;
+    border: 2px solid #1ABC9C;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.fac a {
+    color: #ECF0F1;
+    text-decoration: none;
+    padding: 5px;
+}
+
+img {
+    border-radius: 5px;
+}
+
+.fac a:hover {
+    background: #ECF0F1;
+    -webkit-box-shadow: inset -1px 0px 14px 9px #1ABC9C;
+    -moz-box-shadow: inset -1px 0px 14px 9px #1ABC9C;
+    box-shadow: inset -1px 0px 14px 9px #1ABC9C;
+
+}
+
+input {
+  background-color: #4AA6FF;
+  border: 1px solid lightgrey;
+  padding: 5px 8px 5px 8px;
+  color: #473E3F;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 5px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  /* -webkit-border-radius: 3px 3px 3px 3px; */
+  color: white;
+}
+
+
+
+.taguri {
+    background: #1abc9c;
+    border: 2px solid #1ABC9C;
+    border-radius: 5px 0 0 5px;
+    color: #ECF0F1;
+}

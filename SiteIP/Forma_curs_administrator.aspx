@@ -1,10 +1,11 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Forma_curs_administrator.aspx.cs" Inherits="Forma_curs_administrator" MasterPageFile="~/MasterPage.master"%>
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
+     <link rel='stylesheet' type='text/css' href="/Resources/css/cursuri_each.css" />
 </asp:Content>
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
     <asp:Table ID="forma" runat="server" Width="80%" Style="margin-left: 10%">
-        <asp:TableHeaderRow Width="100%" >
+        <asp:TableHeaderRow Width="100%"  CssClass="cap" >
             <asp:TableHeaderCell HorizontalAlign="Center" Style="padding: 10px">
                 <asp:Label ID="numeCurs" runat="server" Text="" Width="50%"></asp:Label>
             </asp:TableHeaderCell>

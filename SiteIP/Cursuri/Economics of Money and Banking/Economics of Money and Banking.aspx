@@ -1,5 +1,6 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Economics of Money and Banking.aspx.cs" Inherits="Economics_of_Money_and_Banking" MasterPageFile="~/MasterPage.master" %>
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="head">
+    <link rel='stylesheet' type='text/css' href="/Resources/css/cursuri_each.css" />
 </asp:Content>
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
  

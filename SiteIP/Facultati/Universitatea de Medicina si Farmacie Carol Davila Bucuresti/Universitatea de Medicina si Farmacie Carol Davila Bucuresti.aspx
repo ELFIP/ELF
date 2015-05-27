@@ -1,6 +1,7 @@
 <%@ Page Language='C#' AutoEventWireup='true' CodeFile='Universitatea de Medicina si Farmacie Carol Davila Bucuresti.aspx.cs' Inherits='Universitatea_de_Medicina_si_Farmacie_Carol_Davila_Bucuresti' MasterPageFile='~/MasterPage.master'%>
  
 <asp:Content runat='server' ID='Content1' ContentPlaceHolderID='head'>
+    <link rel='stylesheet' type='text/css' href="/Resources/css/facultati_each.css" />
 </asp:Content>
 <asp:Content runat='server' ID='content' ContentPlaceHolderID='ContentPlaceHolder1'>
     <asp:Table ID="formularFacultate" runat="server" Width="80%" Style="margin-left: 10%">

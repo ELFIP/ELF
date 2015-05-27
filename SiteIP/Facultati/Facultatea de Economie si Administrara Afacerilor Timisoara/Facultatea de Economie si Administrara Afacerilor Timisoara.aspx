@@ -1,6 +1,7 @@
 <%@ Page Language='C#' AutoEventWireup='true' CodeFile='Facultatea de Economie si Administrara Afacerilor Timisoara.aspx.cs' Inherits='Facultatea_de_Economie_si_Administrara_Afacerilor_Timisoara' MasterPageFile='~/MasterPage.master'%>
  
 <asp:Content runat='server' ID='Content1' ContentPlaceHolderID='head'>
+    <link rel='stylesheet' type='text/css' href="/Resources/css/facultati_each.css" />
 </asp:Content>
 <asp:Content runat='server' ID='content' ContentPlaceHolderID='ContentPlaceHolder1'>
     <asp:Table ID="formularFacultate" runat="server" Width="80%" Style="margin-left: 10%">

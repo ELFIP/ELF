@@ -1,4 +1,11 @@
-﻿.tree {
+﻿body {
+  background-image: url(https://myebony.files.wordpress.com/2011/06/inspiration1.jpg);
+  background-size: 100%;
+  background-attachment: fixed;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.tree {
     margin-top: 120px;
     text-align: center;
     white-space: nowrap;
