@@ -13,7 +13,7 @@
                 <asp:Label ID="numeFacultati" runat="server" Text="Facultati" Width="50%">
                 </asp:Label>
             </asp:TableHeaderCell>
-        </asp:TableHeaderRow CssClass="fac">
+        </asp:TableHeaderRow>
         <asp:TableRow>
             <asp:TableCell HorizontalAlign="Center" Style="padding: 10px" Width="50%">
                 <asp:Table ID="tabel_link_facultati" runat="server">

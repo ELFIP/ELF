@@ -31,12 +31,5 @@
             <asp:Label ID="lbl_alertDateLogin" CssClass="eroareLogin" runat="server" Text=""></asp:Label>
         </form>
     </div>
-    <footer>
-        <nav>
-            <a href="#"> About </a>
-            <a href="#"> Termeni si Factori </a>
-            <p> &copy; 2015 </p>
-        </nav>
-    </footer>
 </body>
 </html>

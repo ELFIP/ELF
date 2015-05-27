@@ -78,7 +78,7 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
             calculeazaScorFacultati();
             adaugaInBazaDeDate();
           //  selecteazaFacultatileRecomandate();
-          //  actualizeazaCampuri();
+            actualizeazaCampuri();
         }
     }
 
@@ -232,7 +232,7 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
             double scor_judet;
             Distanta d = new Distanta(id_utilizator, localitate_utilizator, referinta_localitate_facultate[i]);
             int distanta = d.stringToInt(d.DistanceMatrixRequest(localitate_utilizator, referinta_localitate_facultate[i]));
-            scor_judet = (double)(distanta - distanta_minima) / (double)(distanta_maxima - distanta_minima);
+            scor_judet = 1 - (double)(distanta) / (double)(distanta_maxima);
 
             // Aflam ponderea videoclipurilor;
             double scor_nota_data_videoclip = media_notelor_date_videoclip[i] / 5.0;
@@ -266,7 +266,7 @@ public partial class Facultati_recomandate_profil : System.Web.UI.Page
             {
                 // Aflam ponderea distantei;
                 distanta = d.stringToInt(d.DistanceMatrixRequest(localitate_utilizator, referinta_localitate_facultate[i + 1]));
-                scor_judet = (scor_judet + (double)(distanta - distanta_minima) / (double)(distanta_maxima - distanta_minima)) / 2.0;
+                scor_judet = (scor_judet + 1 - (double)(distanta) / (double)(distanta_maxima)) / 2.0;
 
                 // Aflam ponderea videoclipurilor;
                 scor_nota_data_videoclip = (scor_nota_data_videoclip + media_notelor_date_videoclip[i + 1] / 5.0) / 2.0;

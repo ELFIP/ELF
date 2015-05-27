@@ -9,9 +9,6 @@
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
 
     <asp:Panel ID="panou_header" runat="server" CssClass="header_profil">
-        <asp:Panel ID="panou_iconita" runat="server" CssClass="iconita_profil">
-            <asp:Image ID="iconita" runat="server" Width="50px" Height="50px" />
-        </asp:Panel>
         <asp:Panel ID="panou_utilizator" runat="server" CssClass="utilizator_profil">
             <asp:Label ID="label_email" runat="server" Text="" CssClass="camp_profil">
             </asp:Label>
@@ -51,7 +48,7 @@
                     <label for="toggle2" class="animate">Facultati</label>
                     <asp:BulletedList ID="BulletedList1" runat="server" DataTextField="nume" DataValueField="nume" DataSourceID="SqlDataSource1" CssClass="animate">
                     </asp:BulletedList>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT TOP (10) nume FROM Facultate AS f WHERE (id_facultate = (SELECT id_facultate FROM Utilizator_Facultate AS uf WHERE (id_facultate = f.id_facultate) AND (id_utilizator = (SELECT id_utilizator FROM Utilizator WHERE (email = @uem)))))">
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT TOP (10) f.nume FROM Facultate f, Utilizator_facultate uf WHERE f.id_facultate = uf.id_facultate AND uf.id_utilizator =  (SELECT id_utilizator FROM Utilizator WHERE (email = @uem)) ORDER BY uf.scor DESC">
                         <SelectParameters>
                             <asp:SessionParameter Name="uem" SessionField="email" />
                         </SelectParameters>

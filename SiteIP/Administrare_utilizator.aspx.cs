@@ -19,8 +19,11 @@ public partial class Administrare_utilizator : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        adaugaUtilizatori();
-        afiseazaUtilizatori();
+       // if(!IsPostBack) {
+            adaugaUtilizatori();
+            afiseazaUtilizatori();
+      //  }
+
     }
 
     private void adaugaUtilizatori()
@@ -48,7 +51,6 @@ public partial class Administrare_utilizator : System.Web.UI.Page
 
     public void afiseazaUtilizatori()
     {
-        tabel_utilizatori.Rows.Clear();
 
         adaugaHeader();
 
@@ -77,7 +79,7 @@ public partial class Administrare_utilizator : System.Web.UI.Page
 
                 TableCell celula1 = new TableCell();
                 celula1.CssClass = "celula_rand";
-                celula1.Controls.Add(sterge);
+               // celula1.Controls.Add(sterge);
                 celula1.Controls.Add(admin);
 
                 TableCell celula2 = new TableCell();
@@ -158,8 +160,9 @@ public partial class Administrare_utilizator : System.Web.UI.Page
             comanda.CommandText = "DELETE FROM Utilizator WHERE email = '" + email[i] + "';";
             comanda.ExecuteNonQuery();
             conexiune.Close();
-            Page_Load(null, EventArgs.Empty);
         }
+        adaugaUtilizatori();
+        afiseazaUtilizatori();
     }
 
     protected void modificaAdmin(object sender, EventArgs e)

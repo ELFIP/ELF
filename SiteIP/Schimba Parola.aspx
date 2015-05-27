@@ -9,9 +9,6 @@
 <asp:Content runat="server" ID="content" ContentPlaceHolderID="ContentPlaceHolder1">
 
     <asp:Panel ID="panou_header" runat="server" CssClass="header_profil">
-        <asp:Panel ID="panou_iconita" runat="server" CssClass="iconita_profil">
-            <asp:Image ID="iconita" runat="server" Width="50px" Height="50px" />
-        </asp:Panel>
         <asp:Panel ID="panou_utilizator" runat="server" CssClass="utilizator_profil">
             <asp:Label ID="label_email" runat="server" Text="" CssClass="camp_profil">
             </asp:Label>
